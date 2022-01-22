@@ -1,0 +1,30 @@
+nav {
+    position:fixed; 
+    top:0px;
+    right:0px;
+    border-style: solid ;
+    background-color: rgb(0, 0, 0);
+    border-radius: 0 0 10px 10px;
+        z-index: 100;
+}
+    html{
+        text-align: center;
+        font-family: sans-serif;
+    }
+    a:link { 
+        font-weight: bold; 
+        text-decoration: none; 
+        color: lightsteelblue;
+        }
+    a:visited { 
+        font-weight: bold; 
+        text-decoration: underline; 
+        color: lightsteelblue;
+        }
+    a:hover, a:focus,a:active { 
+        text-decoration: underline; 
+        color: lightsteelblue;
+    }
+    #hervorheben{
+        color: gold;
+    }
