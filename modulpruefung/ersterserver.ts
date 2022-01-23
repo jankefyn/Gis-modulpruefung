@@ -20,7 +20,7 @@ export namespace P_3_1Server {
 
 
     let students: Mongo.Collection;
-    let databaseUrl: string = "mongodb+srv://FynnJ:oIh47lfcy1wDuvkw@gis-ist-geil.wb5k5.mongodb.net/Test?retryWrites=true&w=majority";
+    let databaseUrl: string = "mongodb+srv://FynnJ:<Hallo123456>@gis-ist-geil.wb5k5.mongodb.net/GIS-IST-GEIL?retryWrites=true&w=majority";
 
 
     console.log("Starting server");
