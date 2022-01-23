@@ -66,7 +66,7 @@ export namespace P_3_1Server {
 
         if (q.pathname == "//html") {
 
-            _response.write(await storeRückgabe(q.query, daten.ablaufdatum));
+            _response.write(await storeRückgabe(q.query));
         }
         if (q.pathname == "//login") {
 
@@ -124,25 +124,9 @@ export namespace P_3_1Server {
         else return "Anmeldedaten nicht gefunden";
 
     }
-    async function storeRückgabe(_rückgabe: Products, ablaufdatum: string | string[]): Promise<string> {
-        let data: Antwort[] = await products.find().toArray();
-
-        if (data.length > 0) {
-            for (let counter: number = 0; counter < data.length; counter++) {
-                if (data[counter].ablaufdatum == ablaufdatum) {
-
-                    return "Ein Konto mit dieser ablaufdatum adresse besteht bereits";
-
-                }
-                else {
-                    products.insertOne(_rückgabe);
-                    return ("Nutzer erfolgreich registriert");
-                }
-            }
-        }
-
+    async function storeRückgabe(_rückgabe: Products): Promise<string> {
         products.insertOne(_rückgabe);
-        return "Nutzer erfolgreich registriert";
+        return "Gefriergut erfolgreich gespeichert!";
     }
 }
 
