@@ -12,7 +12,7 @@ export namespace P_3_1Server {
     interface Antwort {
         name: string;
         notiz: string;
-        ablaufdatum: string;     
+        ablaufdatum: Date;     
     }
 
 
@@ -70,7 +70,7 @@ export namespace P_3_1Server {
         }
         if (q.pathname == "//login") {
 
-            _response.write(await login(daten.ablaufdatum, daten.password));
+            _response.write(await login(daten.notiz, daten.password));
         }
         if (q.pathname == "//showUsers") {
             _response.write(await retrieveProducts());
@@ -95,7 +95,7 @@ export namespace P_3_1Server {
             return (dataString);
         }
         else {
-            return ("noch kein Nutzer vorhanden");
+            return ("noch Gefriergut vorhanden");
         }
     }
     async function login(ablaufdatum: string | string[], password: string | string[]): Promise<String> {
@@ -105,8 +105,8 @@ export namespace P_3_1Server {
 
             let dataString: string;
             for (let counter: number = 0; counter < data.length; counter++) {
-                if (data[counter].ablaufdatum == ablaufdatum) {
-                    if (data[counter].ablaufdatum == password) {
+                if (data[counter].notiz == ablaufdatum) {
+                    if (data[counter].notiz == password) {
                         dataString = "angemeldet";
                     }
                     else {

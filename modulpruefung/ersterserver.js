@@ -38,7 +38,7 @@ var P_3_1Server;
             _response.write(await storeRückgabe(q.query));
         }
         if (q.pathname == "//login") {
-            _response.write(await login(daten.ablaufdatum, daten.password));
+            _response.write(await login(daten.notiz, daten.password));
         }
         if (q.pathname == "//showUsers") {
             _response.write(await retrieveProducts());
@@ -58,7 +58,7 @@ var P_3_1Server;
             return (dataString);
         }
         else {
-            return ("noch kein Nutzer vorhanden");
+            return ("noch Gefriergut vorhanden");
         }
     }
     async function login(ablaufdatum, password) {
@@ -66,8 +66,8 @@ var P_3_1Server;
         if (data.length > 0) {
             let dataString;
             for (let counter = 0; counter < data.length; counter++) {
-                if (data[counter].ablaufdatum == ablaufdatum) {
-                    if (data[counter].ablaufdatum == password) {
+                if (data[counter].notiz == ablaufdatum) {
+                    if (data[counter].notiz == password) {
                         dataString = "angemeldet";
                     }
                     else {
