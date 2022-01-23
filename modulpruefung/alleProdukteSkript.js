@@ -17,4 +17,4 @@ var P3_1;
         serverantwort.innerHTML = text;
     }
 })(P3_1 || (P3_1 = {}));
-//# sourceMappingURL=alleNutzerSkript.js.map
+//# sourceMappingURL=alleProdukteSkript.js.map

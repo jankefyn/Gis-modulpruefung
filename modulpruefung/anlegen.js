@@ -17,4 +17,4 @@ var P3_1;
         serverantwort.innerHTML = text;
     }
 })(P3_1 || (P3_1 = {}));
-//# sourceMappingURL=skript.js.map
+//# sourceMappingURL=anlegen.js.map
