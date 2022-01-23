@@ -7,9 +7,23 @@ nav {
     border-radius: 0 0 10px 10px;
         z-index: 100;
 }
+a[href$="alleNutzer.html"]:hover{
+    background-color: rgba(0, 0, 255, 0.507);
+    color: white;
+    }
+    a[href$= "anmeldung.html"]:hover{
+        background-color: rgba(158, 156, 24, 0.507);
+        color: white;
+    }
+    a[href$="drei_eins.html"]:hover{
+        background-color: rgba(17, 167, 104, 0.507);
+        color: white;
+    }
     html{
+ 
         text-align: center;
         font-family: sans-serif;
+    
     }
     a:link { 
         font-weight: bold; 

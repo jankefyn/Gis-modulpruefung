@@ -1,0 +1,57 @@
+
+body{
+    font-size: xx-large;
+    margin: 0;
+        background-image: url(bg.png);
+    }
+
+html{
+    text-align: center;
+    font-family: sans-serif;
+}
+
+#bilder{
+        display: flex;
+        justify-content:space-around;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 40px;
+    }
+ #bilder img {
+        width: 300px;
+        height: auto;
+       
+    }
+    #bilder img :active {
+        border: 3px solid green;
+    }
+#gespeicherteBilder{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin: 40px;
+    }
+   
+#gespeicherteBilder img{
+        max-width:  200px;
+    }
+
+#message {
+text-align: left;
+color:green;
+font-size: small;
+}
+#messageerror{
+text-align: left;
+color:red;
+font-size: small;
+}
+
+    
+    
+  
+
+
+    
+

@@ -1,0 +1,44 @@
+{
+    "oben": [
+        {
+            "link": "Bild1Oben.jpeg",
+            "typ": 0
+        },
+        {
+            "link": "Bild2Oben.jpeg",
+            "typ": 0
+        },
+        {
+            "link": "Bild3Oben.jpeg",
+            "typ": 0
+        }
+    ],
+    "mitte": [
+        {
+            "link": "Bild1Mitte.jpeg",
+            "typ": 2
+        },
+        {
+            "link": "Bild2Mitte.jpeg",
+            "typ": 2
+        },
+        {
+            "link": "Bild3Mitte.jpeg",
+            "typ": 2
+        }
+    ],
+    "unten": [
+        {
+            "link": "Bild1Unten.jpeg",
+            "typ": 1
+        },
+        {
+            "link": "Bild2Unten.jpeg",
+            "typ": 1
+        },
+        {
+            "link": "Bild3Unten.jpeg",
+            "typ": 1
+        }
+    ]
+}
