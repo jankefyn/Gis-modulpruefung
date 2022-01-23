@@ -7,7 +7,7 @@ const Mongo = require("mongodb");
 var P_3_1Server;
 (function (P_3_1Server) {
     let students;
-    let databaseUrl = "mongodb+srv://FynnJ:oIh47lfcy1wDuvkw@gis-ist-geil.wb5k5.mongodb.net/Products?retryWrites=true&w=majority";
+    let databaseUrl = "mongodb+srv://FynnJ:oIh47lfcy1wDuvkw@gis-ist-geil.wb5k5.mongodb.net/Test?retryWrites=true&w=majority";
     console.log("Starting server");
     let port = Number(process.env.PORT);
     if (!port)
