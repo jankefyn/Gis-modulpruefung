@@ -88,10 +88,10 @@ export namespace P_3_1Server {
             let dataString: string = "";
             for (let counter: number = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
-                    dataString = dataString + "  " + data[counter].name + " " + data[counter].notiz + ",";
+                    dataString = dataString + "  " + data[counter].name + " " + data[counter].ablaufdatum + ",";
                 }
             }
-            dataString = dataString + "  " + data[data.length - 1].name + " " + data[data.length - 1].notiz;
+            dataString = dataString + "  " + data[data.length - 1].name + " " + data[data.length - 1].ablaufdatum;
             return (dataString);
         }
         else {
