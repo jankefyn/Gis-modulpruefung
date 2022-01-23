@@ -51,14 +51,14 @@ var P_3_1Server;
             let dataString = "";
             for (let counter = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
-                    dataString = dataString + "  " + data[counter].name + " " + data[counter].ablaufdatum + ",";
+                    dataString = dataString + "  " + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + ",";
                 }
             }
-            dataString = dataString + "  " + data[data.length - 1].name + " " + data[data.length - 1].ablaufdatum;
+            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum;
             return (dataString);
         }
         else {
-            return ("noch Gefriergut vorhanden");
+            return ("noch kein Gefriergut vorhanden");
         }
     }
     async function login(ablaufdatum, password) {
