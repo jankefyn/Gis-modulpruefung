@@ -8,7 +8,7 @@ namespace P3_1 {
 
     async function submit(_parameter: string): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);
-        let url: string = "https://gisaufgabedrei.herokuapp.com/";
+        let url: string = "https://gis-modulpruefung.herokuapp.com/";
         let query: URLSearchParams = new URLSearchParams(<any>formData);
 
         if (_parameter == "HTML") {
