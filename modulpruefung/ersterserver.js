@@ -24,7 +24,7 @@ var P_3_1Server;
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        students = mongoClient.db("Test").collection("Products");
+        students = mongoClient.db("Test").collection("Students");
         console.log("Database connection", students != undefined);
     }
     function handleListen() {
