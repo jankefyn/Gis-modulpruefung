@@ -51,10 +51,10 @@ var P_3_1Server;
             let dataString = "";
             for (let counter = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
-                    dataString = dataString + "  " + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum.toString + ",";
+                    dataString = dataString + "  " + data[counter].name + " läuft ab am: " + data[counter].date + ",";
                 }
             }
-            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum.toString;
+            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].date;
             return (dataString);
         }
         else {
