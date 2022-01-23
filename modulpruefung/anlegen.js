@@ -6,7 +6,7 @@ var P3_1;
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {
         let formData = new FormData(document.forms[0]);
-        let url = "https://gisaufgabedrei.herokuapp.com/";
+        let url = "https://gis-modulpruefung.herokuapp.com/";
         let query = new URLSearchParams(formData);
         if (_parameter == "HTML") {
             url = url + "/html";

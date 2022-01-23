@@ -6,8 +6,8 @@ const url = require("url");
 const Mongo = require("mongodb");
 var P_3_1Server;
 (function (P_3_1Server) {
-    let students;
-    let databaseUrl = "mongodb+srv://FynnJ:oIh47lfcy1wDuvkw@gis-ist-geil.wb5k5.mongodb.net/Test?retryWrites=true&w=majority";
+    let products;
+    let databaseUrl = "mongodb+srv://FynnJ:oIh47lfcy1wDuvkw@gis-ist-geil.wb5k5.mongodb.net/Products?retryWrites=true&w=majority";
     console.log("Starting server");
     let port = Number(process.env.PORT);
     if (!port)
@@ -24,8 +24,8 @@ var P_3_1Server;
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        students = mongoClient.db("Test").collection("Products");
-        console.log("Database connection", students != undefined);
+        products = mongoClient.db("Test").collection("Products");
+        console.log("Database connection", products != undefined);
     }
     function handleListen() {
         console.log("Listening");
@@ -35,39 +35,39 @@ var P_3_1Server;
         let q = url.parse(_request.url, true);
         let daten = q.query;
         if (q.pathname == "//html") {
-            _response.write(await storeRückgabe(q.query, daten.email));
+            _response.write(await storeRückgabe(q.query));
         }
         if (q.pathname == "//login") {
-            _response.write(await login(daten.email, daten.password));
+            _response.write(await login(daten.ablaufdatum, daten.password));
         }
         if (q.pathname == "//showUsers") {
-            _response.write(await retrieveStudents());
+            _response.write(await retrieveProducts());
         }
         _response.end();
     }
-    async function retrieveStudents() {
-        let data = await students.find().toArray();
+    async function retrieveProducts() {
+        let data = await products.find().toArray();
         if (data.length > 0) {
             let dataString = "";
             for (let counter = 0; counter < data.length - 1; counter++) {
-                if (data[counter].fname != undefined) {
-                    dataString = dataString + "  " + data[counter].fname + " " + data[counter].lname + ",";
+                if (data[counter].name != undefined) {
+                    dataString = dataString + "  " + data[counter].name + " " + data[counter].notiz + ",";
                 }
             }
-            dataString = dataString + "  " + data[data.length - 1].fname + " " + data[data.length - 1].lname;
+            dataString = dataString + "  " + data[data.length - 1].name + " " + data[data.length - 1].notiz;
             return (dataString);
         }
         else {
             return ("noch kein Nutzer vorhanden");
         }
     }
-    async function login(email, password) {
-        let data = await students.find().toArray();
+    async function login(ablaufdatum, password) {
+        let data = await products.find().toArray();
         if (data.length > 0) {
             let dataString;
             for (let counter = 0; counter < data.length; counter++) {
-                if (data[counter].email == email) {
-                    if (data[counter].password == password) {
+                if (data[counter].ablaufdatum == ablaufdatum) {
+                    if (data[counter].ablaufdatum == password) {
                         dataString = "angemeldet";
                     }
                     else {
@@ -75,7 +75,7 @@ var P_3_1Server;
                     }
                 }
                 else {
-                    dataString = "falsche Email";
+                    dataString = "falsche ablaufdatum";
                 }
             }
             return (dataString);
@@ -83,21 +83,9 @@ var P_3_1Server;
         else
             return "Anmeldedaten nicht gefunden";
     }
-    async function storeRückgabe(_rückgabe, email) {
-        let data = await students.find().toArray();
-        if (data.length > 0) {
-            for (let counter = 0; counter < data.length; counter++) {
-                if (data[counter].email == email) {
-                    return "Ein Konto mit dieser email adresse besteht bereits";
-                }
-                else {
-                    students.insertOne(_rückgabe);
-                    return ("Nutzer erfolgreich registriert");
-                }
-            }
-        }
-        students.insertOne(_rückgabe);
-        return "Nutzer erfolgreich registriert";
+    async function storeRückgabe(_rückgabe) {
+        products.insertOne(_rückgabe);
+        return "Gefriergut erfolgreich gespeichert!";
     }
 })(P_3_1Server = exports.P_3_1Server || (exports.P_3_1Server = {}));
 //# sourceMappingURL=ersterserver.js.map
