@@ -6,20 +6,17 @@ import * as Mongo from "mongodb";
 
 
 export namespace P_3_1Server {
-    interface Students {
+    interface Products {
         [type: string]: string | string[];
     }
     interface Antwort {
-        fname: string;
-        lname: string;
-        email: string;
-        adress: string;
-        postleitzahl: string;
-        password: string;
+        name: string;
+        notiz: string;
+        ablaufdatum: string;     
     }
 
 
-    let students: Mongo.Collection;
+    let products: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://FynnJ:oIh47lfcy1wDuvkw@gis-ist-geil.wb5k5.mongodb.net/Products?retryWrites=true&w=majority";
 
 
@@ -46,8 +43,8 @@ export namespace P_3_1Server {
         let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        students = mongoClient.db("Test").collection("Products");
-        console.log("Database connection", students != undefined);
+        products = mongoClient.db("Test").collection("Products");
+        console.log("Database connection", products != undefined);
     }
 
 
@@ -69,47 +66,47 @@ export namespace P_3_1Server {
 
         if (q.pathname == "//html") {
 
-            _response.write(await storeRückgabe(q.query, daten.email));
+            _response.write(await storeRückgabe(q.query, daten.ablaufdatum));
         }
         if (q.pathname == "//login") {
 
-            _response.write(await login(daten.email, daten.password));
+            _response.write(await login(daten.ablaufdatum, daten.password));
         }
         if (q.pathname == "//showUsers") {
-            _response.write(await retrieveStudents());
+            _response.write(await retrieveProducts());
         }
 
 
         _response.end();
     }
 
-    async function retrieveStudents(): Promise<String> {
+    async function retrieveProducts(): Promise<String> {
 
-        let data: Antwort[] = await students.find().toArray();
+        let data: Antwort[] = await products.find().toArray();
         if (data.length > 0) {
 
             let dataString: string = "";
             for (let counter: number = 0; counter < data.length - 1; counter++) {
-                if (data[counter].fname != undefined) {
-                    dataString = dataString + "  " + data[counter].fname + " " + data[counter].lname + ",";
+                if (data[counter].name != undefined) {
+                    dataString = dataString + "  " + data[counter].name + " " + data[counter].notiz + ",";
                 }
             }
-            dataString = dataString + "  " + data[data.length - 1].fname + " " + data[data.length - 1].lname;
+            dataString = dataString + "  " + data[data.length - 1].name + " " + data[data.length - 1].notiz;
             return (dataString);
         }
         else {
             return ("noch kein Nutzer vorhanden");
         }
     }
-    async function login(email: string | string[], password: string | string[]): Promise<String> {
+    async function login(ablaufdatum: string | string[], password: string | string[]): Promise<String> {
 
-        let data: Antwort[] = await students.find().toArray();
+        let data: Antwort[] = await products.find().toArray();
         if (data.length > 0) {
 
             let dataString: string;
             for (let counter: number = 0; counter < data.length; counter++) {
-                if (data[counter].email == email) {
-                    if (data[counter].password == password) {
+                if (data[counter].ablaufdatum == ablaufdatum) {
+                    if (data[counter].ablaufdatum == password) {
                         dataString = "angemeldet";
                     }
                     else {
@@ -118,7 +115,7 @@ export namespace P_3_1Server {
                 }
                 else {
 
-                    dataString = "falsche Email";
+                    dataString = "falsche ablaufdatum";
                 }
             }
 
@@ -127,24 +124,24 @@ export namespace P_3_1Server {
         else return "Anmeldedaten nicht gefunden";
 
     }
-    async function storeRückgabe(_rückgabe: Students, email: string | string[]): Promise<string> {
-        let data: Antwort[] = await students.find().toArray();
+    async function storeRückgabe(_rückgabe: Products, ablaufdatum: string | string[]): Promise<string> {
+        let data: Antwort[] = await products.find().toArray();
 
         if (data.length > 0) {
             for (let counter: number = 0; counter < data.length; counter++) {
-                if (data[counter].email == email) {
+                if (data[counter].ablaufdatum == ablaufdatum) {
 
-                    return "Ein Konto mit dieser email adresse besteht bereits";
+                    return "Ein Konto mit dieser ablaufdatum adresse besteht bereits";
 
                 }
                 else {
-                    students.insertOne(_rückgabe);
+                    products.insertOne(_rückgabe);
                     return ("Nutzer erfolgreich registriert");
                 }
             }
         }
 
-        students.insertOne(_rückgabe);
+        products.insertOne(_rückgabe);
         return "Nutzer erfolgreich registriert";
     }
 }
