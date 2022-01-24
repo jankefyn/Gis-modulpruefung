@@ -90,7 +90,9 @@ var P_3_1Server;
             return "Anmeldedaten nicht gefunden";
     }
     async function storeRückgabe(_rückgabe) {
-        products.insertOne(_rückgabe);
+        let anlegedatum = new Date();
+        let _fertigeRückgabe = _rückgabe.push(anlegedatum.toString());
+        products.insertOne(_fertigeRückgabe);
         return "Gefriergut erfolgreich gespeichert!";
     }
 })(P_3_1Server = exports.P_3_1Server || (exports.P_3_1Server = {}));
