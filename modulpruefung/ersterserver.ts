@@ -75,7 +75,12 @@ export namespace P_3_1Server {
         if (q.pathname == "//showUsers") {
             _response.write(await retrieveProducts());
         }
-
+        if (q.pathname == "//saveNumber") {
+            _response.end();
+        }
+        if (q.pathname == "//showDetail") {
+            _response.end();
+        }
 
         _response.end();
     }
