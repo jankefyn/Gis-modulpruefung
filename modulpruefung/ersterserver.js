@@ -107,7 +107,7 @@ var P_3_1Server;
                     dataString = dataString + "  " + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz + " " + data[counter].kategorie + ",";
                 }
             }
-            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum + " " + data[data.length - 1].notiz + " " + data[data.length].kategorie;
+            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum + " " + data[data.length - 1].notiz + " " + data[data.length - 1].kategorie;
             return (dataString);
         }
         else {
