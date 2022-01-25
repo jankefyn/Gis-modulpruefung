@@ -96,10 +96,10 @@ export namespace P_3_1Server {
             for (let counter: number = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
                     let gefriergutZähler: number = counter + 1;
-                    dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
+                    dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie +  " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                 }
             }
-            dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
+            dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie +  " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
             return (dataString);
         }
         else {
@@ -149,10 +149,10 @@ export namespace P_3_1Server {
             let dataString: string = "";
             for (let counter: number = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
-                    dataString = dataString + "  " + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz + " " + data[counter].kategorie + ",";
+                    dataString = dataString + "  " + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz  + ",";
                 }
             }
-            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum + " " + data[data.length - 1].notiz + " " + data[data.length - 1].kategorie;
+            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum + " " + data[data.length - 1].notiz;
             return (dataString);
         }
         else {
