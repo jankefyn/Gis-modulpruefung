@@ -44,10 +44,10 @@ var P_3_1Server;
             _response.write(await retrieveProducts());
         }
         if (q.pathname == "//saveNumber") {
-            _response.end();
+            _response.write(await saveNumber(daten.number));
         }
         if (q.pathname == "//showDetail") {
-            _response.end();
+            _response.write(await retrieveDetails());
         }
         _response.end();
     }
@@ -92,6 +92,26 @@ var P_3_1Server;
     async function storeRückgabe(_rückgabe) {
         products.insertOne(_rückgabe);
         return "Gefriergut erfolgreich gespeichert!";
+    }
+    async function saveNumber(_zahl) {
+        let auswahl = _zahl;
+        return "ihre auswahl ist:" + auswahl;
+    }
+    async function retrieveDetails() {
+        let data = await products.find().toArray();
+        if (data.length > 0) {
+            let dataString = "";
+            for (let counter = 0; counter < data.length - 1; counter++) {
+                if (data[counter].name != undefined) {
+                    dataString = dataString + "  " + counter + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz + ",";
+                }
+            }
+            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum + " " + data[data.length - 1].notiz;
+            return (dataString);
+        }
+        else {
+            return ("noch kein Gefriergut vorhanden");
+        }
     }
 })(P_3_1Server = exports.P_3_1Server || (exports.P_3_1Server = {}));
 //# sourceMappingURL=ersterserver.js.map
