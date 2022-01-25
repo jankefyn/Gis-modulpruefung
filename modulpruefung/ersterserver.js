@@ -114,32 +114,6 @@ var P_3_1Server;
             return ("noch kein Gefriergut vorhanden");
         }
     }
-    /*async function login(ablaufdatum: string | string[], password: string | string[]): Promise<String> {
-
-        let data: Antwort[] = await products.find().toArray();
-        if (data.length > 0) {
-
-            let dataString: string;
-            for (let counter: number = 0; counter < data.length; counter++) {
-                if (data[counter].notiz == ablaufdatum) {
-                    if (data[counter].notiz == password) {
-                        dataString = "angemeldet";
-                    }
-                    else {
-                        dataString = " falsches Passwort";
-                    }
-                }
-                else {
-
-                    dataString = "falsche ablaufdatum";
-                }
-            }
-
-            return (dataString);
-        }
-        else return "Anmeldedaten nicht gefunden";
-
-    }*/
     async function storeRückgabe(_rückgabe) {
         products.insertOne(_rückgabe);
         return "Gefriergut erfolgreich gespeichert!";
