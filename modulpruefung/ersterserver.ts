@@ -139,24 +139,7 @@ export namespace P_3_1Server {
         return "ihre auswahl ist:" + auswahl;
     }
     async function retrieveDetails(): Promise<String> {
-        let data: Antwort[] = await products.find().toArray();
-        if (data.length > 0) {
-
-            let dataString: string = "";
-            for (let counter: number = 0; counter < data.length - 1; counter++) {
-                if (data[counter].name != undefined) {
-                    dataString = dataString + "  " + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + ",";
-                }
-            }
-            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum;
-            return (dataString);
-        }
-        else {
-            return ("noch kein Gefriergut vorhanden");
-        }
-
-
-/*
+        
         let data: Antwort[] = await products.find().toArray();
         if (data.length > 0) {
 
@@ -171,7 +154,7 @@ export namespace P_3_1Server {
         }
         else {
             return ("noch kein Gefriergut vorhanden");
-        }*/
+        }
     }
 }
 
