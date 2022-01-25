@@ -79,7 +79,7 @@ export namespace P_3_1Server {
             _response.write(await saveNumber(daten.number));
         }
         if (q.pathname == "//showDetail") {
-            _response.end();
+            _response.write(await retrieveDetails());
         }
 
         _response.end();
@@ -137,6 +137,24 @@ export namespace P_3_1Server {
     async function saveNumber(_zahl: string | string[]): Promise<string> {
         let auswahl: string | string[] = _zahl;
         return "ihre auswahl ist:" + auswahl;
+    }
+    async function retrieveDetails(): Promise<String> {
+
+        let data: Antwort[] = await products.find().toArray();
+        if (data.length > 0) {
+
+            let dataString: string = "";
+            for (let counter: number = 0; counter < data.length - 1; counter++) {
+                if (data[counter].name != undefined) {
+                    dataString = dataString + "  " + counter + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz + ",";
+                }
+            }
+            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum + " " + data[data.length - 1].notiz;
+            return (dataString);
+        }
+        else {
+            return ("noch kein Gefriergut vorhanden");
+        }
     }
 }
 
