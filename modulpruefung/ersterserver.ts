@@ -90,11 +90,6 @@ export namespace P_3_1Server {
         if (q.pathname == "//showDetail") {
             _response.write(await retrieveDetails());
         }
-        /*if (q.pathname == "//login") {
-
-            _response.write(await login(daten.notiz, daten.password));
-        }*/
-
         _response.end();
     }
 
