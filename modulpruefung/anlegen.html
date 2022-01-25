@@ -17,11 +17,24 @@
 
                 <label for="name">Produktname:</label><br>
                 <input type="text" id="gefriergut" name="name"><br>
+                <br>
                 <label for="date"> Ablaufdatum:</label><br>
                 <input type=date id="datum" name="ablaufdatum"><br>
+                <br>
                 <label for="notiz"> Notiz:</label><br>
                 <input type="text" id="Notiz" name="notiz"><br>
+                <br>
 
+                <p>Wählen sie eine Kategorie</p>
+                <select name="kategorie" size=4>
+                        <option> Fleisch
+                        <option> Molkereiprodukte
+                        <option> Obst und Gemüse
+                        <option> Getränke
+                </select>
+                
+                <br>
+                <br>
                 <button type="button" id="submitHTML">Gefriergut Speichern</button>
                 <div>
                         <p id=serverantwort> </p>
