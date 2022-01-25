@@ -103,15 +103,31 @@ var P_3_1Server;
             let dataString = "";
             for (let counter = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
-                    dataString = dataString + "  " + counter + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz + ",";
+                    dataString = dataString + "  " + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + ",";
                 }
             }
-            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum + " " + data[data.length - 1].notiz;
+            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum;
             return (dataString);
         }
         else {
             return ("noch kein Gefriergut vorhanden");
         }
+        /*
+                let data: Antwort[] = await products.find().toArray();
+                if (data.length > 0) {
+        
+                    let dataString: string = "";
+                    for (let counter: number = 0; counter < data.length - 1; counter++) {
+                        if (data[counter].name != undefined) {
+                            dataString = dataString + "  " + counter + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz + ",";
+                        }
+                    }
+                    dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum + " " + data[data.length - 1].notiz;
+                    return (dataString);
+                }
+                else {
+                    return ("noch kein Gefriergut vorhanden");
+                }*/
     }
 })(P_3_1Server = exports.P_3_1Server || (exports.P_3_1Server = {}));
 //# sourceMappingURL=ersterserver.js.map
