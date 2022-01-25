@@ -69,10 +69,7 @@ export namespace P_3_1Server {
 
             _response.write(await storeRückgabe(q.query));
         }
-        if (q.pathname == "//login") {
 
-            _response.write(await login(daten.notiz, daten.password));
-        }
         if (q.pathname == "//showUsers") {
             _response.write(await retrieveProducts());
         }
@@ -82,6 +79,10 @@ export namespace P_3_1Server {
         if (q.pathname == "//showDetail") {
             _response.write(await retrieveDetails());
         }
+        /*if (q.pathname == "//login") {
+
+            _response.write(await login(daten.notiz, daten.password));
+        }*/
 
         _response.end();
     }
@@ -105,7 +106,7 @@ export namespace P_3_1Server {
             return ("noch kein Gefriergut vorhanden");
         }
     }
-    async function login(ablaufdatum: string | string[], password: string | string[]): Promise<String> {
+    /*async function login(ablaufdatum: string | string[], password: string | string[]): Promise<String> {
 
         let data: Antwort[] = await products.find().toArray();
         if (data.length > 0) {
@@ -130,7 +131,7 @@ export namespace P_3_1Server {
         }
         else return "Anmeldedaten nicht gefunden";
 
-    }
+    }*/
     async function storeRückgabe(_rückgabe: Products): Promise<string> {
         products.insertOne(_rückgabe);
         return "Gefriergut erfolgreich gespeichert!";

@@ -37,9 +37,6 @@ var P_3_1Server;
         if (q.pathname == "//html") {
             _response.write(await storeRückgabe(q.query));
         }
-        if (q.pathname == "//login") {
-            _response.write(await login(daten.notiz, daten.password));
-        }
         if (q.pathname == "//showUsers") {
             _response.write(await retrieveProducts());
         }
@@ -49,6 +46,10 @@ var P_3_1Server;
         if (q.pathname == "//showDetail") {
             _response.write(await retrieveDetails());
         }
+        /*if (q.pathname == "//login") {
+
+            _response.write(await login(daten.notiz, daten.password));
+        }*/
         _response.end();
     }
     async function retrieveProducts() {
@@ -68,11 +69,13 @@ var P_3_1Server;
             return ("noch kein Gefriergut vorhanden");
         }
     }
-    async function login(ablaufdatum, password) {
-        let data = await products.find().toArray();
+    /*async function login(ablaufdatum: string | string[], password: string | string[]): Promise<String> {
+
+        let data: Antwort[] = await products.find().toArray();
         if (data.length > 0) {
-            let dataString;
-            for (let counter = 0; counter < data.length; counter++) {
+
+            let dataString: string;
+            for (let counter: number = 0; counter < data.length; counter++) {
                 if (data[counter].notiz == ablaufdatum) {
                     if (data[counter].notiz == password) {
                         dataString = "angemeldet";
@@ -82,14 +85,16 @@ var P_3_1Server;
                     }
                 }
                 else {
+
                     dataString = "falsche ablaufdatum";
                 }
             }
+
             return (dataString);
         }
-        else
-            return "Anmeldedaten nicht gefunden";
-    }
+        else return "Anmeldedaten nicht gefunden";
+
+    }*/
     async function storeRückgabe(_rückgabe) {
         products.insertOne(_rückgabe);
         return "Gefriergut erfolgreich gespeichert!";
