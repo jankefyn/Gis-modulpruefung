@@ -104,6 +104,9 @@ var P_3_1Server;
                     }
                 }
             }
+            if (dataString == "") {
+                return ("in der ausgewählten kategorie ist kein Gefriergut vorhanden.");
+            }
             return (dataString);
         }
         else {
