@@ -74,8 +74,10 @@ var P_3_1Server;
                     if (_kategorie == "All") {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                     }
-                    if (_kategorie == "Meat" && data[counter].kategorie == "&#129385") {
-                        dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
+                    if (_kategorie == "Meat") {
+                        if (data[counter].kategorie == "&#129385") {
+                            return ("die funktion triggert");
+                        }
                     }
                 }
             }
