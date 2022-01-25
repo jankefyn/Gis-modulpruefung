@@ -114,25 +114,36 @@ export namespace P_3_1Server {
                         if (data[counter].kategorie == "🥩") {
                             dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                         }
+                        if (data[data.length - 1].kategorie == "🥩") {
+                            dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
+                        }
                     }
                     if (_kategorie == "Milk") {
                         if (data[counter].kategorie == "🧀") {
                             dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
+                        }
+                        if (data[data.length - 1].kategorie == "🧀") {
+                            dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
                         }
                     }
                     if (_kategorie == "Fruits") {
                         if (data[counter].kategorie == "🍅") {
                             dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                         }
+                        if (data[data.length - 1].kategorie == "🍅") {
+                            dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
+                        }
                     }
                     if (_kategorie == "Drinks") {
                         if (data[counter].kategorie == "🥤") {
                             dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                         }
+                        if (data[data.length - 1].kategorie == "🥤") {
+                            dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
+                        }
                     }
                 }
             }
-            dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
             return (dataString);
         }
         else {
