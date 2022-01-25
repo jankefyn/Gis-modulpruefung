@@ -1,8 +1,9 @@
 "use strict";
 var P3_1;
 (function (P3_1) {
-    let detailButton = document.getElementById("showDetail");
-    detailButton.addEventListener("click", function () { submit("showDetail"); });
+    let anzeigeButton = document.getElementById("showDetail");
+    anzeigeButton.addEventListener("click", function () { submit("showDetail"); });
+    /*zweite funktion der Seite alleProdukte*/
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {
         let formData = new FormData(document.forms[0]);
