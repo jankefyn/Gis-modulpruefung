@@ -76,7 +76,7 @@ export namespace P_3_1Server {
             _response.write(await retrieveProducts());
         }
         if (q.pathname == "//saveNumber") {
-            _response.end();
+            _response.write(await saveNumber(daten.number));
         }
         if (q.pathname == "//showDetail") {
             _response.end();
@@ -132,6 +132,11 @@ export namespace P_3_1Server {
     async function storeRückgabe(_rückgabe: Products): Promise<string> {
         products.insertOne(_rückgabe);
         return "Gefriergut erfolgreich gespeichert!";
+    }
+
+    async function saveNumber(_zahl: string | string[]): Promise<string> {
+        let auswahl: string | string[] = _zahl;
+        return "ihre auswahl ist:" + auswahl;
     }
 }
 
