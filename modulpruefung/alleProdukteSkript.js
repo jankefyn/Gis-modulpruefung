@@ -1,8 +1,17 @@
 "use strict";
 var P3_1;
 (function (P3_1) {
-    let anzeigeButton = document.getElementById("showUsers");
-    anzeigeButton.addEventListener("click", function () { submit("showUsers"); });
+    let allesAnzeigeButton = document.getElementById("showUsers");
+    allesAnzeigeButton.addEventListener("click", function () { submit("showUsers"); });
+    /*einzelne kategorien:*/
+    let meatAnzeigeButton = document.getElementById("showMeat");
+    meatAnzeigeButton.addEventListener("click", function () { submit("showMeat"); });
+    let milkAnzeigeButton = document.getElementById("showMilk");
+    milkAnzeigeButton.addEventListener("click", function () { submit("showMilk"); });
+    let fruitsAnzeigeButton = document.getElementById("showFruits");
+    fruitsAnzeigeButton.addEventListener("click", function () { submit("showFruits"); });
+    let drinksAnzeigeButton = document.getElementById("showDrinks");
+    drinksAnzeigeButton.addEventListener("click", function () { submit("showDrinks"); });
     /*zweite funktion der Seite alleProdukte*/
     let speicherButton = document.getElementById("zahlSpeichern");
     speicherButton.addEventListener("click", function () { submit("saveNumber"); });
@@ -14,6 +23,18 @@ var P3_1;
         let query = new URLSearchParams(formData);
         if (_parameter == "showUsers") {
             url = url + "/showUsers";
+        }
+        if (_parameter == "showMeat") {
+            url = url + "/showMeat";
+        }
+        if (_parameter == "showMilk") {
+            url = url + "/showMilk";
+        }
+        if (_parameter == "showFruits") {
+            url = url + "/showFruits";
+        }
+        if (_parameter == "showDrinks") {
+            url = url + "/showDrinks";
         }
         if (_parameter == "saveNumber") {
             url = url + "/saveNumber";

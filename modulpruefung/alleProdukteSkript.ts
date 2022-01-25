@@ -1,8 +1,17 @@
 namespace P3_1 {
 
 
-    let anzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showUsers");
-    anzeigeButton.addEventListener("click", function (): void { submit("showUsers"); });
+    let allesAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showUsers");
+    allesAnzeigeButton.addEventListener("click", function (): void { submit("showUsers"); });
+/*einzelne kategorien:*/
+    let meatAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showMeat");
+    meatAnzeigeButton.addEventListener("click", function (): void { submit("showMeat"); });
+    let milkAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showMilk");
+    milkAnzeigeButton.addEventListener("click", function (): void { submit("showMilk"); });
+    let fruitsAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showFruits");
+    fruitsAnzeigeButton.addEventListener("click", function (): void { submit("showFruits"); });
+    let drinksAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showDrinks");
+    drinksAnzeigeButton.addEventListener("click", function (): void { submit("showDrinks"); });
     /*zweite funktion der Seite alleProdukte*/
     let speicherButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("zahlSpeichern");
     speicherButton.addEventListener("click", function (): void { submit("saveNumber"); });
@@ -17,6 +26,18 @@ namespace P3_1 {
 
         if (_parameter == "showUsers") {
             url = url + "/showUsers";
+        }
+        if (_parameter == "showMeat") {
+            url = url + "/showMeat";
+        }
+        if (_parameter == "showMilk") {
+            url = url + "/showMilk";
+        }
+        if (_parameter == "showFruits") {
+            url = url + "/showFruits";
+        }
+        if (_parameter == "showDrinks") {
+            url = url + "/showDrinks";
         }
         if (_parameter == "saveNumber") {
             url = url + "/saveNumber";
