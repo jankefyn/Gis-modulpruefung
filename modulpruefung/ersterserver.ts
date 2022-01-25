@@ -93,10 +93,11 @@ export namespace P_3_1Server {
             let dataString: string = "";
             for (let counter: number = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
-                    dataString = dataString + "  " + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + ",";
+                    let gefriergutZähler: number = counter + 1;
+                    dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                 }
             }
-            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum;
+            dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
             return (dataString);
         }
         else {
@@ -139,14 +140,14 @@ export namespace P_3_1Server {
         return "ihre auswahl ist:" + auswahl;
     }
     async function retrieveDetails(): Promise<String> {
-        
+
         let data: Antwort[] = await products.find().toArray();
         if (data.length > 0) {
 
             let dataString: string = "";
             for (let counter: number = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
-                    dataString = dataString + "  " + counter + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz + ",";
+                    dataString = dataString + "  " + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz + ",";
                 }
             }
             dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum + " " + data[data.length - 1].notiz;

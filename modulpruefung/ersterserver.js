@@ -57,10 +57,11 @@ var P_3_1Server;
             let dataString = "";
             for (let counter = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
-                    dataString = dataString + "  " + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + ",";
+                    let gefriergutZähler = counter + 1;
+                    dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                 }
             }
-            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum;
+            dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
             return (dataString);
         }
         else {
@@ -103,7 +104,7 @@ var P_3_1Server;
             let dataString = "";
             for (let counter = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
-                    dataString = dataString + "  " + counter + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz + ",";
+                    dataString = dataString + "  " + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz + ",";
                 }
             }
             dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum + " " + data[data.length - 1].notiz;
