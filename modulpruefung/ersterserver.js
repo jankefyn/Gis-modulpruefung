@@ -64,6 +64,7 @@ var P_3_1Server;
         let data = await products.find().toArray();
         if (data.length > 0) {
             let dataString = "";
+            let istKategorieVorhanden = false;
             for (let counter = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
                     let gefriergutZähler = counter + 1;
@@ -72,35 +73,43 @@ var P_3_1Server;
                     }
                     if (_kategorie == "Fruits" && data[counter].kategorie == "🥩") {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
+                        istKategorieVorhanden = true;
                     }
                     if (_kategorie == "Fruits" && data[counter].kategorie == "🧀") {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
+                        istKategorieVorhanden = true;
                     }
                     if (_kategorie == "Fruits" && data[counter].kategorie == "🍅") {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
+                        istKategorieVorhanden = true;
                     }
                     if (_kategorie == "Fruits" && data[counter].kategorie == "🥤") {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
+                        istKategorieVorhanden = true;
                     }
                 }
             }
             if (_kategorie == "Fruits" && data[data.length - 1].kategorie == "🥩") {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
+                istKategorieVorhanden = true;
             }
             if (_kategorie == "Fruits" && data[data.length - 1].kategorie == "🧀") {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
+                istKategorieVorhanden = true;
             }
             if (_kategorie == "Fruits" && data[data.length - 1].kategorie == "🍅") {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
+                istKategorieVorhanden = true;
             }
             if (_kategorie == "Fruits" && data[data.length - 1].kategorie == "🥤") {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
+                istKategorieVorhanden = true;
             }
             if (_kategorie == "All") {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
             }
-            if (dataString == "") {
-                return ("in der ausgewählten kategorie ist kein Gefriergut vorhanden.");
+            if (istKategorieVorhanden == false) {
+                return (" in der Ausgewählten Kategorie ist kein Gefriegut Vorhanden ");
             }
             return (dataString);
         }
