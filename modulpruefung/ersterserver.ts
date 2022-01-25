@@ -111,8 +111,23 @@ export namespace P_3_1Server {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                     }
                     if (_kategorie == "Meat") {
+                        if (data[counter].kategorie == "🥩") {
+                            dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
+                        }
+                    }
+                    if (_kategorie == "Milk") {
+                        if (data[counter].kategorie == "🧀") {
+                            dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
+                        }
+                    }
+                    if (_kategorie == "Fruits") {
+                        if (data[counter].kategorie == "🍅") {
+                            dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
+                        }
+                    }
+                    if (_kategorie == "Drinks") {
                         if (data[counter].kategorie == "🥤") {
-                            return("die funktion triggert");
+                            dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                         }
                     }
                 }
