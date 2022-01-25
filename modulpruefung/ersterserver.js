@@ -108,9 +108,6 @@ var P_3_1Server;
             if (_kategorie == "All") {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
             }
-            if (istKategorieVorhanden == false) {
-                return (" in der Ausgewählten Kategorie ist kein Gefriegut Vorhanden ");
-            }
             return (dataString);
         }
         else {
