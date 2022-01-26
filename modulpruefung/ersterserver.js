@@ -76,7 +76,7 @@ var P_3_1Server;
                     if (_kategorie == "Milk" && data[counter].kategorie == "🧀") {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                     }
-                    if (_kategorie == "Fruits" && data[counter].kategorie == "🍅") {
+                    if (_kategorie == "Fruits" && data[counter].kategorie == ":tomato:") {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                     }
                     if (_kategorie == "Drinks" && data[counter].kategorie == "🥤") {
