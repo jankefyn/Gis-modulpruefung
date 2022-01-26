@@ -104,7 +104,7 @@ export namespace P_3_1Server {
                     if (_kategorie == "All") {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                     }
-                    if (_kategorie == "Meat" && data[counter].kategorie == "\1F969") {
+                    if (_kategorie == "Meat" && data[counter].kategorie == "\U+1F969") {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
 
                     }
@@ -122,7 +122,7 @@ export namespace P_3_1Server {
                     }
                 }
             }
-            if (_kategorie == "Meat" && data[data.length - 1].kategorie == "\1F969") {
+            if (_kategorie == "Meat" && data[data.length - 1].kategorie == "\U+1F969") {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
 
             }
