@@ -142,7 +142,7 @@ export namespace P_3_1Server {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
             }
             if (dataString == "") {
-                return("von dieser Kategorie sind aktuell keine Gefriergüter im Kühlschrank");
+                return ("von dieser Kategorie sind aktuell keine Gefriergüter im Kühlschrank");
             }
             return (dataString);
         }
@@ -159,25 +159,26 @@ export namespace P_3_1Server {
         let auswahl: string | string[] = _zahl;
 
         let auswahlJSON: string = JSON.stringify(auswahl);
-        localStorage.setItem("" , auswahlJSON);
+        localStorage.setItem("", auswahlJSON);
         return "ihre auswahl ist:" + auswahl;
     }
     async function retrieveDetails(): Promise<String> {
+        let counter: number = 0;
+        if (localStorage.getItem("") != undefined) {
+            counter = + localStorage.getItem("") - 1;
+        }
 
         let data: Antwort[] = await products.find().toArray();
         if (data.length > 0) {
 
             let dataString: string = "";
-            for (let counter: number = 0; counter < data.length - 1; counter++) {
-                if (data[counter].name != undefined) {
-                    dataString = dataString + "  " + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz + ",";
-                }
+            if (data[counter].name != undefined) {
+                dataString = data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz;
             }
-            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum + " " + data[data.length - 1].notiz;
-            return (dataString);
+            return (" Hier sehen sie alle details des Produktes mit der Nummer" + data[counter] + ": " + dataString);
         }
         else {
-            return ("noch kein Gefriergut vorhanden");
+            return ("Es liegt kein Produkt mit der angegebenen nummer vor");
         }
     }
 }

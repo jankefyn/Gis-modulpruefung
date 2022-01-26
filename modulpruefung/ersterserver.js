@@ -119,19 +119,20 @@ var P_3_1Server;
         return "ihre auswahl ist:" + auswahl;
     }
     async function retrieveDetails() {
+        let counter = 0;
+        if (localStorage.getItem("") != undefined) {
+            counter = +localStorage.getItem("") - 1;
+        }
         let data = await products.find().toArray();
         if (data.length > 0) {
             let dataString = "";
-            for (let counter = 0; counter < data.length - 1; counter++) {
-                if (data[counter].name != undefined) {
-                    dataString = dataString + "  " + data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz + ",";
-                }
+            if (data[counter].name != undefined) {
+                dataString = data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz;
             }
-            dataString = dataString + "  " + data[data.length - 1].name + " läuft ab am: " + data[data.length - 1].ablaufdatum + " " + data[data.length - 1].notiz;
-            return (dataString);
+            return (" Hier sehen sie alle details des Produktes mit der Nummer" + data[counter] + ": " + dataString);
         }
         else {
-            return ("noch kein Gefriergut vorhanden");
+            return ("Es liegt kein Produkt mit der angegebenen nummer vor");
         }
     }
 })(P_3_1Server = exports.P_3_1Server || (exports.P_3_1Server = {}));
