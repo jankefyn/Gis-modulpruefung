@@ -163,17 +163,18 @@ export namespace P_3_1Server {
     */
     async function retrieveDetails(_auswahlNummer: string | string[]): Promise<String> {
 
-        let counter: number = +_auswahlNummer;
+        let counter: number = +_auswahlNummer - 1;
         let data: Antwort[] = await products.find().toArray();
-        if (data.length > 0) {
+        
+        if (counter >= 0 && data.length >= counter) {
 
             let dataString: string = "";
             if (data[counter].name != undefined) {
-                dataString = data[counter - 1].name + " läuft ab am: " + data[counter - 1].ablaufdatum + " " + data[counter - 1].notiz;
+                dataString = data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz;
                 return (" Hier sehen sie alle details des Produktes mit der Nummer " + counter + ":      " + dataString);
             }
-            else { 
-                return ("Es liegt kein Produkt mit der angegebenen nummer vor"); 
+            else {
+                return ("Es liegt kein Produkt mit der angegebenen nummer vor");
             }
         }
         else {
