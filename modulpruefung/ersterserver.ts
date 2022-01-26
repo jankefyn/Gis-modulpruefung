@@ -155,12 +155,11 @@ export namespace P_3_1Server {
         return "Gefriergut erfolgreich gespeichert!";
     }
 
-    async function saveNumber(_zahl: string | string[]): Promise<string> {
+    function saveNumber(_zahl: string | string[]): void {
         let auswahl: string | string[] = _zahl;
 
         let auswahlJSON: string = JSON.stringify(auswahl);
         localStorage.setItem("", auswahlJSON);
-        return "ihre auswahl ist:" + auswahl;
     }
     async function retrieveDetails(): Promise<String> {
         let counter: number = 0;
