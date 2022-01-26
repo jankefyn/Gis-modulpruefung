@@ -159,11 +159,11 @@ export namespace P_3_1Server {
         let auswahl: string | string[] = _zahl;
 
         let auswahlJSON: string = JSON.stringify(auswahl);
-        localStorage.setItem("", auswahlJSON);
+        sessionStorage.setItem("", auswahlJSON);
     }
     async function retrieveDetails(): Promise<String> {
         let counter: number = 0;
-        if (localStorage.getItem("") != undefined) {
+        if (sessionStorage.getItem("") != undefined) {
             counter = + localStorage.getItem("") - 1;
         }
 

@@ -115,11 +115,11 @@ var P_3_1Server;
     function saveNumber(_zahl) {
         let auswahl = _zahl;
         let auswahlJSON = JSON.stringify(auswahl);
-        localStorage.setItem("", auswahlJSON);
+        sessionStorage.setItem("", auswahlJSON);
     }
     async function retrieveDetails() {
         let counter = 0;
-        if (localStorage.getItem("") != undefined) {
+        if (sessionStorage.getItem("") != undefined) {
             counter = +localStorage.getItem("") - 1;
         }
         let data = await products.find().toArray();
