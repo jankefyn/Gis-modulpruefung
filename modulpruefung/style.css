@@ -1,44 +1,90 @@
-nav {
-    position:fixed; 
-    top:0px;
-    right:0px;
-    border-style: solid ;
-    background-color: rgb(0, 0, 0);
-    border-radius: 0 0 10px 10px;
-        z-index: 100;
-}
-a[href$="alleNutzer.html"]:hover{
-    background-color: rgba(0, 0, 255, 0.507);
-    color: white;
-    }
-    a[href$= "anmeldung.html"]:hover{
-        background-color: rgba(158, 156, 24, 0.507);
-        color: white;
-    }
-    a[href$="drei_eins.html"]:hover{
-        background-color: rgba(17, 167, 104, 0.507);
-        color: white;
-    }
-    html{
- 
-        text-align: center;
-        font-family: sans-serif;
+body{
+    display:block;
     
-    }
-    a:link { 
-        font-weight: bold; 
-        text-decoration: none; 
-        color: lightsteelblue;
-        }
-    a:visited { 
-        font-weight: bold; 
-        text-decoration: underline; 
-        color: lightsteelblue;
-        }
-    a:hover, a:focus,a:active { 
-        text-decoration: underline; 
-        color: lightsteelblue;
-    }
-    #hervorheben{
-        color: gold;
-    }
+    margin: 5px;;
+}
+nav {
+    position:fixed;
+    top:0px;
+    box-shadow: 3px 0px 10px 0px rgb(0 0 0 / 30%);
+    width:100%;
+    padding: 20px;
+    z-index: 100;
+}
+nav a{ 
+    text-decoration: none;
+    padding-left: 50px;
+    margin-right:20px;
+    font-size:20px;
+    font-weight:bold;
+}
+input{
+    margin-top:7px;
+    margin-bottom:20px;
+}
+form{
+    display:flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;  
+    margin-top: 120px;
+}
+form select{
+    max-width:200px;
+    min-width:120px;
+    text-align: center;
+}
+form select option:hover{
+    background-color:#b7d5df;
+}
+form select option:checked{
+    background-color:#b7d5df;
+}
+a:hover{
+    color:black;
+}
+html{
+    text-align: center;
+    font-family: sans-serif;
+}
+a:visited { 
+    color:black 
+}
+#hervorheben{
+    color: #b7d5df;
+}
+button {
+    margin-top:20px;
+    background-color: #b7d5df;
+    padding: 10px 7.5px;
+    border-radius: 17px;
+    color: black;
+    transition: all .3s;
+    position: relative;
+    overflow:hidden;
+    z-index: 1;
+}
+button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width:0%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 17px;
+    z-index: -2;
+}
+button:hover::after {
+    width: 100%; 
+    transition: all .7s;
+    z-index: -1;
+}
+button:hover {
+    color: black;
+}
+button::before {
+    width: 100%;
+}
+        
+

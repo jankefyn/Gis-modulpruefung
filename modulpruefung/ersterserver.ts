@@ -84,11 +84,8 @@ export namespace P_3_1Server {
         if (q.pathname == "//showDrinks") {
             _response.write(await retrieveProducts("Drinks"));
         }
-        if (q.pathname == "//saveNumber") {
-            _response.write(await saveNumber(daten.number));
-        }
         if (q.pathname == "//showDetail") {
-            _response.write(await retrieveDetails());
+            _response.write(await retrieveDetails(daten.number));
         }
         _response.end();
     }
@@ -154,24 +151,19 @@ export namespace P_3_1Server {
         products.insertOne(_rückgabe);
         return "Gefriergut erfolgreich gespeichert!";
     }
-
+/*
     function saveNumber(_zahl: string | string[]): void {
         let auswahl: string | string[] = _zahl;
 
         let auswahlJSON: string = JSON.stringify(auswahl);
         if (window && window.sessionStorage) {
-        sessionStorage.setItem("", auswahlJSON);
+            sessionStorage.setItem("", auswahlJSON);
         }
     }
-    async function retrieveDetails(): Promise<String> {
-        let counter: number = 0;
-        if (window && window.sessionStorage) {
-            if (sessionStorage.getItem("") != undefined) {
-                counter = + localStorage.getItem("") - 1;
-            }
-        }
-        
+*/
+    async function retrieveDetails(_auswahlNummer: string|string[]): Promise<String> {
 
+        let counter: number = +_auswahlNummer;
         let data: Antwort[] = await products.find().toArray();
         if (data.length > 0) {
 

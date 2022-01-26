@@ -12,12 +12,14 @@
                 <a href="alleProdukte.html" id=hervorheben>Alle Produkte sehen </a>
                 <a href="anlegen.html">Neue Gefriergüter registrieren </a>
         </nav>
-
-                <button type="button" id="showDetail">Was ist in meinem Kühlschrank ?</button>
-
-                <div>
-                        <p id=serverantwort> </p>
-                </div>
+        <form>
+                <label for="string">Wähle ein Gefriergut anhand der Nummer aus</label><br>
+                <input type="number" id="nummer" name="number"><br>
+                <button type="button" id="zahlSpeichern"> Details zum Gefriergut mit dieser Nummer anzeigen lassen </button>
+        </form>
+        <div>
+                <p id=serverantwort> </p>
+        </div>
 </body>
 
 </html>

@@ -12,10 +12,6 @@ var P3_1;
     fruitsAnzeigeButton.addEventListener("click", function () { submit("showFruits"); });
     let drinksAnzeigeButton = document.getElementById("showDrinks");
     drinksAnzeigeButton.addEventListener("click", function () { submit("showDrinks"); });
-    /*zweite funktion der Seite alleProdukte*/
-    let speicherButton = document.getElementById("zahlSpeichern");
-    speicherButton.addEventListener("click", function () { submit("saveNumber"); });
-    /*zweite funktion der Seite alleProdukte ende*/
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {
         let formData = new FormData(document.forms[0]);
@@ -35,9 +31,6 @@ var P3_1;
         }
         if (_parameter == "showDrinks") {
             url = url + "/showDrinks";
-        }
-        if (_parameter == "saveNumber") {
-            url = url + "/saveNumber";
         }
         url = url + "?" + query.toString();
         let response = await fetch(url);

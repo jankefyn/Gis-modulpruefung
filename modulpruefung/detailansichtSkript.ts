@@ -1,9 +1,10 @@
 namespace P3_1 {
 
 
-    let anzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showDetail");
-    anzeigeButton.addEventListener("click", function (): void { submit("showDetail"); });
-    /*zweite funktion der Seite alleProdukte*/
+
+    let speicherButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("zahlSpeichern");
+    speicherButton.addEventListener("click", function (): void { submit("showDetail"); });
+
     let serverantwort: HTMLElement = document.getElementById("serverantwort");
 
     async function submit(_parameter: string): Promise<void> {
@@ -14,7 +15,6 @@ namespace P3_1 {
         if (_parameter == "showDetail") {
             url = url + "/showDetail";
         }
-
 
         url = url + "?" + query.toString();
         let response: Response = await fetch(url);
