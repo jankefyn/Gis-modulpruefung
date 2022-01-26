@@ -114,6 +114,8 @@ var P_3_1Server;
     }
     async function saveNumber(_zahl) {
         let auswahl = _zahl;
+        let auswahlJSON = JSON.stringify(auswahl);
+        localStorage.setItem("", auswahlJSON);
         return "ihre auswahl ist:" + auswahl;
     }
     async function retrieveDetails() {

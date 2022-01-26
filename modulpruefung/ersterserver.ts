@@ -157,6 +157,9 @@ export namespace P_3_1Server {
 
     async function saveNumber(_zahl: string | string[]): Promise<string> {
         let auswahl: string | string[] = _zahl;
+
+        let auswahlJSON: string = JSON.stringify(auswahl);
+        localStorage.setItem("" , auswahlJSON);
         return "ihre auswahl ist:" + auswahl;
     }
     async function retrieveDetails(): Promise<String> {
