@@ -130,7 +130,7 @@ export namespace P_3_1Server {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
 
             }
-            if (_kategorie == "Fruits" && data[data.length - 1].kategorie == "🍅") {
+            if (_kategorie == "Fruits" && data[data.length - 1].kategorie == ":tomato:") {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
 
             }
