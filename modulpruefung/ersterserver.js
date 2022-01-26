@@ -115,13 +115,16 @@ var P_3_1Server;
     function saveNumber(_zahl) {
         let auswahl = _zahl;
         let auswahlJSON = JSON.stringify(auswahl);
-        sessionStorage.setItem("", auswahlJSON);
+        if (window && window.sessionStorage) {
+            sessionStorage.setItem("", auswahlJSON);
+        }
     }
-    window.addEventListener("load", retrieveDetails);
     async function retrieveDetails() {
         let counter = 0;
-        if (sessionStorage.getItem("") != undefined) {
-            counter = +localStorage.getItem("") - 1;
+        if (window && window.sessionStorage) {
+            if (sessionStorage.getItem("") != undefined) {
+                counter = +localStorage.getItem("") - 1;
+            }
         }
         let data = await products.find().toArray();
         if (data.length > 0) {

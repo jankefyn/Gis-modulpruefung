@@ -159,14 +159,18 @@ export namespace P_3_1Server {
         let auswahl: string | string[] = _zahl;
 
         let auswahlJSON: string = JSON.stringify(auswahl);
+        if (window && window.sessionStorage) {
         sessionStorage.setItem("", auswahlJSON);
+        }
     }
-    window.addEventListener("load", retrieveDetails);
     async function retrieveDetails(): Promise<String> {
         let counter: number = 0;
-        if (sessionStorage.getItem("") != undefined) {
-            counter = + localStorage.getItem("") - 1;
+        if (window && window.sessionStorage) {
+            if (sessionStorage.getItem("") != undefined) {
+                counter = + localStorage.getItem("") - 1;
+            }
         }
+        
 
         let data: Antwort[] = await products.find().toArray();
         if (data.length > 0) {
