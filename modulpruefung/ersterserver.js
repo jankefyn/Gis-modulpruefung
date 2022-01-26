@@ -70,7 +70,7 @@ var P_3_1Server;
                     if (_kategorie == "All") {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                     }
-                    if (_kategorie == "Meat" && data[counter].kategorie == "ð¥©ð¥©") {
+                    if (_kategorie == "Meat" && data[counter].kategorie == "🥩") {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                     }
                     if (_kategorie == "Milk" && data[counter].kategorie == "🧀") {
@@ -84,7 +84,7 @@ var P_3_1Server;
                     }
                 }
             }
-            if (_kategorie == "Meat" && data[data.length - 1].kategorie == "ð¥©") {
+            if (_kategorie == "Meat" && data[data.length - 1].kategorie == "🥩") {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
             }
             if (_kategorie == "Milk" && data[data.length - 1].kategorie == "🧀") {
