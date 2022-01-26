@@ -151,17 +151,17 @@ export namespace P_3_1Server {
         products.insertOne(_rückgabe);
         return "Gefriergut erfolgreich gespeichert!";
     }
-/*
-    function saveNumber(_zahl: string | string[]): void {
-        let auswahl: string | string[] = _zahl;
-
-        let auswahlJSON: string = JSON.stringify(auswahl);
-        if (window && window.sessionStorage) {
-            sessionStorage.setItem("", auswahlJSON);
+    /*
+        function saveNumber(_zahl: string | string[]): void {
+            let auswahl: string | string[] = _zahl;
+    
+            let auswahlJSON: string = JSON.stringify(auswahl);
+            if (window && window.sessionStorage) {
+                sessionStorage.setItem("", auswahlJSON);
+            }
         }
-    }
-*/
-    async function retrieveDetails(_auswahlNummer: string|string[]): Promise<String> {
+    */
+    async function retrieveDetails(_auswahlNummer: string | string[]): Promise<String> {
 
         let counter: number = +_auswahlNummer;
         let data: Antwort[] = await products.find().toArray();
@@ -169,9 +169,9 @@ export namespace P_3_1Server {
 
             let dataString: string = "";
             if (data[counter].name != undefined) {
-                dataString = data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz;
+                dataString = data[counter - 1].name + " läuft ab am: " + data[counter - 1].ablaufdatum + " " + data[counter - 1].notiz;
             }
-            return (" Hier sehen sie alle details des Produktes mit der Nummer" + data[counter] + ": " + dataString);
+            return (" Hier sehen sie alle details des Produktes mit der Nummer" + counter + ":      " + dataString);
         }
         else {
             return ("Es liegt kein Produkt mit der angegebenen nummer vor");
