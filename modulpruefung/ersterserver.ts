@@ -161,6 +161,7 @@ export namespace P_3_1Server {
         let auswahlJSON: string = JSON.stringify(auswahl);
         sessionStorage.setItem("", auswahlJSON);
     }
+    window.addEventListener("load", retrieveDetails);
     async function retrieveDetails(): Promise<String> {
         let counter: number = 0;
         if (sessionStorage.getItem("") != undefined) {

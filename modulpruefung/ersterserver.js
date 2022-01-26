@@ -117,6 +117,7 @@ var P_3_1Server;
         let auswahlJSON = JSON.stringify(auswahl);
         sessionStorage.setItem("", auswahlJSON);
     }
+    window.addEventListener("load", retrieveDetails);
     async function retrieveDetails() {
         let counter = 0;
         if (sessionStorage.getItem("") != undefined) {
