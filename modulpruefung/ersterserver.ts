@@ -59,14 +59,10 @@ export namespace P_3_1Server {
 
         _response.setHeader("Access-Control-Allow-Origin", "*");
 
-
-
-
         let q: url.UrlWithParsedQuery = url.parse(_request.url, true);
         let daten: ParsedUrlQuery = q.query;
 
         if (q.pathname == "//html") {
-
             _response.write(await storeRückgabe(q.query));
         }
         if (q.pathname == "//showUsers") {
@@ -148,7 +144,9 @@ export namespace P_3_1Server {
         }
     }
     async function storeRückgabe(_rückgabe: Products): Promise<string> {
-        products.insertOne(_rückgabe);
+        let anlegedatum: Date = new Date;
+        let fertigerückgabe: string = _rückgabe + anlegedatum.toLocaleString();
+        products.insertOne(fertigerückgabe);
         return "Gefriergut erfolgreich gespeichert!";
     }
     /*
@@ -165,7 +163,7 @@ export namespace P_3_1Server {
 
         let counter: number = +_auswahlNummer - 1;
         let data: Antwort[] = await products.find().toArray();
-        
+
         if (counter >= 0 && data.length >= counter) {
 
             let dataString: string = "";
