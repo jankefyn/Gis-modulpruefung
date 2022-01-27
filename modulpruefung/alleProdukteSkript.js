@@ -38,10 +38,10 @@ var P3_1;
         if (_parameter == "showDrinks") {
             url = url + "/showDrinks";
         }
-        /*if (_parameter == "abgelaufen") {
+        if (_parameter == "abgelaufen") {
             url = url + "/abgelaufen";
         }
-        if (_parameter == "fastAbgelaufen") {
+        /*if (_parameter == "fastAbgelaufen") {
             url = url + "/fastAbgelaufen";
         }
         if (_parameter == "filternNachName") {
