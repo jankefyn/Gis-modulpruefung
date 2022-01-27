@@ -42,10 +42,10 @@ var P3_1;
             url = url + "/abgelaufen";
         }
         if (_parameter == "fastAbgelaufen") {
-            url = url + "fastAbgelaufen";
+            url = url + "/fastAbgelaufen";
         }
         if (_parameter == "filternNachName") {
-            url = url + "filternNachName";
+            url = url + "/filternNachName";
         }
         url = url + "?" + query.toString();
         let response = await fetch(url);
