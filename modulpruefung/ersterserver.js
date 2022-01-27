@@ -116,7 +116,7 @@ var P_3_1Server;
             let dataString = "";
             if (data[counter].name != undefined) {
                 dataString = data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz;
-                return (" Hier sehen sie alle details des Produktes mit der Nummer " + counter + ":      " + dataString);
+                return (" Hier sehen sie alle details des Produktes mit der Nummer " + counter + 1 + ":      " + dataString);
             }
             else {
                 return ("Es liegt kein Produkt mit der angegebenen nummer vor");
