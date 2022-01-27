@@ -106,9 +106,7 @@ var P_3_1Server;
         }
     }
     async function storeRückgabe(_rückgabe) {
-        let anlegedatum = new Date;
-        let fertigerückgabe = _rückgabe + anlegedatum.toLocaleString();
-        products.insertOne(fertigerückgabe);
+        products.insertOne(_rückgabe);
         return "Gefriergut erfolgreich gespeichert!";
     }
     /*

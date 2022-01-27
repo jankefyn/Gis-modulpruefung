@@ -144,9 +144,7 @@ export namespace P_3_1Server {
         }
     }
     async function storeRückgabe(_rückgabe: Products): Promise<string> {
-        let anlegedatum: Date = new Date;
-        let fertigerückgabe: string = _rückgabe + anlegedatum.toLocaleString();
-        products.insertOne(fertigerückgabe);
+        products.insertOne(_rückgabe);
         return "Gefriergut erfolgreich gespeichert!";
     }
     /*
