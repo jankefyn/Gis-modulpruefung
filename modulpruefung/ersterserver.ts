@@ -99,7 +99,7 @@ export namespace P_3_1Server {
     async function retrieveProducts(_kategorie: string): Promise<String> {
 
         let data: Antwort[] = await products.find().toArray();
-        let heutigesDatum: Date = new Date();
+       // let heutigesDatum: Date = new Date();
         if (data.length > 0) {
             let dataString: string = "";
             for (let counter: number = 0; counter < data.length - 1; counter++) {

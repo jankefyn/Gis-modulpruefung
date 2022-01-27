@@ -14,9 +14,9 @@ namespace P3_1 {
     drinksAnzeigeButton.addEventListener("click", function (): void { submit("showDrinks"); });
 
 
-   /* let abgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("abgelaufen");
+    let abgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("abgelaufen");
     abgelaufenAnzeigeButton.addEventListener("click", function (): void { submit("abgelaufen"); });
-    let fastAbgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("fastAbgelaufen");
+    /*let fastAbgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("fastAbgelaufen");
     fastAbgelaufenAnzeigeButton.addEventListener("click", function (): void { submit("fastAbgelaufen"); });
     let filternNachNameButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("filternNachName");
     filternNachNameButton.addEventListener("click", function (): void { submit("filternNachName"); });*/

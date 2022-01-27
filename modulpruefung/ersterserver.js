@@ -68,7 +68,7 @@ var P_3_1Server;
     }
     async function retrieveProducts(_kategorie) {
         let data = await products.find().toArray();
-        let heutigesDatum = new Date();
+        // let heutigesDatum: Date = new Date();
         if (data.length > 0) {
             let dataString = "";
             for (let counter = 0; counter < data.length - 1; counter++) {

@@ -12,12 +12,12 @@ var P3_1;
     fruitsAnzeigeButton.addEventListener("click", function () { submit("showFruits"); });
     let drinksAnzeigeButton = document.getElementById("showDrinks");
     drinksAnzeigeButton.addEventListener("click", function () { submit("showDrinks"); });
-    /* let abgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("abgelaufen");
-     abgelaufenAnzeigeButton.addEventListener("click", function (): void { submit("abgelaufen"); });
-     let fastAbgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("fastAbgelaufen");
-     fastAbgelaufenAnzeigeButton.addEventListener("click", function (): void { submit("fastAbgelaufen"); });
-     let filternNachNameButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("filternNachName");
-     filternNachNameButton.addEventListener("click", function (): void { submit("filternNachName"); });*/
+    let abgelaufenAnzeigeButton = document.getElementById("abgelaufen");
+    abgelaufenAnzeigeButton.addEventListener("click", function () { submit("abgelaufen"); });
+    /*let fastAbgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("fastAbgelaufen");
+    fastAbgelaufenAnzeigeButton.addEventListener("click", function (): void { submit("fastAbgelaufen"); });
+    let filternNachNameButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("filternNachName");
+    filternNachNameButton.addEventListener("click", function (): void { submit("filternNachName"); });*/
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {
         let formData = new FormData(document.forms[0]);
