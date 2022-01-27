@@ -12,12 +12,12 @@ var P3_1;
     fruitsAnzeigeButton.addEventListener("click", function () { submit("showFruits"); });
     let drinksAnzeigeButton = document.getElementById("showDrinks");
     drinksAnzeigeButton.addEventListener("click", function () { submit("showDrinks"); });
-    let abgelaufenAnzeigeButton = document.getElementById("abgelaufen");
-    abgelaufenAnzeigeButton.addEventListener("click", function () { submit("abgelaufen"); });
-    let fastAbgelaufenAnzeigeButton = document.getElementById("fastAbgelaufen");
-    fastAbgelaufenAnzeigeButton.addEventListener("click", function () { submit("fastAbgelaufen"); });
-    let filternNachNameButton = document.getElementById("filternNachName");
-    filternNachNameButton.addEventListener("click", function () { submit("filternNachName"); });
+    /* let abgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("abgelaufen");
+     abgelaufenAnzeigeButton.addEventListener("click", function (): void { submit("abgelaufen"); });
+     let fastAbgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("fastAbgelaufen");
+     fastAbgelaufenAnzeigeButton.addEventListener("click", function (): void { submit("fastAbgelaufen"); });
+     let filternNachNameButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("filternNachName");
+     filternNachNameButton.addEventListener("click", function (): void { submit("filternNachName"); });*/
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {
         let formData = new FormData(document.forms[0]);
@@ -38,7 +38,7 @@ var P3_1;
         if (_parameter == "showDrinks") {
             url = url + "/showDrinks";
         }
-        if (_parameter == "abgelaufen") {
+        /*if (_parameter == "abgelaufen") {
             url = url + "/abgelaufen";
         }
         if (_parameter == "fastAbgelaufen") {
@@ -46,7 +46,7 @@ var P3_1;
         }
         if (_parameter == "filternNachName") {
             url = url + "/filternNachName";
-        }
+        }*/
         url = url + "?" + query.toString();
         let response = await fetch(url);
         let text = await response.text();

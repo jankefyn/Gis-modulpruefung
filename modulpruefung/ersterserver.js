@@ -52,15 +52,15 @@ var P_3_1Server;
         if (q.pathname == "//showDrinks") {
             _response.write(await retrieveProducts("Drinks"));
         }
-        if (q.pathname == "//abgelaufen") {
+        /*if (q.pathname == "//abgelaufen") {
             _response.write(await retrieveProducts("abgelaufen"));
         }
         if (q.pathname == "//fastAbgelaufen") {
             _response.write(await retrieveProducts("fastAbgelaufen"));
         }
-        //if (q.pathname == "//filternNachName") {
-        // _response.write(await nameFilter("filternNachName"));
-        //}
+       if (q.pathname == "//filternNachName") {
+        _response.write(await nameFilter("filternNachName"));
+        }*/
         if (q.pathname == "//showDetail") {
             _response.write(await retrieveDetails(daten.number));
         }
@@ -89,9 +89,9 @@ var P_3_1Server;
                     if (_kategorie == "Drinks" && data[counter].kategorie == "🥤") {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                     }
-                    if (_kategorie == "abgelaufen") {
-                        dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank ist abgelaufen am: " + data[counter].ablaufdatum + ",";
-                    }
+                    /* if (_kategorie == "abgelaufen") {
+                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank ist abgelaufen am: " + data[counter].ablaufdatum + ",";
+                     }*/
                 }
             }
             if (_kategorie == "All") {
@@ -109,9 +109,9 @@ var P_3_1Server;
             if (_kategorie == "Drinks" && data[data.length - 1].kategorie == "🥤") {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
             }
-            if (_kategorie == "abgelaufen") {
+            /*if (_kategorie == "abgelaufen") {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
-            }
+            }*/
             if (dataString == "") {
                 return ("von dieser Kategorie sind aktuell keine Gefriergüter im Kühlschrank");
             }

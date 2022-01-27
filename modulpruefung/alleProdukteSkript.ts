@@ -12,12 +12,14 @@ namespace P3_1 {
     fruitsAnzeigeButton.addEventListener("click", function (): void { submit("showFruits"); });
     let drinksAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showDrinks");
     drinksAnzeigeButton.addEventListener("click", function (): void { submit("showDrinks"); });
-    let abgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("abgelaufen");
+
+
+   /* let abgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("abgelaufen");
     abgelaufenAnzeigeButton.addEventListener("click", function (): void { submit("abgelaufen"); });
     let fastAbgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("fastAbgelaufen");
     fastAbgelaufenAnzeigeButton.addEventListener("click", function (): void { submit("fastAbgelaufen"); });
     let filternNachNameButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("filternNachName");
-    filternNachNameButton.addEventListener("click", function (): void { submit("filternNachName"); });
+    filternNachNameButton.addEventListener("click", function (): void { submit("filternNachName"); });*/
    
 
     let serverantwort: HTMLElement = document.getElementById("serverantwort");
@@ -42,7 +44,7 @@ namespace P3_1 {
         if (_parameter == "showDrinks") {
             url = url + "/showDrinks";
         }
-        if (_parameter == "abgelaufen") {
+        /*if (_parameter == "abgelaufen") {
             url = url + "/abgelaufen";
         }
         if (_parameter == "fastAbgelaufen") {
@@ -50,7 +52,7 @@ namespace P3_1 {
         }
         if (_parameter == "filternNachName") {
             url = url + "/filternNachName";
-        }
+        }*/
         
 
 
