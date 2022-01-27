@@ -91,7 +91,7 @@ var P_3_1Server;
                     }
                     if (_kategorie == "abgelaufen") {
                         let produktDatum = Date.parse(data[data.length - 1].ablaufdatum.toLocaleString());
-                        if (produktDatum > heutigesDatum) {
+                        if (produktDatum < heutigesDatum) {
                             dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                         }
                     }
@@ -114,7 +114,7 @@ var P_3_1Server;
             }
             if (_kategorie == "abgelaufen") {
                 let produktDatum = Date.parse(data[data.length - 1].ablaufdatum.toLocaleString());
-                if (produktDatum > heutigesDatum) {
+                if (produktDatum < heutigesDatum) {
                     dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
                 }
             }
