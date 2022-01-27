@@ -89,7 +89,7 @@ var P_3_1Server;
                     if (_kategorie == "Drinks" && data[counter].kategorie == "🥤") {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                     }
-                    if (_kategorie == "abgelaufen" && data[counter].ablaufdatum < heutigesDatum) {
+                    if (_kategorie == "abgelaufen" && data[counter].ablaufdatum.toLocaleString < heutigesDatum.toLocaleString) {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank ist abgelaufen am: " + data[counter].ablaufdatum + ",";
                     }
                 }
