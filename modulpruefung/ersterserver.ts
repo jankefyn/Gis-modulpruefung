@@ -99,8 +99,7 @@ export namespace P_3_1Server {
     async function retrieveProducts(_kategorie: string): Promise<String> {
 
         let data: Antwort[] = await products.find().toArray();
-        let heutigesDatumString: Date = new Date();
-        let heutigesDatumZahl: number = +heutigesDatumString;
+        let heutigesDatum: number = +new Date();
         if (data.length > 0) {
             let dataString: string = "";
             for (let counter: number = 0; counter < data.length - 1; counter++) {
@@ -125,8 +124,10 @@ export namespace P_3_1Server {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                     }
                     if (_kategorie == "abgelaufen") {
-
-                        dataString = "" + heutigesDatumZahl;
+                        let produktDatum: number = +data[counter].ablaufdatum;
+                        if (produktDatum < heutigesDatum) {
+                            dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
+                        }
                     }
                 }
             }
