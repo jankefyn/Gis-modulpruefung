@@ -148,7 +148,7 @@ export namespace P_3_1Server {
             }
             if (_kategorie == "abgelaufen") {
                 let produktDatum: number = +data[data.length - 1].ablaufdatum;
-                return ("" + produktDatum + "und" + heutigesDatum);
+                return ("" + Date.parse(data[data.length - 1].ablaufdatum.toLocaleString()) + "und" + heutigesDatum);
                 //   if (produktDatum < heutigesDatum) {
                 //      dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
                 //     }
