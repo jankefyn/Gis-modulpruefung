@@ -3,6 +3,8 @@ var P3_1;
 (function (P3_1) {
     let speicherButton = document.getElementById("zahlSpeichern");
     speicherButton.addEventListener("click", function () { submit("showDetail"); });
+    let loeschenButton = document.getElementById("zahlLoeschen");
+    loeschenButton.addEventListener("click", function () { submit("deleteProduct"); });
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {
         let formData = new FormData(document.forms[0]);
@@ -10,6 +12,9 @@ var P3_1;
         let query = new URLSearchParams(formData);
         if (_parameter == "showDetail") {
             url = url + "/showDetail";
+        }
+        if (_parameter == "deleteProduct") {
+            url = url + "/deleteProduct";
         }
         url = url + "?" + query.toString();
         let response = await fetch(url);

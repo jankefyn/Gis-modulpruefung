@@ -109,16 +109,6 @@ var P_3_1Server;
         products.insertOne(_rückgabe);
         return "Gefriergut erfolgreich gespeichert!";
     }
-    /*
-        function saveNumber(_zahl: string | string[]): void {
-            let auswahl: string | string[] = _zahl;
-    
-            let auswahlJSON: string = JSON.stringify(auswahl);
-            if (window && window.sessionStorage) {
-                sessionStorage.setItem("", auswahlJSON);
-            }
-        }
-    */
     async function retrieveDetails(_auswahlNummer) {
         let counter = +_auswahlNummer - 1;
         let data = await products.find().toArray();

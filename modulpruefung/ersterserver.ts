@@ -83,6 +83,7 @@ export namespace P_3_1Server {
         if (q.pathname == "//showDetail") {
             _response.write(await retrieveDetails(daten.number));
         }
+
         _response.end();
     }
 
@@ -147,16 +148,7 @@ export namespace P_3_1Server {
         products.insertOne(_rückgabe);
         return "Gefriergut erfolgreich gespeichert!";
     }
-    /*
-        function saveNumber(_zahl: string | string[]): void {
-            let auswahl: string | string[] = _zahl;
-    
-            let auswahlJSON: string = JSON.stringify(auswahl);
-            if (window && window.sessionStorage) {
-                sessionStorage.setItem("", auswahlJSON);
-            }
-        }
-    */
+
     async function retrieveDetails(_auswahlNummer: string | string[]): Promise<String> {
 
         let counter: number = +_auswahlNummer - 1;
