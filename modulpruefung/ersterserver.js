@@ -190,9 +190,9 @@ var P_3_1Server;
         }
     }
     async function deleteProduct(_auswahlNummer) {
-        let counter = +_auswahlNummer - 1;
-        let data = await products.find().toArray();
-        products.deleteOne(data[counter]);
+        //let counter: number = +_auswahlNummer - 1;
+        // let data: Antwort[] = await products.find().toArray();
+        //   products.deleteOne(data[counter]);
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
 })(P_3_1Server = exports.P_3_1Server || (exports.P_3_1Server = {}));

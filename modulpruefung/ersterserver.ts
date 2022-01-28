@@ -233,9 +233,9 @@ export namespace P_3_1Server {
         }
     }
     async function deleteProduct(_auswahlNummer: string|string[]): Promise<string> {
-        let counter: number = +_auswahlNummer - 1;
-        let data: Antwort[] = await products.find().toArray();
-        products.deleteOne(data[counter]);
+        //let counter: number = +_auswahlNummer - 1;
+       // let data: Antwort[] = await products.find().toArray();
+     //   products.deleteOne(data[counter]);
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
 
