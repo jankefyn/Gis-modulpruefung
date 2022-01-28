@@ -1,8 +1,8 @@
 namespace P3_1 {
 
 
-    let submitbuttonHTML: HTMLButtonElement = <HTMLButtonElement>document.getElementById("submitHTML");
-    submitbuttonHTML.addEventListener("click", function (): void { submit("HTML"); });
+    let submitbuttonHTML: HTMLButtonElement = <HTMLButtonElement>document.getElementById("saveProduct");
+    submitbuttonHTML.addEventListener("click", function (): void { submit("saveProduct"); });
 
     let serverantwort: HTMLElement = document.getElementById("serverantwort");
 
@@ -11,8 +11,8 @@ namespace P3_1 {
         let url: string = "https://gis-modulpruefung.herokuapp.com/";
         let query: URLSearchParams = new URLSearchParams(<any>formData);
 
-        if (_parameter == "HTML") {
-            url = url + "/html";
+        if (_parameter == "saveProduct") {
+            url = url + "/savePRoduct";
         }
 
 

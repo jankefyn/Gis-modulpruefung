@@ -3,6 +3,7 @@ import * as Http from "http";
 import { ParsedUrlQuery } from "querystring";
 import * as url from "url";
 import * as Mongo from "mongodb";
+import { ALL } from "dns";
 
 
 export namespace P_3_1Server {
@@ -14,6 +15,7 @@ export namespace P_3_1Server {
         notiz: string;
         ablaufdatum: Date;
         kategorie: string;
+        anlegedatum: Date;
     }
 
 
@@ -62,7 +64,7 @@ export namespace P_3_1Server {
         let q: url.UrlWithParsedQuery = url.parse(_request.url, true);
         let daten: ParsedUrlQuery = q.query;
 
-        if (q.pathname == "//html") {
+        if (q.pathname == "//saveProduct") {
             _response.write(await storeRückgabe(q.query));
         }
         if (q.pathname == "//showUsers") {
@@ -205,6 +207,11 @@ export namespace P_3_1Server {
 
     async function storeRückgabe(_rückgabe: Products): Promise<string> {
         products.insertOne(_rückgabe);
+        let data: Antwort[] = await products.find().toArray();
+        products.deleteMany(products.find());
+        data[data.length - 1].anlegedatum = new Date();
+        data.toString();
+        products.insertMany(data);
         return ("Gefriergut erfolgreich gespeichert!");
     }
 
