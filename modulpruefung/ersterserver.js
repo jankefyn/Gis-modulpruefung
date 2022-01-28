@@ -90,9 +90,9 @@ var P_3_1Server;
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                     }
                     if (_kategorie == "abgelaufen") {
-                        let produktDatum = Date.parse(data[counter].ablaufdatum.toLocaleString());
+                        let produktDatum = Date.parse(data[counter + 1].ablaufdatum.toLocaleString());
                         dataString = " " + produktDatum;
-                        return (data[counter].notiz + dataString);
+                        return (data[counter + 1].notiz + dataString);
                         /*if (produktDatum < heutigesDatum) {
                             dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
                         }*/
