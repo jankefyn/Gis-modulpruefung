@@ -154,6 +154,10 @@ var P_3_1Server;
                     }
                 }
             }
+            if (data[data.length - 1].name == test) {
+                dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
+                return ("im Kühlschrank wurden folgende produkte mit dem gesuchten name gefunden:" + dataString);
+            }
             if (dataString == "") {
                 return ("Im Kühlschrank sind keine Gefriergüter mit diesem namen vorhanden. überprüfen sie die Schreibweise des Produktnamen");
             }
