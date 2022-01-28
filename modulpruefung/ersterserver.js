@@ -145,14 +145,14 @@ var P_3_1Server;
         let data = await products.find().toArray();
         if (data.length > 0) {
             let dataString = "";
-            for (let counter = 0; counter < data.length - 1; counter++) {
+            /*for (let counter: number = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
-                    let gefriergutZähler = counter + 1;
+                    let gefriergutZähler: number = counter + 1;
                     if (data[counter].name == _filterName) {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft innerhalb der nächsten zwei Tage ab. Genaues Ablaufdatum: " + data[counter].ablaufdatum + ",";
                     }
                 }
-            }
+            }*/
             if (dataString == "") {
                 return ("Im Kühlschrank sind keine Gefriergüter mit diesem namen vorhanden. überprüfen sie die Schreibweise des Produktnamen" + _filterName);
             }
