@@ -55,10 +55,10 @@ var P_3_1Server;
         if (q.pathname == "//abgelaufen") {
             _response.write(await retrieveProducts("abgelaufen"));
         }
-        /* if (q.pathname == "//fastAbgelaufen") {
-             _response.write(await retrieveProducts("fastAbgelaufen"));
-         }
-        if (q.pathname == "//filternNachName") {
+        if (q.pathname == "//fastAbgelaufen") {
+            _response.write(await retrieveProducts("fastAbgelaufen"));
+        }
+        /*if (q.pathname == "//filternNachName") {
          _response.write(await nameFilter("filternNachName"));
          }*/
         if (q.pathname == "//showDetail") {
@@ -91,9 +91,11 @@ var P_3_1Server;
                     }
                     if (_kategorie == "abgelaufen") {
                         let produktDatum = Date.parse(data[counter].ablaufdatum.toLocaleString());
-                        if (produktDatum < heutigesDatum) {
+                        dataString = " " + produktDatum;
+                        return (data[counter].notiz + dataString);
+                        /*if (produktDatum < heutigesDatum) {
                             dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
-                        }
+                        }*/
                     }
                 }
             }
