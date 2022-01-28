@@ -87,7 +87,7 @@ export namespace P_3_1Server {
             _response.write(await retrieveProducts("fastAbgelaufen"));
         }
         if (q.pathname == "//filternNachName") {
-            _response.write(await nameFilter(q.query));
+            _response.write(await nameFilter(daten.name));
         }
         if (q.pathname == "//showDetail") {
             _response.write(await retrieveDetails(daten.number));
@@ -175,9 +175,10 @@ export namespace P_3_1Server {
             return ("noch kein Gefriergut vorhanden");
         }
     }
-    async function nameFilter(_filterName: Products): Promise<string> {
-        return ("Im Kühlschrank sind keine Gefriergüter mit diesem namen vorhanden. überprüfen sie die Schreibweise des Produktnamen" + _filterName);
-      //  let data: Antwort[] = await products.find().toArray();
+    async function nameFilter(_filterName: string | string[]): Promise<string> {
+        let test: string = _filterName.toString();
+        return ("Im Kühlschrank sind keine Gefriergüter mit diesem namen vorhanden. überprüfen sie die Schreibweise des Produktnamen" + test);
+        //  let data: Antwort[] = await products.find().toArray();
         /*if (data.length > 0) {
             let dataString: string = "";
             /*for (let counter: number = 0; counter < data.length - 1; counter++) {
