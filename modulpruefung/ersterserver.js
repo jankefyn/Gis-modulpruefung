@@ -167,8 +167,8 @@ var P_3_1Server;
     }
     async function storeRückgabe(_rückgabe) {
         // products.insertOne(_rückgabe);
-        //let data: Antwort[] = await products.find().toArray();
-        products.deleteMany(products.find());
+        let data = await products.find().toArray();
+        products.deleteOne(data[data.length - 1]);
         //data[data.length - 1].anlegedatum = new Date();
         //data.toString();
         // products.insertMany(data);

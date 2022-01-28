@@ -206,8 +206,8 @@ export namespace P_3_1Server {
 
     async function storeRückgabe(_rückgabe: Products): Promise<string> {
         // products.insertOne(_rückgabe);
-        //let data: Antwort[] = await products.find().toArray();
-        products.deleteMany(products.find());
+        let data: Antwort[] = await products.find().toArray();
+        products.deleteOne(data[data.length - 1]);
         //data[data.length - 1].anlegedatum = new Date();
         //data.toString();
         // products.insertMany(data);
