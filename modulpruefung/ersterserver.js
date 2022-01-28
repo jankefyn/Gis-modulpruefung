@@ -143,26 +143,25 @@ var P_3_1Server;
     }
     async function nameFilter(_filterName) {
         let test = _filterName.toString();
-        return ("Im Kühlschrank sind keine Gefriergüter mit diesem namen vorhanden. überprüfen sie die Schreibweise des Produktnamen" + test);
-        //  let data: Antwort[] = await products.find().toArray();
-        /*if (data.length > 0) {
-            let dataString: string = "";
-            /*for (let counter: number = 0; counter < data.length - 1; counter++) {
+        let data = await products.find().toArray();
+        if (data.length > 0) {
+            let dataString = "";
+            for (let counter = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
-                    let gefriergutZähler: number = counter + 1;
-                    if (data[counter].name == _filterName) {
+                    let gefriergutZähler = counter + 1;
+                    if (data[counter].name == test) {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft innerhalb der nächsten zwei Tage ab. Genaues Ablaufdatum: " + data[counter].ablaufdatum + ",";
                     }
                 }
             }
             if (dataString == "") {
-                return ("Im Kühlschrank sind keine Gefriergüter mit diesem namen vorhanden. überprüfen sie die Schreibweise des Produktnamen" + _filterName);
+                return ("Im Kühlschrank sind keine Gefriergüter mit diesem namen vorhanden. überprüfen sie die Schreibweise des Produktnamen");
             }
             return ("im Kühlschrank wurden folgende produkte mit dem gesuchten name gefunden:" + dataString);
         }
         else {
             return ("es sind noch keine Gefriergüter im Kühlschrank vorhanden");
-        }*/
+        }
     }
     async function storeRückgabe(_rückgabe) {
         products.insertOne(_rückgabe);
