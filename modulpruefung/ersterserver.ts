@@ -87,7 +87,7 @@ export namespace P_3_1Server {
             _response.write(await retrieveProducts("fastAbgelaufen"));
         }
         if (q.pathname == "//filternNachName") {
-            _response.write(await nameFilter(daten.name));
+            _response.write(await nameFilter(daten.produktname));
         }
         if (q.pathname == "//showDetail") {
             _response.write(await retrieveDetails(daten.number));
