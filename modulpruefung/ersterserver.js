@@ -64,7 +64,7 @@ var P_3_1Server;
         if (q.pathname == "//showDetail") {
             _response.write(await retrieveDetails(daten.number));
         }
-        if (q.pathname == "deleteProduct") {
+        if (q.pathname == "//deleteProduct") {
             _response.write(await deleteProduct(daten.number));
         }
         _response.end();
@@ -190,9 +190,9 @@ var P_3_1Server;
         }
     }
     async function deleteProduct(_auswahlNummer) {
-        //let counter: number = +_auswahlNummer - 1;
-        // let data: Antwort[] = await products.find().toArray();
-        //   products.deleteOne(data[counter]);
+        let counter = +_auswahlNummer - 1;
+        let data = await products.find().toArray();
+        products.deleteOne(data[counter]);
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
 })(P_3_1Server = exports.P_3_1Server || (exports.P_3_1Server = {}));

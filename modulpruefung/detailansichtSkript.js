@@ -5,7 +5,7 @@ var P3_1;
     allesAnzeigeButton.addEventListener("click", function () { submit("showProducts"); });
     let speicherButton = document.getElementById("zahlSpeichern");
     speicherButton.addEventListener("click", function () { submit("showDetail"); });
-    let loeschenButton = document.getElementById("zahlLoeschen");
+    let loeschenButton = document.getElementById("deleteProduct");
     loeschenButton.addEventListener("click", function () { submit("deleteProduct"); });
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {

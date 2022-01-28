@@ -5,7 +5,7 @@ namespace P3_1 {
     allesAnzeigeButton.addEventListener("click", function (): void { submit("showProducts"); });
     let speicherButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("zahlSpeichern");
     speicherButton.addEventListener("click", function (): void { submit("showDetail"); });
-    let loeschenButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("zahlLoeschen");
+    let loeschenButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deleteProduct");
     loeschenButton.addEventListener("click", function (): void { submit("deleteProduct"); });
 
     let serverantwort: HTMLElement = document.getElementById("serverantwort");

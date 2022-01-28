@@ -93,7 +93,7 @@ export namespace P_3_1Server {
         if (q.pathname == "//showDetail") {
             _response.write(await retrieveDetails(daten.number));
         }
-        if (q.pathname == "deleteProduct") {
+        if (q.pathname == "//deleteProduct") {
             _response.write(await deleteProduct(daten.number));
         }
 
@@ -232,10 +232,10 @@ export namespace P_3_1Server {
             return ("Es liegt kein Produkt mit der angegebenen nummer vor");
         }
     }
-    async function deleteProduct(_auswahlNummer: string|string[]): Promise<string> {
-        //let counter: number = +_auswahlNummer - 1;
-       // let data: Antwort[] = await products.find().toArray();
-     //   products.deleteOne(data[counter]);
+    async function deleteProduct(_auswahlNummer: string | string[]): Promise<string> {
+        let counter: number = +_auswahlNummer - 1;
+        let data: Antwort[] = await products.find().toArray();
+        products.deleteOne(data[counter]);
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
 
