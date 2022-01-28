@@ -170,7 +170,7 @@ var P_3_1Server;
         let data = await products.find().toArray();
         products.deleteOne(data[data.length - 1]);
         data[data.length - 1].name = "huhu";
-        //data.toString();
+        data.toString();
         products.insertOne(data[data.length - 1]);
         return ("Gefriergut erfolgreich gespeichert!");
     }
