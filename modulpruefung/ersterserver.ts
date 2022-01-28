@@ -208,7 +208,7 @@ export namespace P_3_1Server {
         // products.insertOne(_rückgabe);
         let data: Antwort[] = await products.find().toArray();
         products.deleteOne(data[data.length - 1]);
-        data[data.length - 1].anlegedatum = new Date();
+        data[data.length - 1].name = "huhu";
         //data.toString();
         products.insertOne(data[data.length - 1]);
         return ("Gefriergut erfolgreich gespeichert!");
