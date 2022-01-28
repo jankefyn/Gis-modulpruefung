@@ -9,7 +9,7 @@ var P3_1;
         let url = "https://gis-modulpruefung.herokuapp.com/";
         let query = new URLSearchParams(formData);
         if (_parameter == "saveProduct") {
-            url = url + "/savePRoduct";
+            url = url + "/saveProduct";
         }
         url = url + "?" + query.toString();
         let response = await fetch(url);

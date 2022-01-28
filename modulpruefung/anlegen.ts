@@ -12,7 +12,7 @@ namespace P3_1 {
         let query: URLSearchParams = new URLSearchParams(<any>formData);
 
         if (_parameter == "saveProduct") {
-            url = url + "/savePRoduct";
+            url = url + "/saveProduct";
         }
 
 
