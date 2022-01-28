@@ -169,9 +169,9 @@ var P_3_1Server;
         // products.insertOne(_rückgabe);
         let data = await products.find().toArray();
         products.deleteOne(data[data.length - 1]);
-        //data[data.length - 1].anlegedatum = new Date();
+        data[data.length - 1].anlegedatum = new Date();
         //data.toString();
-        // products.insertMany(data);
+        products.insertOne(data[data.length - 1]);
         return ("Gefriergut erfolgreich gespeichert!");
     }
     async function retrieveDetails(_auswahlNummer) {
