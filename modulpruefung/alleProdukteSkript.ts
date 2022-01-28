@@ -1,8 +1,8 @@
 namespace P3_1 {
 
 
-    let allesAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showUsers");
-    allesAnzeigeButton.addEventListener("click", function (): void { submit("showUsers"); });
+    let allesAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showProducts");
+    allesAnzeigeButton.addEventListener("click", function (): void { submit("showProducts"); });
 /*einzelne kategorien:*/
     let meatAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showMeat");
     meatAnzeigeButton.addEventListener("click", function (): void { submit("showMeat"); });
@@ -29,8 +29,8 @@ namespace P3_1 {
         let url: string = "https://gis-modulpruefung.herokuapp.com/";
         let query: URLSearchParams = new URLSearchParams(<any>formData);
 
-        if (_parameter == "showUsers") {
-            url = url + "/showUsers";
+        if (_parameter == "showProducts") {
+            url = url + "/showProducts";
         }
         if (_parameter == "showMeat") {
             url = url + "/showMeat";

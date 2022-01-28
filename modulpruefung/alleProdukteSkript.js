@@ -1,8 +1,8 @@
 "use strict";
 var P3_1;
 (function (P3_1) {
-    let allesAnzeigeButton = document.getElementById("showUsers");
-    allesAnzeigeButton.addEventListener("click", function () { submit("showUsers"); });
+    let allesAnzeigeButton = document.getElementById("showProducts");
+    allesAnzeigeButton.addEventListener("click", function () { submit("showProducts"); });
     /*einzelne kategorien:*/
     let meatAnzeigeButton = document.getElementById("showMeat");
     meatAnzeigeButton.addEventListener("click", function () { submit("showMeat"); });
@@ -23,8 +23,8 @@ var P3_1;
         let formData = new FormData(document.forms[0]);
         let url = "https://gis-modulpruefung.herokuapp.com/";
         let query = new URLSearchParams(formData);
-        if (_parameter == "showUsers") {
-            url = url + "/showUsers";
+        if (_parameter == "showProducts") {
+            url = url + "/showProducts";
         }
         if (_parameter == "showMeat") {
             url = url + "/showMeat";

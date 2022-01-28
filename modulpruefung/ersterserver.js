@@ -37,7 +37,7 @@ var P_3_1Server;
         if (q.pathname == "//saveProduct") {
             _response.write(await storeRückgabe(q.query));
         }
-        if (q.pathname == "//showUsers") {
+        if (q.pathname == "//showProducts") {
             _response.write(await retrieveProducts("All"));
         }
         if (q.pathname == "//showMeat") {
@@ -63,6 +63,9 @@ var P_3_1Server;
         }
         if (q.pathname == "//showDetail") {
             _response.write(await retrieveDetails(daten.number));
+        }
+        if (q.pathname == "deleteProduct") {
+            _response.write(await deleteProduct(daten.number));
         }
         _response.end();
     }
@@ -166,12 +169,7 @@ var P_3_1Server;
         return ("es sind noch keine Gefriergüter im Kühlschrank vorhanden");
     }
     async function storeRückgabe(_rückgabe) {
-        // products.insertOne(_rückgabe);
-        let data = await products.find().toArray();
-        products.deleteOne(data[data.length - 1]);
-        data[data.length - 1].name = "huhu";
-        data.toString();
-        products.insertOne(data[data.length - 1]);
+        products.insertOne(_rückgabe);
         return ("Gefriergut erfolgreich gespeichert!");
     }
     async function retrieveDetails(_auswahlNummer) {
@@ -190,6 +188,12 @@ var P_3_1Server;
         else {
             return ("Es liegt kein Produkt mit der angegebenen nummer vor");
         }
+    }
+    async function deleteProduct(_auswahlNummer) {
+        let counter = +_auswahlNummer - 1;
+        let data = await products.find().toArray();
+        products.deleteOne(data[counter]);
+        return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
 })(P_3_1Server = exports.P_3_1Server || (exports.P_3_1Server = {}));
 //# sourceMappingURL=ersterserver.js.map

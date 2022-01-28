@@ -1,6 +1,8 @@
 "use strict";
 var P3_1;
 (function (P3_1) {
+    let allesAnzeigeButton = document.getElementById("showProducts");
+    allesAnzeigeButton.addEventListener("click", function () { submit("showProducts"); });
     let speicherButton = document.getElementById("zahlSpeichern");
     speicherButton.addEventListener("click", function () { submit("showDetail"); });
     let loeschenButton = document.getElementById("zahlLoeschen");
@@ -10,6 +12,9 @@ var P3_1;
         let formData = new FormData(document.forms[0]);
         let url = "https://gis-modulpruefung.herokuapp.com/";
         let query = new URLSearchParams(formData);
+        if (_parameter == "showProducts") {
+            url = url + "/showProducts";
+        }
         if (_parameter == "showDetail") {
             url = url + "/showDetail";
         }
