@@ -34,7 +34,7 @@ var P_3_1Server;
         _response.setHeader("Access-Control-Allow-Origin", "*");
         let q = url.parse(_request.url, true);
         let daten = q.query;
-        if (q.pathname == "//html") {
+        if (q.pathname == "//saveProduct") {
             _response.write(await storeRückgabe(q.query));
         }
         if (q.pathname == "//showUsers") {
@@ -167,6 +167,11 @@ var P_3_1Server;
     }
     async function storeRückgabe(_rückgabe) {
         products.insertOne(_rückgabe);
+        let data = await products.find().toArray();
+        products.deleteMany(products.find());
+        data[data.length - 1].anlegedatum = new Date();
+        data.toString();
+        products.insertMany(data);
         return ("Gefriergut erfolgreich gespeichert!");
     }
     async function retrieveDetails(_auswahlNummer) {

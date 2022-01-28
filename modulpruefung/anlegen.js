@@ -1,15 +1,15 @@
 "use strict";
 var P3_1;
 (function (P3_1) {
-    let submitbuttonHTML = document.getElementById("submitHTML");
-    submitbuttonHTML.addEventListener("click", function () { submit("HTML"); });
+    let submitbuttonHTML = document.getElementById("saveProduct");
+    submitbuttonHTML.addEventListener("click", function () { submit("saveProduct"); });
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {
         let formData = new FormData(document.forms[0]);
         let url = "https://gis-modulpruefung.herokuapp.com/";
         let query = new URLSearchParams(formData);
-        if (_parameter == "HTML") {
-            url = url + "/html";
+        if (_parameter == "saveProduct") {
+            url = url + "/savePRoduct";
         }
         url = url + "?" + query.toString();
         let response = await fetch(url);
