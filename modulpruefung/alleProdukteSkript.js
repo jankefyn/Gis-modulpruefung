@@ -14,9 +14,9 @@ var P3_1;
     drinksAnzeigeButton.addEventListener("click", function () { submit("showDrinks"); });
     let abgelaufenAnzeigeButton = document.getElementById("abgelaufen");
     abgelaufenAnzeigeButton.addEventListener("click", function () { submit("abgelaufen"); });
-    /*let fastAbgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("fastAbgelaufen");
-    fastAbgelaufenAnzeigeButton.addEventListener("click", function (): void { submit("fastAbgelaufen"); });
-    let filternNachNameButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("filternNachName");
+    let fastAbgelaufenAnzeigeButton = document.getElementById("fastAbgelaufen");
+    fastAbgelaufenAnzeigeButton.addEventListener("click", function () { submit("fastAbgelaufen"); });
+    /*let filternNachNameButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("filternNachName");
     filternNachNameButton.addEventListener("click", function (): void { submit("filternNachName"); });*/
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {
@@ -41,10 +41,10 @@ var P3_1;
         if (_parameter == "abgelaufen") {
             url = url + "/abgelaufen";
         }
-        /*if (_parameter == "fastAbgelaufen") {
+        if (_parameter == "fastAbgelaufen") {
             url = url + "/fastAbgelaufen";
         }
-        if (_parameter == "filternNachName") {
+        /*if (_parameter == "filternNachName") {
             url = url + "/filternNachName";
         }*/
         url = url + "?" + query.toString();

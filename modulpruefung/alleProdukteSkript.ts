@@ -16,9 +16,9 @@ namespace P3_1 {
 
     let abgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("abgelaufen");
     abgelaufenAnzeigeButton.addEventListener("click", function (): void { submit("abgelaufen"); });
-    /*let fastAbgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("fastAbgelaufen");
+    let fastAbgelaufenAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("fastAbgelaufen");
     fastAbgelaufenAnzeigeButton.addEventListener("click", function (): void { submit("fastAbgelaufen"); });
-    let filternNachNameButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("filternNachName");
+    /*let filternNachNameButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("filternNachName");
     filternNachNameButton.addEventListener("click", function (): void { submit("filternNachName"); });*/
    
 
@@ -47,10 +47,10 @@ namespace P3_1 {
         if (_parameter == "abgelaufen") {
             url = url + "/abgelaufen";
         }
-        /*if (_parameter == "fastAbgelaufen") {
+        if (_parameter == "fastAbgelaufen") {
             url = url + "/fastAbgelaufen";
         }
-        if (_parameter == "filternNachName") {
+        /*if (_parameter == "filternNachName") {
             url = url + "/filternNachName";
         }*/
         
