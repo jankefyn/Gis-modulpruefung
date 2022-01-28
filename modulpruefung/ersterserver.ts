@@ -86,9 +86,9 @@ export namespace P_3_1Server {
         if (q.pathname == "//fastAbgelaufen") {
             _response.write(await retrieveProducts("fastAbgelaufen"));
         }
-        /*if (q.pathname == "//filternNachName") {
-         _response.write(await nameFilter("filternNachName"));
-         }*/
+        if (q.pathname == "//filternNachName") {
+            _response.write(await nameFilter(daten.name));
+        }
         if (q.pathname == "//showDetail") {
             _response.write(await retrieveDetails(daten.number));
         }
@@ -175,9 +175,31 @@ export namespace P_3_1Server {
             return ("noch kein Gefriergut vorhanden");
         }
     }
+    async function nameFilter(_filterName: string| string[]): Promise<string> {
+        let data: Antwort[] = await products.find().toArray();
+        if (data.length > 0) {
+            let dataString: string = "";
+            for (let counter: number = 0; counter < data.length - 1; counter++) {
+                if (data[counter].name != undefined) {
+                    let gefriergutZähler: number = counter + 1;
+                    if (data[counter].name == _filterName) {
+                        dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft innerhalb der nächsten zwei Tage ab. Genaues Ablaufdatum: " + data[counter].ablaufdatum + ",";
+                    }
+                }
+            }
+            if (dataString == "") {
+                return ("Im Kühlschrank sind keine Gefriergüter mit diesem namen vorhanden. überprüfen sie die Schreibweise des Produktnamen");
+            }
+            return ("im Kühlschrank wurden folgende produkte mit dem gesuchten name gefunden:" + dataString);
+        }
+        else {
+            return ("es sind noch keine Gefriergüter im Kühlschrank vorhanden");
+        }
+    }
+
     async function storeRückgabe(_rückgabe: Products): Promise<string> {
         products.insertOne(_rückgabe);
-        return "Gefriergut erfolgreich gespeichert!";
+        return ("Gefriergut erfolgreich gespeichert!");
     }
 
     async function retrieveDetails(_auswahlNummer: string | string[]): Promise<String> {
