@@ -159,9 +159,7 @@ var P_3_1Server;
             }
             return ("im Kühlschrank wurden folgende produkte mit dem gesuchten name gefunden:" + dataString);
         }
-        else {
-            return ("es sind noch keine Gefriergüter im Kühlschrank vorhanden");
-        }
+        return ("es sind noch keine Gefriergüter im Kühlschrank vorhanden");
     }
     async function storeRückgabe(_rückgabe) {
         products.insertOne(_rückgabe);
