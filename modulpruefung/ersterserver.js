@@ -154,7 +154,7 @@ var P_3_1Server;
                 }
             }
             if (dataString == "") {
-                return ("Im Kühlschrank sind keine Gefriergüter mit diesem namen vorhanden. überprüfen sie die Schreibweise des Produktnamen");
+                return ("Im Kühlschrank sind keine Gefriergüter mit diesem namen vorhanden. überprüfen sie die Schreibweise des Produktnamen" + _filterName);
             }
             return ("im Kühlschrank wurden folgende produkte mit dem gesuchten name gefunden:" + dataString);
         }
