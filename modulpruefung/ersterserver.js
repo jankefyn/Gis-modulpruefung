@@ -69,6 +69,8 @@ var P_3_1Server;
     async function retrieveProducts(_kategorie) {
         let data = await products.find().toArray();
         let heutigesDatum = +new Date();
+        let zweiTageInMillisekunden = 172800000;
+        let datumUebermorgen = +new Date() + zweiTageInMillisekunden;
         if (data.length > 0) {
             let dataString = "";
             for (let counter = 0; counter < data.length - 1; counter++) {
@@ -91,11 +93,15 @@ var P_3_1Server;
                     }
                     if (_kategorie == "abgelaufen") {
                         let produktDatum = Date.parse(data[counter + 1].ablaufdatum.toLocaleString());
-                        dataString = " " + produktDatum;
-                        return (data[counter + 1].notiz + dataString);
-                        /*if (produktDatum < heutigesDatum) {
+                        if (produktDatum < heutigesDatum) {
                             dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
-                        }*/
+                        }
+                    }
+                    if (_kategorie == "fastAbgelaufen") {
+                        let produktDatum = Date.parse(data[counter + 1].ablaufdatum.toLocaleString());
+                        if (produktDatum > heutigesDatum && produktDatum < datumUebermorgen) {
+                            dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft innerhalb der nächsten zwei Tage ab. Genaues Ablaufdatum: " + data[counter].ablaufdatum + ",";
+                        }
                     }
                 }
             }
@@ -117,6 +123,12 @@ var P_3_1Server;
             if (_kategorie == "abgelaufen") {
                 let produktDatum = Date.parse(data[data.length - 1].ablaufdatum.toLocaleString());
                 if (produktDatum < heutigesDatum) {
+                    dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
+                }
+            }
+            if (_kategorie == "fastAbgelaufen") {
+                let produktDatum = Date.parse(data[data.length - 1].ablaufdatum.toLocaleString());
+                if (produktDatum > heutigesDatum && produktDatum < datumUebermorgen) {
                     dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
                 }
             }
