@@ -176,8 +176,9 @@ export namespace P_3_1Server {
         }
     }
     async function nameFilter(_filterName: Products): Promise<string> {
-        let data: Antwort[] = await products.find().toArray();
-        if (data.length > 0) {
+        return ("Im Kühlschrank sind keine Gefriergüter mit diesem namen vorhanden. überprüfen sie die Schreibweise des Produktnamen" + _filterName);
+      //  let data: Antwort[] = await products.find().toArray();
+        /*if (data.length > 0) {
             let dataString: string = "";
             /*for (let counter: number = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
@@ -186,7 +187,7 @@ export namespace P_3_1Server {
                         dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft innerhalb der nächsten zwei Tage ab. Genaues Ablaufdatum: " + data[counter].ablaufdatum + ",";
                     }
                 }
-            }*/
+            }
             if (dataString == "") {
                 return ("Im Kühlschrank sind keine Gefriergüter mit diesem namen vorhanden. überprüfen sie die Schreibweise des Produktnamen" + _filterName);
             }
@@ -194,7 +195,7 @@ export namespace P_3_1Server {
         }
         else {
             return ("es sind noch keine Gefriergüter im Kühlschrank vorhanden");
-        }
+        }*/
     }
 
     async function storeRückgabe(_rückgabe: Products): Promise<string> {
