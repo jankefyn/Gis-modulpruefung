@@ -166,12 +166,12 @@ var P_3_1Server;
         return ("es sind noch keine Gefriergüter im Kühlschrank vorhanden");
     }
     async function storeRückgabe(_rückgabe) {
-        products.insertOne(_rückgabe);
-        let data = await products.find().toArray();
+        // products.insertOne(_rückgabe);
+        //let data: Antwort[] = await products.find().toArray();
         products.deleteMany(products.find());
-        data[data.length - 1].anlegedatum = new Date();
-        data.toString();
-        products.insertMany(data);
+        //data[data.length - 1].anlegedatum = new Date();
+        //data.toString();
+        // products.insertMany(data);
         return ("Gefriergut erfolgreich gespeichert!");
     }
     async function retrieveDetails(_auswahlNummer) {
