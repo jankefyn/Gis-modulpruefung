@@ -26,7 +26,8 @@
 
         <form>
         <p>Hier können sie ein Gefriergut anhand der nummer auswählen und bearbeiten</p>
-                <label for="string">Wähle ein Gefriergut anhand der Nummer aus</label><br>
+                <label for="string">Geben sie hier die Nummer des Produkts ein welches sie bearbeiten wollen</label><br>
+                <input type="number" id="nummer" name="number"><br>
 
                 <label for="name">Produktname:</label>
                 <input type="text" id="gefriergut" name="name">
@@ -45,7 +46,7 @@
                         <option>&#127813;
                         <option>&#129380;
                 </select>
-                <button type="button" id="editProduct">Gefriergut Speichern</button>
+                <button type="button" id="editProduct">Gefriergut bearbeiten</button>
         </form>
         <div>
                 <p id=serverantwort> </p>
