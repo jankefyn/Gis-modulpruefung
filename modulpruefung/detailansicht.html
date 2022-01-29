@@ -15,9 +15,37 @@
         <form>
                 <label for="string">Wähle ein Gefriergut anhand der Nummer aus</label><br>
                 <input type="number" id="nummer" name="number"><br>
-                <button type="button" id="zahlSpeichern"> Details zum Gefriergut mit dieser Nummer anzeigen lassen </button>
-                <button type="button" id="deleteProduct"> Gefriergut mit dieser Nummer löschen  </button>
-                <button type="button" id="showProducts"> Ich habe die Nummer vergessen und möchte deshalb erneut alle Produkte sehen </button>
+                <button type="button" id="zahlSpeichern"> Details zum Gefriergut mit dieser Nummer anzeigen lassen
+                </button>
+                <button type="button" id="deleteProduct"> Gefriergut mit dieser Nummer löschen </button>
+                <button type="button" id="showProducts"> Ich habe die Nummer vergessen und möchte deshalb erneut alle
+                        Produkte sehen </button>
+        </form>
+
+
+
+        <form>
+        <p>Hier können sie ein Gefriergut anhand der nummer auswählen und bearbeiten</p>
+                <label for="string">Wähle ein Gefriergut anhand der Nummer aus</label><br>
+
+                <label for="name">Produktname:</label>
+                <input type="text" id="gefriergut" name="name">
+
+                <label for="date"> Ablaufdatum:</label>
+                <input type=date id="datum" name="ablaufdatum">
+
+                <label for="notiz"> Notiz:</label>
+                <input type="text" id="Notiz" name="notiz">
+
+
+                <p>Wählen sie eine Kategorie</p>
+                <select name="kategorie" size=4>
+                        <option>&#129385;
+                        <option>&#129472;
+                        <option>&#127813;
+                        <option>&#129380;
+                </select>
+                <button type="button" id="editProduct">Gefriergut Speichern</button>
         </form>
         <div>
                 <p id=serverantwort> </p>

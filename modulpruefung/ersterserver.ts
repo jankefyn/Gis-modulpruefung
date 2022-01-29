@@ -96,6 +96,9 @@ export namespace P_3_1Server {
         if (q.pathname == "//deleteProduct") {
             _response.write(await deleteProduct(daten.number));
         }
+        if (q.pathname == "//editProduct") {
+            _response.write(await editProduct(daten.number, q.query));
+        }
 
         _response.end();
     }
@@ -238,6 +241,14 @@ export namespace P_3_1Server {
         products.deleteOne(data[counter]);
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
+    async function editProduct(_auswahlNummer: string | string[], _rückgabe: Products): Promise<string> {
+        let counter: number = +_auswahlNummer - 1;
+        let data: Antwort[] = await products.find().toArray();
+        products.deleteOne(data[counter]);
+        products.insertOne(_rückgabe);
+        return ("Das ausgewählte Produkt wurde erfolgreich bearbeitet. Das bearbeitete Produkt finden sie jetzt unter der Nummer" + data[data.length - 1]);
+    }
+
 
 
 

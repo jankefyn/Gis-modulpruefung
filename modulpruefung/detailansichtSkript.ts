@@ -7,6 +7,8 @@ namespace P3_1 {
     speicherButton.addEventListener("click", function (): void { submit("showDetail"); });
     let loeschenButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deleteProduct");
     loeschenButton.addEventListener("click", function (): void { submit("deleteProduct"); });
+    let bearbeitenButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("editProduct");
+    bearbeitenButton.addEventListener("click", function (): void { submit("editProduct"); });
 
     let serverantwort: HTMLElement = document.getElementById("serverantwort");
 
@@ -23,6 +25,9 @@ namespace P3_1 {
         }
         if (_parameter == "deleteProduct") {
             url = url + "/deleteProduct";
+        }
+        if (_parameter == "editProduct") {
+            url = url + "/editProduct";
         }
 
         url = url + "?" + query.toString();

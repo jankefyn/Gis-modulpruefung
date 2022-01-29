@@ -7,6 +7,8 @@ var P3_1;
     speicherButton.addEventListener("click", function () { submit("showDetail"); });
     let loeschenButton = document.getElementById("deleteProduct");
     loeschenButton.addEventListener("click", function () { submit("deleteProduct"); });
+    let bearbeitenButton = document.getElementById("editProduct");
+    bearbeitenButton.addEventListener("click", function () { submit("editProduct"); });
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {
         let formData = new FormData(document.forms[0]);
@@ -20,6 +22,9 @@ var P3_1;
         }
         if (_parameter == "deleteProduct") {
             url = url + "/deleteProduct";
+        }
+        if (_parameter == "editProduct") {
+            url = url + "/editProduct";
         }
         url = url + "?" + query.toString();
         let response = await fetch(url);
