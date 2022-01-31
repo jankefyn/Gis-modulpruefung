@@ -21,8 +21,8 @@ var modulpruefung;
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {
         let formData = new FormData(document.forms[0]);
-        //let url: string = "https://gis-modulpruefung.herokuapp.com/";
-        let url = "http://localhost:8100/";
+        let url = "https://gis-modulpruefung.herokuapp.com/";
+        //let url: string = "http://localhost:8100/";
         let query = new URLSearchParams(formData);
         if (_parameter == "showProducts") {
             url = url + "/showProducts";
