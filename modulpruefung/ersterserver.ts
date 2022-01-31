@@ -170,12 +170,12 @@ export namespace Modulpruefung {
                 }
             }
             if (dataString == "") {
-                return ("von dieser Kategorie sind aktuell keine Gefriergüter im Kühlschrank");
+                return ("Von dieser Kategorie sind aktuell keine Gefriergüter im Kühlschrank");
             }
             return (dataString);
         }
         else {
-            return ("noch kein Gefriergut vorhanden");
+            return ("Noch kein Gefriergut vorhanden");
         }
     }
     async function nameFilter(_filterName: string | string[]): Promise<string> {
@@ -194,15 +194,15 @@ export namespace Modulpruefung {
             }
             if (data[data.length - 1].name == test) {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
-                return ("im Kühlschrank wurden folgende produkte mit dem gesuchten name gefunden:" + dataString);
+                return ("Im Kühlschrank wurden folgende Produkte mit dem gesuchten Name gefunden:" + dataString);
             }
             if (dataString == "") {
                 return ("Im Kühlschrank sind keine Gefriergüter mit diesem namen vorhanden. überprüfen sie die Schreibweise des Produktnamen");
             }
-            return ("im Kühlschrank wurden folgende produkte mit dem gesuchten name gefunden:" + dataString);
+            return ("Im Kühlschrank wurden folgende produkte mit dem gesuchten name gefunden:" + dataString);
         }
 
-        return ("es sind noch keine Gefriergüter im Kühlschrank vorhanden");
+        return ("Es sind noch keine Gefriergüter im Kühlschrank vorhanden");
 
     }
 
@@ -220,15 +220,15 @@ export namespace Modulpruefung {
 
             let dataString: string = "";
             if (data[counter].name != undefined) {
-                dataString = data[counter].name + " läuft ab am: " + data[counter].ablaufdatum + " " + data[counter].notiz;
+                dataString = data[counter].name + " " + data[counter].kategorie + " läuft ab am: " + data[counter].ablaufdatum + " Notiz:" + data[counter].notiz;
                 return (" Hier sehen sie alle details des Produktes mit der Nummer " + _auswahlNummer + ":      " + dataString);
             }
             else {
-                return ("Es liegt kein Produkt mit der angegebenen nummer vor");
+                return ("Es liegt kein Produkt mit der angegebenen Nummer vor");
             }
         }
         else {
-            return ("Es liegt kein Produkt mit der angegebenen nummer vor");
+            return ("Es liegt kein Produkt mit der angegebenen Nummer vor");
         }
     }
     async function deleteProduct(_auswahlNummer: string | string[]): Promise<string> {
