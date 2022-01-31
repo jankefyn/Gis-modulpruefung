@@ -54,7 +54,7 @@ a:visited {
     color: #b7d5df;
 }
 button {
-    margin-top:20px;
+    margin-bottom:20px;
     background-color: #b7d5df;
     padding: 10px 7.5px;
     border-radius: 17px;
@@ -85,6 +85,28 @@ button:hover {
 }
 button::before {
     width: 100%;
+}
+.antwortKasten{
+    max-width:66%;
+    margin-top: 25px;
+    border:solid;
+    border-color:#b7d5df;
+}
+.pfeilButton{
+    text-decoration: none;
+    margin-top:10px;
+    background-color: #b7d5df;
+    padding: 10px 10px;
+    border-radius: 5px;
+    border-color: #000;
+}
+.legende{ 
+    margin-top: 20px;
+    margin-bottom:20px;
+    padding:10px;
+    border-color:#b7d5df;
+    border-style:dotted;
+
 }
         
 

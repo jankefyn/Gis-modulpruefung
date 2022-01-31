@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.P_3_1Server = void 0;
+exports.modulpruefung = void 0;
 const Http = require("http");
 const url = require("url");
 const Mongo = require("mongodb");
-var P_3_1Server;
-(function (P_3_1Server) {
+var modulpruefung;
+(function (modulpruefung) {
     let products;
     let databaseUrl = "mongodb+srv://FynnJ:oIh47lfcy1wDuvkw@gis-ist-geil.wb5k5.mongodb.net/Products?retryWrites=true&w=majority";
     console.log("Starting server");
@@ -66,9 +66,6 @@ var P_3_1Server;
         }
         if (q.pathname == "//deleteProduct") {
             _response.write(await deleteProduct(daten.number));
-        }
-        if (q.pathname == "//editProduct") {
-            _response.write(await editProduct(daten.number, q.query));
         }
         _response.end();
     }
@@ -198,12 +195,5 @@ var P_3_1Server;
         products.deleteOne(data[counter]);
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
-    async function editProduct(_auswahlNummer, _rückgabe) {
-        let counter = +_auswahlNummer - 1;
-        let data = await products.find().toArray();
-        products.deleteOne(data[counter]);
-        products.insertOne(_rückgabe);
-        return ("Das ausgewählte Produkt wurde erfolgreich bearbeitet. Das bearbeitete Produkt finden sie jetzt unter der Nummer" + data[data.length - 1]);
-    }
-})(P_3_1Server = exports.P_3_1Server || (exports.P_3_1Server = {}));
+})(modulpruefung = exports.modulpruefung || (exports.modulpruefung = {}));
 //# sourceMappingURL=ersterserver.js.map

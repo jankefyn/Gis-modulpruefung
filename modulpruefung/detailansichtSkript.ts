@@ -1,4 +1,4 @@
-namespace P3_1 {
+namespace modulpruefung {
 
 
     let allesAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showProducts");
@@ -7,14 +7,12 @@ namespace P3_1 {
     speicherButton.addEventListener("click", function (): void { submit("showDetail"); });
     let loeschenButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("deleteProduct");
     loeschenButton.addEventListener("click", function (): void { submit("deleteProduct"); });
-    let bearbeitenButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("editProduct");
-    bearbeitenButton.addEventListener("click", function (): void { submit("editProduct"); });
 
     let serverantwort: HTMLElement = document.getElementById("serverantwort");
 
     async function submit(_parameter: string): Promise<void> {
         let formData: FormData = new FormData(document.forms[0]);
-        let url: string = "https://gis-modulpruefung.herokuapp.com/";
+        let url: string = "http://localhost:8100/";
         let query: URLSearchParams = new URLSearchParams(<any>formData);
 
         if (_parameter == "showProducts") {
@@ -25,9 +23,6 @@ namespace P3_1 {
         }
         if (_parameter == "deleteProduct") {
             url = url + "/deleteProduct";
-        }
-        if (_parameter == "editProduct") {
-            url = url + "/editProduct";
         }
 
         url = url + "?" + query.toString();

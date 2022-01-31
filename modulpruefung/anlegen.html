@@ -12,6 +12,9 @@
                 <a href="alleProdukte.html">Alle Produkte sehen </a>
                 <a href="anlegen.html" id=hervorheben>Neue Gefriergüter registrieren </a>
         </nav>
+
+
+        
         <form>
 
                 <label for="name">Produktname:</label>
@@ -22,7 +25,7 @@
 
                 <label for="notiz"> Notiz:</label>
                 <input type="text" id="Notiz" name="notiz">
-        
+
 
                 <p>Wählen sie eine Kategorie</p>
                 <select name="kategorie" size=4>
@@ -31,9 +34,18 @@
                         <option>&#127813;
                         <option>&#129380;
                 </select>
+                <div class="legende">
+                        <p> Hier sehen sie anhand welcher Kategorien sie gefriergüter speichern können:</p>
+                        <ul>
+                                <li> Fleisch &#129385; </li>
+                                <li>Molkereiprodukte &#129472;</li>
+                                <li>Obst & Gemüse &#127813;</li>
+                                <li>Getränke &#129380;</li>
+                        </ul>
+                </div>
 
                 <button type="button" id="saveProduct">Gefriergut Speichern</button>
-                <div>
+                <div class="antwortKasten">
                         <p id=serverantwort> </p>
                 </div>
         </form>
