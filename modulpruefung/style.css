@@ -87,6 +87,7 @@ button::before {
     width: 100%;
 }
 .antwortKasten{
+    
     max-width:66%;
     margin-top: 25px;
     border:solid;
