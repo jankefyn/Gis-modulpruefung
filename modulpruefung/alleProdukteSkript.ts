@@ -1,4 +1,4 @@
-namespace modulpruefung {
+namespace Modulpruefung {
 
 
     let allesAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showProducts");

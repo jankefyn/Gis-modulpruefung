@@ -1,6 +1,6 @@
 "use strict";
-var modulpruefung;
-(function (modulpruefung) {
+var Modulpruefung;
+(function (Modulpruefung) {
     let submitbuttonHTML = document.getElementById("saveProduct");
     submitbuttonHTML.addEventListener("click", function () { submit("saveProduct"); });
     let serverantwort = document.getElementById("serverantwort");
@@ -17,5 +17,5 @@ var modulpruefung;
         let text = await response.text();
         serverantwort.innerHTML = text;
     }
-})(modulpruefung || (modulpruefung = {}));
+})(Modulpruefung || (Modulpruefung = {}));
 //# sourceMappingURL=anlegen.js.map

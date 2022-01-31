@@ -5,7 +5,7 @@ import * as url from "url";
 import * as Mongo from "mongodb";
 
 
-export namespace modulpruefung {
+export namespace Modulpruefung {
     interface Products {
         [type: string]: string | string[];
     }

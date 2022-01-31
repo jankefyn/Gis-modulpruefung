@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.modulpruefung = void 0;
+exports.Modulpruefung = void 0;
 const Http = require("http");
 const url = require("url");
 const Mongo = require("mongodb");
-var modulpruefung;
-(function (modulpruefung) {
+var Modulpruefung;
+(function (Modulpruefung) {
     let products;
     let databaseUrl = "mongodb+srv://FynnJ:oIh47lfcy1wDuvkw@gis-ist-geil.wb5k5.mongodb.net/Products?retryWrites=true&w=majority";
     console.log("Starting server");
@@ -195,5 +195,5 @@ var modulpruefung;
         products.deleteOne(data[counter]);
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
-})(modulpruefung = exports.modulpruefung || (exports.modulpruefung = {}));
+})(Modulpruefung = exports.Modulpruefung || (exports.Modulpruefung = {}));
 //# sourceMappingURL=ersterserver.js.map
