@@ -1,13 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Modulpruefung = void 0;
+exports.TextAdventure = void 0;
 const Http = require("http");
 const url = require("url");
 const Mongo = require("mongodb");
-var Modulpruefung;
-(function (Modulpruefung) {
+var TextAdventure;
+(function (TextAdventure) {
+    let PlayerState;
+    (function (PlayerState) {
+        PlayerState[PlayerState["USER"] = 0] = "USER";
+        PlayerState[PlayerState["PLAYER"] = 1] = "PLAYER";
+        PlayerState[PlayerState["REGISTERT_USER"] = 2] = "REGISTERT_USER";
+    })(PlayerState || (PlayerState = {}));
     let products;
-    let databaseUrl = "mongodb+srv://FynnJ:oIh47lfcy1wDuvkw@gis-ist-geil.wb5k5.mongodb.net/Products?retryWrites=true&w=majority";
+    let databaseUrl = "mongodb+srv://FynnJ:Hallo123456@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     console.log("Starting server");
     let port = Number(process.env.PORT);
     if (!port)
@@ -38,25 +44,13 @@ var Modulpruefung;
             _response.write(await storeRückgabe(q.query));
         }
         if (q.pathname == "//showProducts") {
-            _response.write(await retrieveProducts("All"));
-        }
-        if (q.pathname == "//showMeat") {
-            _response.write(await retrieveProducts("Meat"));
-        }
-        if (q.pathname == "//showMilk") {
-            _response.write(await retrieveProducts("Milk"));
-        }
-        if (q.pathname == "//showFruits") {
-            _response.write(await retrieveProducts("Fruits"));
-        }
-        if (q.pathname == "//showDrinks") {
-            _response.write(await retrieveProducts("Drinks"));
+            _response.write(await retrieveAdventure("All"));
         }
         if (q.pathname == "//abgelaufen") {
-            _response.write(await retrieveProducts("abgelaufen"));
+            _response.write(await retrieveAdventure("abgelaufen"));
         }
         if (q.pathname == "//fastAbgelaufen") {
-            _response.write(await retrieveProducts("fastAbgelaufen"));
+            _response.write(await retrieveAdventure("fastAbgelaufen"));
         }
         if (q.pathname == "//filternNachName") {
             _response.write(await nameFilter(daten.produktname));
@@ -69,72 +63,21 @@ var Modulpruefung;
         }
         _response.end();
     }
-    async function retrieveProducts(_kategorie) {
+    async function retrieveAdventure(_kategorie) {
         let data = await products.find().toArray();
-        let heutigesDatum = +new Date();
-        let zweiTageInMillisekunden = 172800000;
-        let datumUebermorgen = +new Date() + zweiTageInMillisekunden;
         if (data.length > 0) {
             let dataString = "";
             for (let counter = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
                     let gefriergutZähler = counter + 1;
                     if (_kategorie == "All") {
-                        dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
-                    }
-                    if (_kategorie == "Meat" && data[counter].kategorie == "🥩") {
-                        dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
-                    }
-                    if (_kategorie == "Milk" && data[counter].kategorie == "🧀") {
-                        dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
-                    }
-                    if (_kategorie == "Fruits" && data[counter].kategorie == "🍅") {
-                        dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
-                    }
-                    if (_kategorie == "Drinks" && data[counter].kategorie == "🥤") {
-                        dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
-                    }
-                    if (_kategorie == "abgelaufen") {
-                        let produktDatum = Date.parse(data[counter].ablaufdatum.toLocaleString());
-                        if (produktDatum < heutigesDatum) {
-                            dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[counter].ablaufdatum + ",";
-                        }
-                    }
-                    if (_kategorie == "fastAbgelaufen") {
-                        let produktDatum = Date.parse(data[counter].ablaufdatum.toLocaleString());
-                        if (produktDatum > heutigesDatum && produktDatum < datumUebermorgen) {
-                            dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft innerhalb der nächsten zwei Tage ab. Genaues Ablaufdatum: " + data[counter].ablaufdatum + ",";
-                        }
+                        dataString = dataString + " Das Text Adventure " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist bereit gespielt zu werden und wurde erstellt von " + data[counter].ablaufdatum + ",";
                     }
                 }
             }
-            if (_kategorie == "All") {
-                dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
-            }
-            if (_kategorie == "Meat" && data[data.length - 1].kategorie == "🥩") {
-                dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
-            }
-            if (_kategorie == "Milk" && data[data.length - 1].kategorie == "🧀") {
-                dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
-            }
-            if (_kategorie == "Fruits" && data[data.length - 1].kategorie == "🍅") {
-                dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
-            }
-            if (_kategorie == "Drinks" && data[data.length - 1].kategorie == "🥤") {
-                dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
-            }
-            if (_kategorie == "abgelaufen") {
-                let produktDatum = Date.parse(data[data.length - 1].ablaufdatum.toLocaleString());
-                if (produktDatum < heutigesDatum) {
-                    dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
-                }
-            }
-            if (_kategorie == "fastAbgelaufen") {
-                let produktDatum = Date.parse(data[data.length - 1].ablaufdatum.toLocaleString());
-                if (produktDatum > heutigesDatum && produktDatum < datumUebermorgen) {
-                    dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
-                }
-            }
+            /* if (_kategorie == "All") {
+                 dataString = dataString + " Das Text Adventure  " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
+             }*/
             if (dataString == "") {
                 return ("Von dieser Kategorie sind aktuell keine Gefriergüter im Kühlschrank");
             }
@@ -145,19 +88,19 @@ var Modulpruefung;
         }
     }
     async function nameFilter(_filterName) {
-        let test = _filterName.toString();
+        let adventureName = _filterName.toString();
         let data = await products.find().toArray();
         if (data.length > 0) {
             let dataString = "";
             for (let counter = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
                     let gefriergutZähler = counter + 1;
-                    if (data[counter].name == test) {
-                        dataString = dataString + " Das Produkt " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft innerhalb der nächsten zwei Tage ab. Genaues Ablaufdatum: " + data[counter].ablaufdatum + ",";
+                    if (data[counter].name == adventureName) {
+                        dataString = dataString + " Das Text Adventure " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft innerhalb der nächsten zwei Tage ab. Genaues Ablaufdatum: " + data[counter].ablaufdatum + ",";
                     }
                 }
             }
-            if (data[data.length - 1].name == test) {
+            if (data[data.length - 1].name == adventureName) {
                 dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
                 return ("Im Kühlschrank wurden folgende Produkte mit dem gesuchten Name gefunden:" + dataString);
             }
@@ -170,7 +113,7 @@ var Modulpruefung;
     }
     async function storeRückgabe(_rückgabe) {
         products.insertOne(_rückgabe);
-        return ("Gefriergut erfolgreich gespeichert!");
+        return ("Text Adventure erfolgreich gespeichert!");
     }
     async function retrieveDetails(_auswahlNummer) {
         let counter = +_auswahlNummer - 1;
@@ -195,5 +138,5 @@ var Modulpruefung;
         products.deleteOne(data[counter]);
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
-})(Modulpruefung = exports.Modulpruefung || (exports.Modulpruefung = {}));
+})(TextAdventure = exports.TextAdventure || (exports.TextAdventure = {}));
 //# sourceMappingURL=ersterserver.js.map
