@@ -90,7 +90,7 @@ export namespace TextAdventure {
         if (data.length > 0) {
             let dataString: string = "";
             for (let counter: number = 0; counter < 4; counter++) {
-                if (data.length >= counter) {
+                if (counter < data.length ) {
                     dataString = dataString + "Adventure " + counter + 1 + " " + data[counter].name;                 
                 }
             }
