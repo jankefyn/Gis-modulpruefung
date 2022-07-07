@@ -134,11 +134,14 @@ export namespace TextAdventure {
     }
 
     async function saveAdventure(_rückgabe: Input): Promise<string> {
-
-        let saveAdventure: TextAdventure;
-        console.log(_rückgabe);
+        textAdventure.insertOne(_rückgabe);
+        return ("Text Adventure erfolgreich gespeichert!");
+    }
+    async function retrieveDetails(_auswahlNummer: string | string[]): Promise<String> {
+       /* let saveAdventure: TextAdventure;
+       
         saveAdventure.name = _rückgabe.name.toString();
-        console.log(saveAdventure.name);
+        
         saveAdventure.sizeX = +_rückgabe.sizeX;
         saveAdventure.sizeY = +_rückgabe.sizeY;
         let stringSplitLimiter: number = saveAdventure.sizeX * saveAdventure.sizeY;
@@ -149,12 +152,8 @@ export namespace TextAdventure {
                 saveAdventure.map[counterX][counterY] = tempMap[stringCounter];
                 stringCounter = stringCounter + 1;
             }
-        }
+        }*/
         console.log(saveAdventure);
-        textAdventure.insertOne(saveAdventure);
-        return ("Text Adventure erfolgreich gespeichert!");
-    }
-    async function retrieveDetails(_auswahlNummer: string | string[]): Promise<String> {
         return ("Es liegt kein Produkt mit der angegebenen Nummer vor");
     }
     async function deleteAdventure(_auswahlNummer: string | string[]): Promise<string> {

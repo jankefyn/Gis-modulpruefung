@@ -96,26 +96,26 @@ var TextAdventure;
         return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
     }
     async function saveAdventure(_rückgabe) {
-        let saveAdventure;
-        console.log(_rückgabe);
-        saveAdventure.name = _rückgabe.name.toString();
-        console.log(saveAdventure.name);
-        saveAdventure.sizeX = +_rückgabe.sizeX;
-        saveAdventure.sizeY = +_rückgabe.sizeY;
-        let stringSplitLimiter = saveAdventure.sizeX * saveAdventure.sizeY;
-        let tempMap = _rückgabe.places.toString().split(",", stringSplitLimiter);
-        for (let counterX = 0; counterX < saveAdventure.sizeX; counterX++) {
-            for (let counterY = 0; counterY < saveAdventure.sizeY; counterY++) {
-                let stringCounter = 0;
-                saveAdventure.map[counterX][counterY] = tempMap[stringCounter];
-                stringCounter = stringCounter + 1;
-            }
-        }
-        console.log(saveAdventure);
-        textAdventure.insertOne(saveAdventure);
+        textAdventure.insertOne(_rückgabe);
         return ("Text Adventure erfolgreich gespeichert!");
     }
     async function retrieveDetails(_auswahlNummer) {
+        /* let saveAdventure: TextAdventure;
+        
+         saveAdventure.name = _rückgabe.name.toString();
+         
+         saveAdventure.sizeX = +_rückgabe.sizeX;
+         saveAdventure.sizeY = +_rückgabe.sizeY;
+         let stringSplitLimiter: number = saveAdventure.sizeX * saveAdventure.sizeY;
+         let tempMap: string[] = _rückgabe.places.toString().split(",", stringSplitLimiter);
+         for (let counterX: number = 0; counterX < saveAdventure.sizeX; counterX++) {
+             for (let counterY: number = 0; counterY < saveAdventure.sizeY; counterY++) {
+                 let stringCounter: number = 0;
+                 saveAdventure.map[counterX][counterY] = tempMap[stringCounter];
+                 stringCounter = stringCounter + 1;
+             }
+         }*/
+        console.log(saveAdventure);
         return ("Es liegt kein Produkt mit der angegebenen Nummer vor");
     }
     async function deleteAdventure(_auswahlNummer) {
