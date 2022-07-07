@@ -1,8 +1,8 @@
 namespace Modulpruefung {
 
 
-    let allesAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("Adventures");
-    allesAnzeigeButton.addEventListener("click", function (): void { submit("Adventures"); });
+    let allesAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showAdventures");
+    allesAnzeigeButton.addEventListener("click", function (): void { submit("showAdventures"); });
 
     let filternNachNameButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("filternNachName");
     filternNachNameButton.addEventListener("click", function (): void { submit("filternNachName"); });
