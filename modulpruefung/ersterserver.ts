@@ -92,21 +92,22 @@ export namespace TextAdventure {
         if (data.length > 0) {
             let dataString: string = "";
             for (let counter: number = 0; counter < 4; counter++) {
-                console.log(counter);
-                console.log(data[counter]);
-                console.log(data[counter].name);
-                /*if (data[counter].name != undefined) {
-                    adventureNumber = adventureNumber + 1;
-                    dataString = dataString + " Das Text Adventure " + adventureNumber + ": " + data[counter].name + " " + " , ist bereit gespielt zu werden";
+                if (data[counter].name != undefined) {
+                    console.log(counter);
+                    console.log(data[counter]);
+                    console.log(data[counter].name);
+                    //adventureNumber = adventureNumber + 1;
+                    //dataString = dataString + " Das Text Adventure " + adventureNumber + ": " + data[counter].name + " " + " , ist bereit gespielt zu werden";
+                    //}
+                    //}
+                    //if (dataString == "") {
+                    //   return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
+                    //}
+                    // return (dataString);
+                    //}
+                    //else {
+                    return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
                 }
-            }
-            if (dataString == "") {
-                return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
-            }
-            return (dataString);
-        }*/
-                //else {
-                return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
             }
         }
     }
