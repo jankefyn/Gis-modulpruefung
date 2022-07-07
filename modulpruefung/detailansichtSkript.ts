@@ -1,4 +1,4 @@
-namespace Modulpruefung {
+namespace TextAdventure {
 
 
     let allesAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showProducts");

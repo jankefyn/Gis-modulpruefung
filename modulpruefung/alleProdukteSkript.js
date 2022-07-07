@@ -1,6 +1,6 @@
 "use strict";
-var Modulpruefung;
-(function (Modulpruefung) {
+var TextAdventure;
+(function (TextAdventure) {
     let allesAnzeigeButton = document.getElementById("showAdventures");
     allesAnzeigeButton.addEventListener("click", function () { submit("showAdventures"); });
     let filternNachNameButton = document.getElementById("filternNachName");
@@ -22,5 +22,5 @@ var Modulpruefung;
         let text = await response.text();
         serverantwort.innerHTML = text;
     }
-})(Modulpruefung || (Modulpruefung = {}));
+})(TextAdventure || (TextAdventure = {}));
 //# sourceMappingURL=alleProdukteSkript.js.map

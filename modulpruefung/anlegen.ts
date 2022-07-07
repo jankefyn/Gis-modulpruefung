@@ -1,4 +1,4 @@
-namespace Modulpruefung {
+namespace TextAdventure {
 
 
     let submitbuttonHTML: HTMLButtonElement = <HTMLButtonElement>document.getElementById("saveAdventure");

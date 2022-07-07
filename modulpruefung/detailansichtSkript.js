@@ -1,6 +1,6 @@
 "use strict";
-var Modulpruefung;
-(function (Modulpruefung) {
+var TextAdventure;
+(function (TextAdventure) {
     let allesAnzeigeButton = document.getElementById("showProducts");
     allesAnzeigeButton.addEventListener("click", function () { submit("showProducts"); });
     let speicherButton = document.getElementById("zahlSpeichern");
@@ -27,5 +27,5 @@ var Modulpruefung;
         let text = await response.text();
         serverantwort.innerHTML = text;
     }
-})(Modulpruefung || (Modulpruefung = {}));
+})(TextAdventure || (TextAdventure = {}));
 //# sourceMappingURL=detailansichtSkript.js.map
