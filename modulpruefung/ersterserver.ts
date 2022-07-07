@@ -88,7 +88,7 @@ export namespace TextAdventure {
 
         let data: TextAdventure[] = await textAdventure.find().toArray();
         //let adventureNumber: number = 0;
-        console.log(data);
+        console.log(data[0].name);
         /* if (data.length > 0) {
              let dataString: string = "";
              for (let counter: number = 0; counter < 4; counter++) {
