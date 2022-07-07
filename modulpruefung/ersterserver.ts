@@ -93,6 +93,9 @@ export namespace TextAdventure {
                 if (counter < data.length ) {
                     dataString = dataString + "Adventure " + counter + 1 + " " + data[counter].name;                 
                 }
+                else {
+                    return(dataString);
+                }
             }
             return(dataString);
         }
