@@ -138,6 +138,7 @@ export namespace TextAdventure {
         let saveAdventure: TextAdventure;
         console.log(_rückgabe);
         saveAdventure.name = _rückgabe.name.toString();
+        console.log(saveAdventure.name);
         saveAdventure.sizeX = +_rückgabe.sizeX;
         saveAdventure.sizeY = +_rückgabe.sizeY;
         let stringSplitLimiter: number = saveAdventure.sizeX * saveAdventure.sizeY;
