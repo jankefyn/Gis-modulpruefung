@@ -1,8 +1,8 @@
 namespace Modulpruefung {
 
 
-    let submitbuttonHTML: HTMLButtonElement = <HTMLButtonElement>document.getElementById("saveProduct");
-    submitbuttonHTML.addEventListener("click", function (): void { submit("saveProduct"); });
+    let submitbuttonHTML: HTMLButtonElement = <HTMLButtonElement>document.getElementById("saveAdventure");
+    submitbuttonHTML.addEventListener("click", function (): void { submit("saveAdventure"); });
 
     let serverantwort: HTMLElement = document.getElementById("serverantwort");
 
@@ -12,8 +12,8 @@ namespace Modulpruefung {
         //let url: string = "http://localhost:8100/";
         let query: URLSearchParams = new URLSearchParams(<any>formData);
 
-        if (_parameter == "saveProduct") {
-            url = url + "/saveProduct";
+        if (_parameter == "saveAdventure") {
+            url = url + "/saveAdventure";
         }
 
 
