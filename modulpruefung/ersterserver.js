@@ -37,7 +37,7 @@ var TextAdventure;
         if (q.pathname == "//saveAdventure") {
             _response.write(await saveAdventure(q.query));
         }
-        if (q.pathname == "//showProducts") {
+        if (q.pathname == "//showAdventures") {
             _response.write(await retrieveAdventure());
         }
         if (q.pathname == "//filternNachName") {
@@ -53,15 +53,15 @@ var TextAdventure;
     }
     async function retrieveAdventure() {
         let data = await textAdventure.find().toArray();
+        let adventureNumber = 0;
         if (data.length > 0) {
             let dataString = "";
-            for (let counter = 0; counter < data.length - 1; counter++) {
+            for (let counter = 0; counter < 4; counter++) {
                 if (data[counter].name != undefined) {
-                    let gefriergutZähler = counter + 1;
-                    dataString = dataString + " Das Text Adventure " + gefriergutZähler + ": " + data[counter].name + " " + " , ist bereit gespielt zu werden und wurde erstellt von ";
+                    adventureNumber = adventureNumber + 1;
+                    dataString = dataString + " Das Text Adventure " + adventureNumber + ": " + data[counter].name + " " + " , ist bereit gespielt zu werden";
                 }
             }
-            dataString = dataString + " Das Text Adventure  " + data.length + ": " + data[data.length - 1].name + " " + " , ist bereit gespielt zu werden und wurde erstellt von ";
             if (dataString == "") {
                 return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
             }

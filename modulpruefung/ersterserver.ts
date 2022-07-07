@@ -69,7 +69,7 @@ export namespace TextAdventure {
         if (q.pathname == "//saveAdventure") {
             _response.write(await saveAdventure(q.query));
         }
-        if (q.pathname == "//showProducts") {
+        if (q.pathname == "//showAdventures") {
             _response.write(await retrieveAdventure());
         }
         if (q.pathname == "//filternNachName") {
@@ -87,15 +87,15 @@ export namespace TextAdventure {
     async function retrieveAdventure(): Promise<String> {
 
         let data: TextAdventure[] = await textAdventure.find().toArray();
+        let adventureNumber: number = 0;
         if (data.length > 0) {
             let dataString: string = "";
-            for (let counter: number = 0; counter < data.length - 1; counter++) {
+            for (let counter: number = 0; counter < 4; counter++) {
                 if (data[counter].name != undefined) {
-                    let gefriergutZähler: number = counter + 1;
-                    dataString = dataString + " Das Text Adventure " + gefriergutZähler + ": " + data[counter].name + " " + " , ist bereit gespielt zu werden und wurde erstellt von ";
+                    adventureNumber = adventureNumber + 1;
+                    dataString = dataString + " Das Text Adventure " + adventureNumber + ": " + data[counter].name + " " + " , ist bereit gespielt zu werden";
                 }
             }
-            dataString = dataString + " Das Text Adventure  " + data.length + ": " + data[data.length - 1].name + " " + " , ist bereit gespielt zu werden und wurde erstellt von ";
             if (dataString == "") {
                 return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
             }
