@@ -6,24 +6,24 @@ import * as Mongo from "mongodb";
 
 
 export namespace TextAdventure {
-    enum PlayerState {
+   /* enum PlayerState {
         USER,
         PLAYER,
         REGISTERT_USER
-    }
-    interface Products {
+    }*/
+    interface Input {
         [type: string]: string | string[];
     }
-    interface Antwort {
+    interface TextAdventure {
         name: string;
-        notiz: string;
-        ablaufdatum: Date;
-        kategorie: string;
-        anlegedatum: Date;
+        places: string;
+        map: string[][];
+        sizeX: number;
+        sizeY: number;
     }
 
 
-    let products: Mongo.Collection;
+    let textAdventure: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://FynnJ:Hallo123456@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
 
 
@@ -31,7 +31,6 @@ export namespace TextAdventure {
     let port: number = Number(process.env.PORT);
     if (!port)
         port = 8100;
-
 
     startServer(port);
     connectToDatabase(databaseUrl);
@@ -49,8 +48,8 @@ export namespace TextAdventure {
         let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        products = mongoClient.db("Test").collection("Products");
-        console.log("Database connection", products != undefined);
+        textAdventure = mongoClient.db("Test").collection("Products");
+        console.log("Database connection", textAdventure != undefined);
     }
 
 
@@ -67,17 +66,11 @@ export namespace TextAdventure {
         let q: url.UrlWithParsedQuery = url.parse(_request.url, true);
         let daten: ParsedUrlQuery = q.query;
 
-        if (q.pathname == "//saveProduct") {
-            _response.write(await storeRückgabe(q.query));
+        if (q.pathname == "//saveAdventure") {
+            _response.write(await saveAdventure(q.query));
         }
         if (q.pathname == "//showProducts") {
-            _response.write(await retrieveAdventure("All"));
-        }
-        if (q.pathname == "//abgelaufen") {
-            _response.write(await retrieveAdventure("abgelaufen"));
-        }
-        if (q.pathname == "//fastAbgelaufen") {
-            _response.write(await retrieveAdventure("fastAbgelaufen"));
+            _response.write(await retrieveAdventure());
         }
         if (q.pathname == "//filternNachName") {
             _response.write(await nameFilter(daten.produktname));
@@ -86,93 +79,86 @@ export namespace TextAdventure {
             _response.write(await retrieveDetails(daten.number));
         }
         if (q.pathname == "//deleteProduct") {
-            _response.write(await deleteProduct(daten.number));
+            _response.write(await deleteAdventure(daten.number));
         }
         _response.end();
     }
 
-    async function retrieveAdventure(_kategorie: string): Promise<String> {
+    async function retrieveAdventure(): Promise<String> {
 
-        let data: Antwort[] = await products.find().toArray();
+        let data: TextAdventure[] = await textAdventure.find().toArray();
         if (data.length > 0) {
             let dataString: string = "";
             for (let counter: number = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
                     let gefriergutZähler: number = counter + 1;
-                    if (_kategorie == "All") {
-                        dataString = dataString + " Das Text Adventure " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist bereit gespielt zu werden und wurde erstellt von " + data[counter].ablaufdatum + ",";
-                    }
+                    dataString = dataString + " Das Text Adventure " + gefriergutZähler + ": " + data[counter].name + " " + " , ist bereit gespielt zu werden und wurde erstellt von ";
                 }
             }
-           /* if (_kategorie == "All") {
-                dataString = dataString + " Das Text Adventure  " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
-            }*/
+            dataString = dataString + " Das Text Adventure  " + data.length + ": " + data[data.length - 1].name + " " + " , ist bereit gespielt zu werden und wurde erstellt von ";
             if (dataString == "") {
-                return ("Von dieser Kategorie sind aktuell keine Gefriergüter im Kühlschrank");
+                return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
             }
             return (dataString);
         }
         else {
-            return ("Noch kein Gefriergut vorhanden");
+            return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
         }
     }
     async function nameFilter(_filterName: string | string[]): Promise<string> {
         let adventureName: string = _filterName.toString();
 
-        let data: Antwort[] = await products.find().toArray();
+        let data: TextAdventure[] = await textAdventure.find().toArray();
         if (data.length > 0) {
             let dataString: string = "";
             for (let counter: number = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
                     let gefriergutZähler: number = counter + 1;
                     if (data[counter].name == adventureName) {
-                        dataString = dataString + " Das Text Adventure " + gefriergutZähler + ": " + data[counter].name + " " + data[counter].kategorie + " , ist im Kühlschrank und läuft innerhalb der nächsten zwei Tage ab. Genaues Ablaufdatum: " + data[counter].ablaufdatum + ",";
+                        dataString = dataString + " Das Text Adventure " + gefriergutZähler + ": " + data[counter].name + " " + " , ist bereit gespielt zu werden " + ",";
                     }
                 }
             }
             if (data[data.length - 1].name == adventureName) {
-                dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + data[data.length - 1].kategorie + " , ist im Kühlschrank und läuft ab am: " + data[data.length - 1].ablaufdatum;
+                dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + ", ist bereit gespielt zu werden ";
                 return ("Im Kühlschrank wurden folgende Produkte mit dem gesuchten Name gefunden:" + dataString);
             }
             if (dataString == "") {
-                return ("Im Kühlschrank sind keine Gefriergüter mit diesem namen vorhanden. überprüfen sie die Schreibweise des Produktnamen");
+                return ("Es gibt noch kein Text Adventure mit diesem Name");
             }
-            return ("Im Kühlschrank wurden folgende produkte mit dem gesuchten name gefunden:" + dataString);
+            return ("Es gibt folgende Text Adventures mit diesem Name:" + dataString);
         }
 
-        return ("Es sind noch keine Gefriergüter im Kühlschrank vorhanden");
+        return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
 
     }
 
-    async function storeRückgabe(_rückgabe: Products): Promise<string> {
-        products.insertOne(_rückgabe);
+    async function saveAdventure(_rückgabe: Input): Promise<string> {
+
+        let saveAdventure: TextAdventure;
+        saveAdventure.name = _rückgabe.name.toString();
+        saveAdventure.sizeX = +_rückgabe.sizeX;
+        saveAdventure.sizeY = +_rückgabe.sizeY;
+        let stringSplitLimiter: number = saveAdventure.sizeX * saveAdventure.sizeY;
+        let tempMap: string[] = _rückgabe.places.toString().split(",", stringSplitLimiter);
+        for (let counterX: number = 0; counterX < saveAdventure.sizeX; counterX++) {
+            for (let counterY: number = 0; counterY < saveAdventure.sizeY; counterY++) {
+                let stringCounter: number = 0;
+                saveAdventure.map[counterX][counterY] = tempMap[stringCounter];
+                stringCounter = stringCounter + 1;
+            }
+        }
+        console.log(saveAdventure);
+        textAdventure.insertOne(saveAdventure);
         return ("Text Adventure erfolgreich gespeichert!");
     }
-
     async function retrieveDetails(_auswahlNummer: string | string[]): Promise<String> {
-
-        let counter: number = +_auswahlNummer - 1;
-        let data: Antwort[] = await products.find().toArray();
-
-        if (counter >= 0 && data.length >= counter) {
-
-            let dataString: string = "";
-            if (data[counter].name != undefined) {
-                dataString = data[counter].name + " " + data[counter].kategorie + " läuft ab am: " + data[counter].ablaufdatum + " Notiz:" + data[counter].notiz;
-                return (" Hier sehen sie alle details des Produktes mit der Nummer " + _auswahlNummer + ":      " + dataString);
-            }
-            else {
-                return ("Es liegt kein Produkt mit der angegebenen Nummer vor");
-            }
-        }
-        else {
-            return ("Es liegt kein Produkt mit der angegebenen Nummer vor");
-        }
+        return ("Es liegt kein Produkt mit der angegebenen Nummer vor");
     }
-    async function deleteProduct(_auswahlNummer: string | string[]): Promise<string> {
+    async function deleteAdventure(_auswahlNummer: string | string[]): Promise<string> {
         let counter: number = +_auswahlNummer - 1;
-        let data: Antwort[] = await products.find().toArray();
-        products.deleteOne(data[counter]);
+        let data: TextAdventure[] = await textAdventure.find().toArray();
+        textAdventure.deleteOne(data[counter]);
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
 }
