@@ -1,8 +1,8 @@
 namespace Modulpruefung {
 
 
-    let allesAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showProducts");
-    allesAnzeigeButton.addEventListener("click", function (): void { submit("showProducts"); });
+    let allesAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("Adventures");
+    allesAnzeigeButton.addEventListener("click", function (): void { submit("Adventures"); });
 
     let filternNachNameButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("filternNachName");
     filternNachNameButton.addEventListener("click", function (): void { submit("filternNachName"); });
@@ -22,7 +22,7 @@ namespace Modulpruefung {
         if (_parameter == "filternNachName") {
             url = url + "/filternNachName";
         }
-                
+
         url = url + "?" + query.toString();
         let response: Response = await fetch(url);
         let text: string = await response.text();

@@ -1,8 +1,8 @@
 "use strict";
 var Modulpruefung;
 (function (Modulpruefung) {
-    let allesAnzeigeButton = document.getElementById("showProducts");
-    allesAnzeigeButton.addEventListener("click", function () { submit("showProducts"); });
+    let allesAnzeigeButton = document.getElementById("Adventures");
+    allesAnzeigeButton.addEventListener("click", function () { submit("Adventures"); });
     let filternNachNameButton = document.getElementById("filternNachName");
     filternNachNameButton.addEventListener("click", function () { submit("filternNachName"); });
     let serverantwort = document.getElementById("serverantwort");
