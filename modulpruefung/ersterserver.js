@@ -7,7 +7,7 @@ const Mongo = require("mongodb");
 var TextAdventure;
 (function (TextAdventure) {
     let textAdventure;
-    let databaseUrl = "mongodb+srv://FynnJ:<Hallo123456>@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
+    let databaseUrl = "mongodb+srv://FynnJ:Hallo123456@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     console.log("Starting server");
     let port = Number(process.env.PORT);
     if (!port)
