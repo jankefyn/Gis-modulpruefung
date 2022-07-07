@@ -136,6 +136,7 @@ export namespace TextAdventure {
     async function saveAdventure(_rückgabe: Input): Promise<string> {
 
         let saveAdventure: TextAdventure;
+        console.log(_rückgabe);
         saveAdventure.name = _rückgabe.name.toString();
         saveAdventure.sizeX = +_rückgabe.sizeX;
         saveAdventure.sizeY = +_rückgabe.sizeY;

@@ -97,6 +97,7 @@ var TextAdventure;
     }
     async function saveAdventure(_rückgabe) {
         let saveAdventure;
+        console.log(_rückgabe);
         saveAdventure.name = _rückgabe.name.toString();
         saveAdventure.sizeX = +_rückgabe.sizeX;
         saveAdventure.sizeY = +_rückgabe.sizeY;
