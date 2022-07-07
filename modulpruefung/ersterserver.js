@@ -49,6 +49,18 @@ var TextAdventure;
         if (q.pathname == "//deleteProduct") {
             _response.write(await deleteAdventure(daten.number));
         }
+        if (q.pathname == "//left") {
+            _response.write(await onAction("left"));
+        }
+        if (q.pathname == "//right") {
+            _response.write(await onAction("right"));
+        }
+        if (q.pathname == "//up") {
+            _response.write(await onAction("up"));
+        }
+        if (q.pathname == "//down") {
+            _response.write(await onAction("down"));
+        }
         _response.end();
     }
     async function retrieveAdventure() {
@@ -121,5 +133,23 @@ var TextAdventure;
         textAdventure.deleteOne(data[counter]);
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
+    async function onAction(_action) {
+        if (_action == "left") {
+            return ("links");
+        }
+        else if (_action == "right") {
+            return ("rechts");
+        }
+        else if (_action == "up") {
+            return ("hoch");
+        }
+        else if (_action == "down") {
+            return ("runter");
+        }
+        else {
+            return ("ein fehler ist aufgetreten");
+        }
+    }
+    TextAdventure.onAction = onAction;
 })(TextAdventure = exports.TextAdventure || (exports.TextAdventure = {}));
 //# sourceMappingURL=ersterserver.js.map

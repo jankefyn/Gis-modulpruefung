@@ -81,6 +81,18 @@ export namespace TextAdventure {
         if (q.pathname == "//deleteProduct") {
             _response.write(await deleteAdventure(daten.number));
         }
+        if (q.pathname == "//left") {
+            _response.write(await onAction("left"));
+        }
+        if (q.pathname == "//right") {
+            _response.write(await onAction("right"));
+        }
+        if (q.pathname == "//up") {
+            _response.write(await onAction("up"));
+        }
+        if (q.pathname == "//down") {
+            _response.write(await onAction("down"));
+        }
         _response.end();
     }
 
@@ -91,14 +103,14 @@ export namespace TextAdventure {
             let dataString: string = "";
             for (let counter: number = 0; counter < 4; counter++) {
                 if (counter < data.length) {
-                    let adventureNumber: number = counter + 1 ;
-                    dataString = dataString + "Adventure " + adventureNumber  + " " + data[counter].name;                 
+                    let adventureNumber: number = counter + 1;
+                    dataString = dataString + "Adventure " + adventureNumber + " " + data[counter].name;
                 }
                 else {
-                    return(dataString);
+                    return (dataString);
                 }
             }
-            return(dataString);
+            return (dataString);
         }
         return ("Es ist noch kein Adventure angelegt worden.");
     }
@@ -159,6 +171,20 @@ export namespace TextAdventure {
         let data: TextAdventure[] = await textAdventure.find().toArray();
         textAdventure.deleteOne(data[counter]);
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
+    }
+    export async function onAction(_action: string): Promise<string> {
+        if (_action == "left") {
+            return ("links");
+        } else if (_action == "right") {
+            return ("rechts");
+        } else if (_action == "up") {
+            return ("hoch");
+        } else if (_action == "down") {
+            return ("runter");
+        }
+        else {
+            return("ein fehler ist aufgetreten");
+        }
     }
 }
 
