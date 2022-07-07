@@ -24,7 +24,7 @@ export namespace TextAdventure {
 
 
     let textAdventure: Mongo.Collection;
-    let databaseUrl: string = "mongodb+srv://FynnJ:Hallo1234567@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
+    let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
 
 
     console.log("Starting server");
