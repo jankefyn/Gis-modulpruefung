@@ -57,7 +57,8 @@ var TextAdventure;
             let dataString = "";
             for (let counter = 0; counter < 4; counter++) {
                 if (counter < data.length) {
-                    dataString = dataString + "Adventure " + counter + 1 + " " + data[counter].name;
+                    let adventureNumber = counter + 1;
+                    dataString = dataString + "Adventure " + adventureNumber + " " + data[counter].name;
                 }
                 else {
                     return (dataString);
