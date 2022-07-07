@@ -91,10 +91,10 @@ export namespace TextAdventure {
             let dataString: string = "";
             for (let counter: number = 0; counter < 4; counter++) {
                 if (data[counter].name != undefined) {
-                    dataString = "Adventure " + counter + 1 + " " + data[counter].name;
-                    return (dataString);
+                    dataString = dataString + "Adventure " + counter + 1 + " " + data[counter].name;                 
                 }
             }
+            return(dataString);
         }
         return ("Es ist noch kein Adventure angelegt worden.");
     }
