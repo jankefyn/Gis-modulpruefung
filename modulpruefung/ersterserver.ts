@@ -6,11 +6,11 @@ import * as Mongo from "mongodb";
 
 
 export namespace TextAdventure {
-   /* enum PlayerState {
-        USER,
-        PLAYER,
-        REGISTERT_USER
-    }*/
+    /* enum PlayerState {
+         USER,
+         PLAYER,
+         REGISTERT_USER
+     }*/
     interface Input {
         [type: string]: string | string[];
     }
@@ -87,23 +87,24 @@ export namespace TextAdventure {
     async function retrieveAdventure(): Promise<String> {
 
         let data: TextAdventure[] = await textAdventure.find().toArray();
-        let adventureNumber: number = 0;
-        if (data.length > 0) {
-            let dataString: string = "";
-            for (let counter: number = 0; counter < 4; counter++) {
-                if (data[counter].name != undefined) {
-                    adventureNumber = adventureNumber + 1;
-                    dataString = dataString + " Das Text Adventure " + adventureNumber + ": " + data[counter].name + " " + " , ist bereit gespielt zu werden";
-                }
-            }
-            if (dataString == "") {
-                return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
-            }
-            return (dataString);
-        }
-        else {
-            return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
-        }
+        //let adventureNumber: number = 0;
+        console.log(data);
+        /* if (data.length > 0) {
+             let dataString: string = "";
+             for (let counter: number = 0; counter < 4; counter++) {
+                 if (data[counter].name != undefined) {
+                     adventureNumber = adventureNumber + 1;
+                     dataString = dataString + " Das Text Adventure " + adventureNumber + ": " + data[counter].name + " " + " , ist bereit gespielt zu werden";
+                 }
+             }
+             if (dataString == "") {
+                 return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
+             }
+             return (dataString);
+         }
+         else {*/
+        return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
+        //}
     }
     async function nameFilter(_filterName: string | string[]): Promise<string> {
         let adventureName: string = _filterName.toString();
@@ -138,21 +139,21 @@ export namespace TextAdventure {
         return ("Text Adventure erfolgreich gespeichert!");
     }
     async function retrieveDetails(_auswahlNummer: string | string[]): Promise<String> {
-       /* let saveAdventure: TextAdventure;
-       
-        saveAdventure.name = _rückgabe.name.toString();
+        /* let saveAdventure: TextAdventure;
         
-        saveAdventure.sizeX = +_rückgabe.sizeX;
-        saveAdventure.sizeY = +_rückgabe.sizeY;
-        let stringSplitLimiter: number = saveAdventure.sizeX * saveAdventure.sizeY;
-        let tempMap: string[] = _rückgabe.places.toString().split(",", stringSplitLimiter);
-        for (let counterX: number = 0; counterX < saveAdventure.sizeX; counterX++) {
-            for (let counterY: number = 0; counterY < saveAdventure.sizeY; counterY++) {
-                let stringCounter: number = 0;
-                saveAdventure.map[counterX][counterY] = tempMap[stringCounter];
-                stringCounter = stringCounter + 1;
-            }
-        }*/
+         saveAdventure.name = _rückgabe.name.toString();
+         
+         saveAdventure.sizeX = +_rückgabe.sizeX;
+         saveAdventure.sizeY = +_rückgabe.sizeY;
+         let stringSplitLimiter: number = saveAdventure.sizeX * saveAdventure.sizeY;
+         let tempMap: string[] = _rückgabe.places.toString().split(",", stringSplitLimiter);
+         for (let counterX: number = 0; counterX < saveAdventure.sizeX; counterX++) {
+             for (let counterY: number = 0; counterY < saveAdventure.sizeY; counterY++) {
+                 let stringCounter: number = 0;
+                 saveAdventure.map[counterX][counterY] = tempMap[stringCounter];
+                 stringCounter = stringCounter + 1;
+             }
+         }*/
         console.log(saveAdventure);
         return ("Es liegt kein Produkt mit der angegebenen Nummer vor");
     }
