@@ -53,29 +53,16 @@ var TextAdventure;
     }
     async function retrieveAdventure() {
         let data = await textAdventure.find().toArray();
-        let adventureNumber = 0;
-        console.log(data[0].name);
         if (data.length > 0) {
             let dataString = "";
             for (let counter = 0; counter < 4; counter++) {
                 if (data[counter].name != undefined) {
-                    console.log(counter);
-                    console.log(data[counter]);
-                    console.log(data[counter].name);
-                    //adventureNumber = adventureNumber + 1;
-                    //dataString = dataString + " Das Text Adventure " + adventureNumber + ": " + data[counter].name + " " + " , ist bereit gespielt zu werden";
-                    //}
-                    //}
-                    //if (dataString == "") {
-                    //   return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
-                    //}
-                    // return (dataString);
-                    //}
-                    //else {
-                    return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
+                    dataString = "Adventure " + counter + 1 + " " + data[counter].name;
+                    return (dataString);
                 }
             }
         }
+        return ("Es ist noch kein Adventure angelegt worden.");
     }
     async function nameFilter(_filterName) {
         let adventureName = _filterName.toString();

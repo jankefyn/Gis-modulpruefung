@@ -87,30 +87,18 @@ export namespace TextAdventure {
     async function retrieveAdventure(): Promise<String> {
 
         let data: TextAdventure[] = await textAdventure.find().toArray();
-        let adventureNumber: number = 0;
-        console.log(data[0].name);
         if (data.length > 0) {
             let dataString: string = "";
             for (let counter: number = 0; counter < 4; counter++) {
                 if (data[counter].name != undefined) {
-                    console.log(counter);
-                    console.log(data[counter]);
-                    console.log(data[counter].name);
-                    //adventureNumber = adventureNumber + 1;
-                    //dataString = dataString + " Das Text Adventure " + adventureNumber + ": " + data[counter].name + " " + " , ist bereit gespielt zu werden";
-                    //}
-                    //}
-                    //if (dataString == "") {
-                    //   return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
-                    //}
-                    // return (dataString);
-                    //}
-                    //else {
-                    return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
+                    dataString = "Adventure " + counter + 1 + " " + data[counter].name;
+                    return (dataString);
                 }
             }
         }
+        return ("Es ist noch kein Adventure angelegt worden.");
     }
+
     async function nameFilter(_filterName: string | string[]): Promise<string> {
         let adventureName: string = _filterName.toString();
 
