@@ -190,7 +190,7 @@ var TextAdventure;
         }
         else if (_action == "down") {
             if (coordinateY < selectedAdventure.sizeY) {
-                coordinateY = coordinateY - 1;
+                coordinateY = coordinateY + 1;
                 return (selectedAdventure.map[coordinateX][coordinateY]);
             }
             else {
