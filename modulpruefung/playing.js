@@ -38,4 +38,4 @@ var TextAdventure;
         serverantwort.innerHTML = text;
     }
 })(TextAdventure || (TextAdventure = {}));
-//# sourceMappingURL=swipe.js.map
+//# sourceMappingURL=playing.js.map
