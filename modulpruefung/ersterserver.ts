@@ -17,16 +17,29 @@ export namespace TextAdventure {
     interface TextAdventure {
         name: string;
         places: string;
-        map: string[][];
         sizeX: number;
         sizeY: number;
     }
+    class SelectabelAdventure {
+        name: string;
+        places: string;
+        map: string[][];
+        sizeX: number;
+        sizeY: number;
 
+        constructor(_name: string, _places: string, _map: string[][], _sizeX: number, _sizeY: number) {
+            this.name = _name;
+            this.places = _places;
+            this.map = _map;
+            this.sizeX = _sizeX;
+            this.sizeY = _sizeY;
+        }
 
+    }
     let textAdventureCollection: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
-    let selectedAdventure: TextAdventure;
-    selectedAdventure.name = "bob";
+    let selectedAdventure: SelectabelAdventure = new SelectabelAdventure("name", "place", undefined, 3, 3);
+
 
     console.log("Starting server");
     let port: number = Number(process.env.PORT);
@@ -128,7 +141,7 @@ export namespace TextAdventure {
     }
     async function selectAdventure(_filterName: string | string[]): Promise<string> {
         console.log(_filterName);
-        
+
         let adventureName: string = _filterName.toString();
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
         if (data.length > 0) {

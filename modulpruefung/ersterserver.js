@@ -6,10 +6,23 @@ const url = require("url");
 const Mongo = require("mongodb");
 var TextAdventure;
 (function (TextAdventure) {
+    class SelectabelAdventure {
+        name;
+        places;
+        map;
+        sizeX;
+        sizeY;
+        constructor(_name, _places, _map, _sizeX, _sizeY) {
+            this.name = _name;
+            this.places = _places;
+            this.map = _map;
+            this.sizeX = _sizeX;
+            this.sizeY = _sizeY;
+        }
+    }
     let textAdventureCollection;
     let databaseUrl = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
-    let selectedAdventure;
-    selectedAdventure.name = "bob";
+    let selectedAdventure = new SelectabelAdventure("name", "place", undefined, 3, 3);
     console.log("Starting server");
     let port = Number(process.env.PORT);
     if (!port)
