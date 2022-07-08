@@ -42,7 +42,7 @@ var TextAdventure;
             _response.write(await retrieveAdventure());
         }
         if (q.pathname == "//selectAdventure") {
-            _response.write(await selectAdventure(daten.name));
+            _response.write(await selectAdventure(daten.adventureName));
         }
         if (q.pathname == "//showDetail") {
             _response.write(await retrieveDetails(daten.number));
@@ -81,17 +81,17 @@ var TextAdventure;
         }
         return ("Es ist noch kein Adventure angelegt worden.");
     }
-    function loadadventure() {
-        let stringSplitLimiter = selectedAdventure.sizeX * selectedAdventure.sizeY;
-        let tempMap = selectedAdventure.places.toString().split(",", stringSplitLimiter);
-        for (let counterX = 0; counterX < selectedAdventure.sizeX; counterX++) {
-            for (let counterY = 0; counterY < selectedAdventure.sizeY; counterY++) {
-                let stringCounter = 0;
+    /*function loadadventure(): void {
+        let stringSplitLimiter: number = selectedAdventure.sizeX * selectedAdventure.sizeY;
+        let tempMap: string[] = selectedAdventure.places.toString().split(",", stringSplitLimiter);
+        for (let counterX: number = 0; counterX < selectedAdventure.sizeX; counterX++) {
+            for (let counterY: number = 0; counterY < selectedAdventure.sizeY; counterY++) {
+                let stringCounter: number = 0;
                 selectedAdventure.map[counterX][counterY] = tempMap[stringCounter];
                 stringCounter = stringCounter + 1;
             }
         }
-    }
+    }*/
     async function selectAdventure(_filterName) {
         console.log(_filterName);
         return (_filterName.toString());
