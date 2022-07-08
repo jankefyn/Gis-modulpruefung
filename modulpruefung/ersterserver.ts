@@ -115,7 +115,7 @@ export namespace TextAdventure {
         }
         return ("Es ist noch kein Adventure angelegt worden.");
     }
-    /*function loadadventure(): void {
+    function loadadventure(): void {
         let stringSplitLimiter: number = selectedAdventure.sizeX * selectedAdventure.sizeY;
         let tempMap: string[] = selectedAdventure.places.toString().split(",", stringSplitLimiter);
         for (let counterX: number = 0; counterX < selectedAdventure.sizeX; counterX++) {
@@ -125,11 +125,11 @@ export namespace TextAdventure {
                 stringCounter = stringCounter + 1;
             }
         }
-    }*/
+    }
     async function selectAdventure(_filterName: string | string[]): Promise<string> {
         console.log(_filterName);
-        return(_filterName.toString());
-       /* let adventureName: string = _filterName.toString();
+        
+        let adventureName: string = _filterName.toString();
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
         if (data.length > 0) {
             let dataString: string = "";
@@ -160,7 +160,7 @@ export namespace TextAdventure {
         }
 
         return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
-*/
+
     }
 
     async function saveAdventure(_rückgabe: Input): Promise<string> {

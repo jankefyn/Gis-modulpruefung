@@ -81,52 +81,49 @@ var TextAdventure;
         }
         return ("Es ist noch kein Adventure angelegt worden.");
     }
-    /*function loadadventure(): void {
-        let stringSplitLimiter: number = selectedAdventure.sizeX * selectedAdventure.sizeY;
-        let tempMap: string[] = selectedAdventure.places.toString().split(",", stringSplitLimiter);
-        for (let counterX: number = 0; counterX < selectedAdventure.sizeX; counterX++) {
-            for (let counterY: number = 0; counterY < selectedAdventure.sizeY; counterY++) {
-                let stringCounter: number = 0;
+    function loadadventure() {
+        let stringSplitLimiter = selectedAdventure.sizeX * selectedAdventure.sizeY;
+        let tempMap = selectedAdventure.places.toString().split(",", stringSplitLimiter);
+        for (let counterX = 0; counterX < selectedAdventure.sizeX; counterX++) {
+            for (let counterY = 0; counterY < selectedAdventure.sizeY; counterY++) {
+                let stringCounter = 0;
                 selectedAdventure.map[counterX][counterY] = tempMap[stringCounter];
                 stringCounter = stringCounter + 1;
             }
         }
-    }*/
+    }
     async function selectAdventure(_filterName) {
         console.log(_filterName);
-        return (_filterName.toString());
-        /* let adventureName: string = _filterName.toString();
-         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
-         if (data.length > 0) {
-             let dataString: string = "";
-             for (let counter: number = 0; counter < data.length - 1; counter++) {
-                 if (data[counter].name != undefined) {
-                     if (data[counter].name == adventureName) {
-                         selectedAdventure.name = data[counter].name;
-                         selectedAdventure.places = data[counter].places;
-                         selectedAdventure.sizeX = data[counter].sizeX;
-                         selectedAdventure.sizeY = data[counter].sizeY;
-                         dataString = "Durch drücken einer Pfeiltaste starten sie das Text Adventure" + selectedAdventure.name + " an der Stelle links oben.";
-                         loadadventure();
-                     }
-                 }
-             }
-             if (data[data.length - 1].name == adventureName) {
-                 selectedAdventure.name = data[data.length - 1].name;
-                 selectedAdventure.places = data[data.length - 1].places;
-                 selectedAdventure.sizeX = data[data.length - 1].sizeX;
-                 selectedAdventure.sizeY = data[data.length - 1].sizeY;
-                 dataString = "Durch drücken einer Pfeiltaste starten sie das Text Adventure" + selectedAdventure.name + " an der Stelle links oben.";
-                 loadadventure();
-             }
-             if (dataString == "") {
-                 return ("Es gibt noch kein Text Adventure mit diesem Name, bitte Überprüfen sie die Schreibweise des Text Adventures");
-             }
-             return (dataString);
-         }
- 
-         return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
- */
+        let adventureName = _filterName.toString();
+        let data = await textAdventureCollection.find().toArray();
+        if (data.length > 0) {
+            let dataString = "";
+            for (let counter = 0; counter < data.length - 1; counter++) {
+                if (data[counter].name != undefined) {
+                    if (data[counter].name == adventureName) {
+                        selectedAdventure.name = data[counter].name;
+                        selectedAdventure.places = data[counter].places;
+                        selectedAdventure.sizeX = data[counter].sizeX;
+                        selectedAdventure.sizeY = data[counter].sizeY;
+                        dataString = "Durch drücken einer Pfeiltaste starten sie das Text Adventure" + selectedAdventure.name + " an der Stelle links oben.";
+                        loadadventure();
+                    }
+                }
+            }
+            if (data[data.length - 1].name == adventureName) {
+                selectedAdventure.name = data[data.length - 1].name;
+                selectedAdventure.places = data[data.length - 1].places;
+                selectedAdventure.sizeX = data[data.length - 1].sizeX;
+                selectedAdventure.sizeY = data[data.length - 1].sizeY;
+                dataString = "Durch drücken einer Pfeiltaste starten sie das Text Adventure" + selectedAdventure.name + " an der Stelle links oben.";
+                loadadventure();
+            }
+            if (dataString == "") {
+                return ("Es gibt noch kein Text Adventure mit diesem Name, bitte Überprüfen sie die Schreibweise des Text Adventures");
+            }
+            return (dataString);
+        }
+        return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
     }
     async function saveAdventure(_rückgabe) {
         textAdventureCollection.insertOne(_rückgabe);
