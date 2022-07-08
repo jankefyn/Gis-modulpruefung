@@ -38,7 +38,7 @@ export namespace TextAdventure {
     }
     let textAdventureCollection: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
-    let selectedAdventure: SelectabelAdventure = new SelectabelAdventure("name", "place", undefined, 3, 3);
+    let selectedAdventure: SelectabelAdventure = new SelectabelAdventure("name", "place", [["emptymapX1"],["emptymapY1"]], 3, 3);
 
 
     console.log("Starting server");
