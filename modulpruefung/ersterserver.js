@@ -23,6 +23,8 @@ var TextAdventure;
     let textAdventureCollection;
     let databaseUrl = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     let selectedAdventure = new SelectabelAdventure("name", "place", [["emptymapX1"], ["emptymapY1"]], 3, 3);
+    let coordinateX = 0;
+    let coordinateY = 0;
     console.log("Starting server");
     let port = Number(process.env.PORT);
     if (!port)
@@ -155,8 +157,6 @@ var TextAdventure;
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
     async function onAction(_action) {
-        let coordinateX = 0;
-        let coordinateY = 0;
         if (selectedAdventure.map == undefined) {
             return ("es wurde noch kein Adventure ausgewählt");
         }
