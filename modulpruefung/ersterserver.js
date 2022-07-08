@@ -93,7 +93,7 @@ var TextAdventure;
         }
     }
     async function selectAdventure(_filterName) {
-        return ("hallowelt" /*_filterName.toString()*/);
+        return (_filterName.toString());
         /* let adventureName: string = _filterName.toString();
          let data: TextAdventure[] = await textAdventureCollection.find().toArray();
          if (data.length > 0) {
