@@ -199,7 +199,7 @@ export namespace TextAdventure {
             return ("es wurde noch kein Adventure ausgewählt");
         }
         if (_action == "left") {
-            if (coordinateX - 1 >= 0) {
+            if (coordinateX  > 0) {
                 coordinateX = coordinateX - 1;
                 return (selectedAdventure.map[coordinateX][coordinateY]);
             }
@@ -207,8 +207,9 @@ export namespace TextAdventure {
                 return ("du bist am linken rand des Adventures angekommen und kannst deshalb nicht weiter nach Links");
             }
         } else if (_action == "right") {
-            if (coordinateX + 1 <= selectedAdventure.sizeX) {
+            if (coordinateX + 1 < selectedAdventure.sizeX) {
                 coordinateX = coordinateX + 1;
+                console.log("coordinate X nach swipe nach rechts")
                 return (selectedAdventure.map[coordinateX][coordinateY]);
             }
             else {
@@ -216,7 +217,7 @@ export namespace TextAdventure {
             }
         }
         else if (_action == "up") {
-            if (coordinateY - 1 >= 0) {
+            if (coordinateY  > 0) {
                 coordinateY = coordinateY - 1;
                 return (selectedAdventure.map[coordinateX][coordinateY]);
             }
@@ -224,7 +225,7 @@ export namespace TextAdventure {
                 return ("du bist am oberen Rand des Adventures angekommen und kannst deshalb nicht weiter hoch");
             }
         } else if (_action == "down") {
-            if (coordinateY + 1 <= selectedAdventure.sizeY) {
+            if (coordinateY  < selectedAdventure.sizeY ) {
                 coordinateY = coordinateY - 1;
                 return (selectedAdventure.map[coordinateX][coordinateY]);
             }
