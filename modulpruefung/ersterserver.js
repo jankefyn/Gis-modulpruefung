@@ -42,7 +42,7 @@ var TextAdventure;
             _response.write(await retrieveAdventure());
         }
         if (q.pathname == "//selectAdventure") {
-            _response.write(await selectAdventure(daten.name));
+            _response.write(await selectAdventure());
         }
         if (q.pathname == "//showDetail") {
             _response.write(await retrieveDetails(daten.number));
@@ -92,8 +92,8 @@ var TextAdventure;
             }
         }
     }
-    async function selectAdventure(_filterName) {
-        return (_filterName.toString());
+    async function selectAdventure( /*_filterName: string | string[]*/) {
+        return ("hallowelt" /*_filterName.toString()*/);
         /* let adventureName: string = _filterName.toString();
          let data: TextAdventure[] = await textAdventureCollection.find().toArray();
          if (data.length > 0) {
