@@ -22,7 +22,7 @@ var TextAdventure;
     }
     let textAdventureCollection;
     let databaseUrl = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
-    let selectedAdventure = new SelectabelAdventure("name", "place", [["emptymapX1"], ["emptymapY1"]], 3, 3);
+    let selectedAdventure = new SelectabelAdventure("name", "place", [["emptymapX1"], ["emptymapY1"]], 30, 30);
     let coordinateX = 0;
     let coordinateY = 0;
     console.log("Starting server");
@@ -103,6 +103,7 @@ var TextAdventure;
         let stringCounter = 0;
         for (let counterY = 0; counterY < selectedAdventure.sizeY; counterY++) {
             for (let counterX = 0; counterX < selectedAdventure.sizeX; counterX++) {
+                console.log("selectedadventure map" + selectedAdventure.map);
                 selectedAdventure.map[counterX][counterY] = tempMap[stringCounter];
                 stringCounter = stringCounter + 1;
             }

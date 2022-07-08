@@ -38,7 +38,7 @@ export namespace TextAdventure {
     }
     let textAdventureCollection: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
-    let selectedAdventure: SelectabelAdventure = new SelectabelAdventure("name", "place", [["emptymapX1"], ["emptymapY1"]], 3, 3);
+    let selectedAdventure: SelectabelAdventure = new SelectabelAdventure("name", "place", [["emptymapX1"], ["emptymapY1"]], 30, 30);
     let coordinateX: number = 0;
     let coordinateY: number = 0;
 
@@ -135,6 +135,7 @@ export namespace TextAdventure {
         let stringCounter: number = 0;
         for (let counterY: number = 0; counterY < selectedAdventure.sizeY; counterY++) {
             for (let counterX: number = 0; counterX < selectedAdventure.sizeX; counterX++) {
+                console.log("selectedadventure map" + selectedAdventure.map);
                 selectedAdventure.map[counterX][counterY] = tempMap[stringCounter];
                 stringCounter = stringCounter + 1;
             }
