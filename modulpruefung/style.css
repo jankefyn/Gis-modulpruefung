@@ -87,8 +87,7 @@ button::before {
     width: 100%;
 }
 .antwortKasten{
-    
-    max-width:66%;
+    display: block;
     margin-top: 25px;
     border:solid;
     border-color:#b7d5df;
@@ -101,13 +100,16 @@ button::before {
     border-radius: 5px;
     border-color: #000;
 }
-.legende{ 
-    margin-top: 20px;
-    margin-bottom:20px;
-    padding:10px;
-    border-color:#b7d5df;
-    border-style:dotted;
-
+.steuerung{
+    margin-top: 100px;
+    
+}  
+#buttonLeft{
+    margin-right: 60px;
 }
-        
+.description{
+    margin-top: 70px;
+}
+
+
 

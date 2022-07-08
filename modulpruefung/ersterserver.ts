@@ -23,8 +23,9 @@ export namespace TextAdventure {
     }
 
 
-    let textAdventure: Mongo.Collection;
+    let textAdventureCollection: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
+    let selectedAdventure: TextAdventure;
 
 
     console.log("Starting server");
@@ -48,8 +49,8 @@ export namespace TextAdventure {
         let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        textAdventure = mongoClient.db("Test").collection("Products");
-        console.log("Database connection", textAdventure != undefined);
+        textAdventureCollection = mongoClient.db("Test").collection("Products");
+        console.log("Database connection", textAdventureCollection != undefined);
     }
 
 
@@ -72,8 +73,8 @@ export namespace TextAdventure {
         if (q.pathname == "//showAdventures") {
             _response.write(await retrieveAdventure());
         }
-        if (q.pathname == "//filternNachName") {
-            _response.write(await nameFilter(daten.produktname));
+        if (q.pathname == "//selectAdventure") {
+            _response.write(await selectAdventure(daten.name));
         }
         if (q.pathname == "//showDetail") {
             _response.write(await retrieveDetails(daten.number));
@@ -98,7 +99,7 @@ export namespace TextAdventure {
 
     async function retrieveAdventure(): Promise<String> {
 
-        let data: TextAdventure[] = await textAdventure.find().toArray();
+        let data: TextAdventure[] = await textAdventureCollection.find().toArray();
         if (data.length > 0) {
             let dataString: string = "";
             for (let counter: number = 0; counter < 4; counter++) {
@@ -114,29 +115,46 @@ export namespace TextAdventure {
         }
         return ("Es ist noch kein Adventure angelegt worden.");
     }
-
-    async function nameFilter(_filterName: string | string[]): Promise<string> {
+    function loadadventure(): void {
+        let stringSplitLimiter: number = selectedAdventure.sizeX * selectedAdventure.sizeY;
+        let tempMap: string[] = selectedAdventure.places.toString().split(",", stringSplitLimiter);
+        for (let counterX: number = 0; counterX < selectedAdventure.sizeX; counterX++) {
+            for (let counterY: number = 0; counterY < selectedAdventure.sizeY; counterY++) {
+                let stringCounter: number = 0;
+                selectedAdventure.map[counterX][counterY] = tempMap[stringCounter];
+                stringCounter = stringCounter + 1;
+            }
+        }
+    }
+    async function selectAdventure(_filterName: string | string[]): Promise<string> {
         let adventureName: string = _filterName.toString();
-
-        let data: TextAdventure[] = await textAdventure.find().toArray();
+        let data: TextAdventure[] = await textAdventureCollection.find().toArray();
         if (data.length > 0) {
             let dataString: string = "";
             for (let counter: number = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
-                    let gefriergutZähler: number = counter + 1;
                     if (data[counter].name == adventureName) {
-                        dataString = dataString + " Das Text Adventure " + gefriergutZähler + ": " + data[counter].name + " " + " , ist bereit gespielt zu werden " + ",";
+                        selectedAdventure.name = data[counter].name;
+                        selectedAdventure.places = data[counter].places;
+                        selectedAdventure.sizeX = data[counter].sizeX;
+                        selectedAdventure.sizeY = data[counter].sizeY;
+                        dataString = "Durch drücken einer Pfeiltaste starten sie das Text Adventure" + selectedAdventure.name + " an der Stelle links oben.";
+                        loadadventure();
                     }
                 }
             }
             if (data[data.length - 1].name == adventureName) {
-                dataString = dataString + " Das Produkt " + data.length + ": " + data[data.length - 1].name + " " + ", ist bereit gespielt zu werden ";
-                return ("Im Kühlschrank wurden folgende Produkte mit dem gesuchten Name gefunden:" + dataString);
+                selectedAdventure.name = data[data.length - 1].name;
+                selectedAdventure.places = data[data.length - 1].places;
+                selectedAdventure.sizeX = data[data.length - 1].sizeX;
+                selectedAdventure.sizeY = data[data.length - 1].sizeY;
+                dataString = "Durch drücken einer Pfeiltaste starten sie das Text Adventure" + selectedAdventure.name + " an der Stelle links oben.";
+                loadadventure();
             }
             if (dataString == "") {
-                return ("Es gibt noch kein Text Adventure mit diesem Name");
+                return ("Es gibt noch kein Text Adventure mit diesem Name, bitte Überprüfen sie die Schreibweise des Text Adventures");
             }
-            return ("Es gibt folgende Text Adventures mit diesem Name:" + dataString);
+            return (dataString);
         }
 
         return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
@@ -144,46 +162,62 @@ export namespace TextAdventure {
     }
 
     async function saveAdventure(_rückgabe: Input): Promise<string> {
-        textAdventure.insertOne(_rückgabe);
+        textAdventureCollection.insertOne(_rückgabe);
         return ("Text Adventure erfolgreich gespeichert!");
     }
     async function retrieveDetails(_auswahlNummer: string | string[]): Promise<String> {
-        /* let saveAdventure: TextAdventure;
-        
-         saveAdventure.name = _rückgabe.name.toString();
-         
-         saveAdventure.sizeX = +_rückgabe.sizeX;
-         saveAdventure.sizeY = +_rückgabe.sizeY;
-         let stringSplitLimiter: number = saveAdventure.sizeX * saveAdventure.sizeY;
-         let tempMap: string[] = _rückgabe.places.toString().split(",", stringSplitLimiter);
-         for (let counterX: number = 0; counterX < saveAdventure.sizeX; counterX++) {
-             for (let counterY: number = 0; counterY < saveAdventure.sizeY; counterY++) {
-                 let stringCounter: number = 0;
-                 saveAdventure.map[counterX][counterY] = tempMap[stringCounter];
-                 stringCounter = stringCounter + 1;
-             }
-         }*/
+
         console.log(saveAdventure);
         return ("Es liegt kein Produkt mit der angegebenen Nummer vor");
     }
     async function deleteAdventure(_auswahlNummer: string | string[]): Promise<string> {
         let counter: number = +_auswahlNummer - 1;
-        let data: TextAdventure[] = await textAdventure.find().toArray();
-        textAdventure.deleteOne(data[counter]);
+        let data: TextAdventure[] = await textAdventureCollection.find().toArray();
+        textAdventureCollection.deleteOne(data[counter]);
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
     export async function onAction(_action: string): Promise<string> {
+        let coordinateX: number = 0;
+        let coordinateY: number = 0;
+        if (selectedAdventure.map == undefined) {
+            return ("es wurde noch kein Adventure ausgewählt");
+        }
         if (_action == "left") {
-            return ("links");
+            if (coordinateX - 1 >= 0) {
+                coordinateX = coordinateX - 1;
+                return (selectedAdventure.map[coordinateX][coordinateY]);
+            }
+            else {
+                return ("du bist am linken rand des Adventures angekommen und kannst deshalb nicht weiter nach Links");
+            }
         } else if (_action == "right") {
-            return ("rechts");
-        } else if (_action == "up") {
-            return ("hoch");
+            if (coordinateX + 1 <= selectedAdventure.sizeX) {
+                coordinateX = coordinateX + 1;
+                return (selectedAdventure.map[coordinateX][coordinateY]);
+            }
+            else {
+                return ("du bist am rechten Rand des Adventures angekommen und kannst deshalb nicht weiter nach Rechts");
+            }
+        }
+        else if (_action == "up") {
+            if (coordinateY - 1 >= 0) {
+                coordinateY = coordinateY - 1;
+                return (selectedAdventure.map[coordinateX][coordinateY]);
+            }
+            else {
+                return ("du bist am oberen Rand des Adventures angekommen und kannst deshalb nicht weiter hoch");
+            }
         } else if (_action == "down") {
-            return ("runter");
+            if (coordinateY + 1 <= selectedAdventure.sizeY) {
+                coordinateY = coordinateY - 1;
+                return (selectedAdventure.map[coordinateX][coordinateY]);
+            }
+            else {
+                return ("du bist am unteren Rand des Adventures angekommen und kannst deshalb nicht weiter runter");
+            }
         }
         else {
-            return("ein fehler ist aufgetreten");
+            return ("ein fehler ist aufgetreten");
         }
     }
 }
