@@ -8,6 +8,8 @@ var TextAdventure;
 (function (TextAdventure) {
     let textAdventureCollection;
     let databaseUrl = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
+    let selectedAdventure;
+    selectedAdventure.name = "bob";
     console.log("Starting server");
     let port = Number(process.env.PORT);
     if (!port)
@@ -93,7 +95,6 @@ var TextAdventure;
     }
     async function selectAdventure(_filterName) {
         console.log(_filterName);
-        let selectedAdventure;
         let adventureName = _filterName.toString();
         let data = await textAdventureCollection.find().toArray();
         if (data.length > 0) {

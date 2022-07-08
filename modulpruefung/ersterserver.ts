@@ -25,8 +25,8 @@ export namespace TextAdventure {
 
     let textAdventureCollection: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
-    
-
+    let selectedAdventure: TextAdventure;
+    selectedAdventure.name = "bob";
 
     console.log("Starting server");
     let port: number = Number(process.env.PORT);
@@ -128,7 +128,7 @@ export namespace TextAdventure {
     }
     async function selectAdventure(_filterName: string | string[]): Promise<string> {
         console.log(_filterName);
-        let selectedAdventure: TextAdventure;
+        
         let adventureName: string = _filterName.toString();
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
         if (data.length > 0) {
