@@ -138,6 +138,7 @@ export namespace TextAdventure {
                 stringCounter = stringCounter + 1;
             }
         }
+        console.log("map test" + selectedAdventure.map);
     }
     async function selectAdventure(_filterName: string | string[]): Promise<string> {
         console.log(_filterName);

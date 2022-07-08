@@ -105,6 +105,7 @@ var TextAdventure;
                 stringCounter = stringCounter + 1;
             }
         }
+        console.log("map test" + selectedAdventure.map);
     }
     async function selectAdventure(_filterName) {
         console.log(_filterName);
