@@ -139,12 +139,13 @@ export namespace TextAdventure {
                 stringCounter = stringCounter + 1;
             }
         }
+        console.log(selectedAdventure.map);
         coordinateX = 0;
         coordinateY = 0;
     }
     async function selectAdventure(_filterName: string | string[]): Promise<string> {
         console.log(_filterName);
-
+        
         let adventureName: string = _filterName.toString();
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
         if (data.length > 0) {
@@ -152,6 +153,7 @@ export namespace TextAdventure {
             for (let counter: number = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
                     if (data[counter].name == adventureName) {
+                        console.log(data[counter].places);
                         selectedAdventure.name = data[counter].name;
                         selectedAdventure.places = data[counter].places;
                         selectedAdventure.sizeX = data[counter].sizeX;
