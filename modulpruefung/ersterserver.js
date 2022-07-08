@@ -98,9 +98,9 @@ var TextAdventure;
     function loadadventure() {
         let stringSplitLimiter = selectedAdventure.sizeX * selectedAdventure.sizeY;
         let tempMap = selectedAdventure.places.toString().split(",", stringSplitLimiter);
+        let stringCounter = 0;
         for (let counterX = 0; counterX < selectedAdventure.sizeX; counterX++) {
             for (let counterY = 0; counterY < selectedAdventure.sizeY; counterY++) {
-                let stringCounter = 0;
                 selectedAdventure.map[counterX][counterY] = tempMap[stringCounter];
                 stringCounter = stringCounter + 1;
             }
@@ -126,7 +126,6 @@ var TextAdventure;
                 }
             }
             if (data[data.length - 1].name == adventureName) {
-                console.log("hallowelt");
                 selectedAdventure.name = data[data.length - 1].name;
                 selectedAdventure.places = data[data.length - 1].places;
                 selectedAdventure.sizeX = data[data.length - 1].sizeX;
