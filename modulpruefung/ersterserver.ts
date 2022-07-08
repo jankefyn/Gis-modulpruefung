@@ -127,6 +127,7 @@ export namespace TextAdventure {
         }
     }
     async function selectAdventure(_filterName: string | string[]): Promise<string> {
+        console.log(_filterName);
         return(_filterName.toString());
        /* let adventureName: string = _filterName.toString();
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();

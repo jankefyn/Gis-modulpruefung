@@ -93,6 +93,7 @@ var TextAdventure;
         }
     }
     async function selectAdventure(_filterName) {
+        console.log(_filterName);
         return (_filterName.toString());
         /* let adventureName: string = _filterName.toString();
          let data: TextAdventure[] = await textAdventureCollection.find().toArray();
