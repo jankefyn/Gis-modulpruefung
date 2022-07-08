@@ -99,8 +99,8 @@ var TextAdventure;
         let stringSplitLimiter = selectedAdventure.sizeX * selectedAdventure.sizeY;
         let tempMap = selectedAdventure.places.toString().split(",", stringSplitLimiter);
         let stringCounter = 0;
-        for (let counterX = 0; counterX < selectedAdventure.sizeX; counterX++) {
-            for (let counterY = 0; counterY < selectedAdventure.sizeY; counterY++) {
+        for (let counterY = 0; counterY < selectedAdventure.sizeY; counterY++) {
+            for (let counterX = 0; counterX < selectedAdventure.sizeX; counterX++) {
                 selectedAdventure.map[counterX][counterY] = tempMap[stringCounter];
                 stringCounter = stringCounter + 1;
             }

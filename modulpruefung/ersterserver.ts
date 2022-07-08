@@ -132,8 +132,8 @@ export namespace TextAdventure {
         let stringSplitLimiter: number = selectedAdventure.sizeX * selectedAdventure.sizeY;
         let tempMap: string[] = selectedAdventure.places.toString().split(",", stringSplitLimiter);
         let stringCounter: number = 0;
-        for (let counterX: number = 0; counterX < selectedAdventure.sizeX; counterX++) {
-            for (let counterY: number = 0; counterY < selectedAdventure.sizeY; counterY++) {
+        for (let counterY: number = 0; counterY < selectedAdventure.sizeY; counterY++) {
+            for (let counterX: number = 0; counterX < selectedAdventure.sizeX; counterX++) {
                 selectedAdventure.map[counterX][counterY] = tempMap[stringCounter];
                 stringCounter = stringCounter + 1;
             }
