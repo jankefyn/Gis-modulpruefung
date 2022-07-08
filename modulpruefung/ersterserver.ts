@@ -209,7 +209,7 @@ export namespace TextAdventure {
         } else if (_action == "right") {
             if (coordinateX + 1 < selectedAdventure.sizeX) {
                 coordinateX = coordinateX + 1;
-                console.log("coordinate X nach swipe nach rechts")
+                console.log("coordinate X nach swipe nach rechts" + coordinateX);
                 return (selectedAdventure.map[coordinateX][coordinateY]);
             }
             else {
