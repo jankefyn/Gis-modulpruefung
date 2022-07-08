@@ -139,7 +139,8 @@ export namespace TextAdventure {
                 stringCounter = stringCounter + 1;
             }
         }
-        console.log(" map test links oben: " + selectedAdventure.map[0][0] + " rechts oben: " + selectedAdventure.map[1][0] + " links unten: " + selectedAdventure.map[0][1] + " recht unten: " + selectedAdventure.map[1][1]);
+        coordinateX = 0;
+        coordinateY = 0;
     }
     async function selectAdventure(_filterName: string | string[]): Promise<string> {
         console.log(_filterName);
@@ -194,12 +195,12 @@ export namespace TextAdventure {
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
     export async function onAction(_action: string): Promise<string> {
-        
+
         if (selectedAdventure.map == undefined) {
             return ("es wurde noch kein Adventure ausgewählt");
         }
         if (_action == "left") {
-            if (coordinateX  > 0) {
+            if (coordinateX > 0) {
                 coordinateX = coordinateX - 1;
                 return (selectedAdventure.map[coordinateX][coordinateY]);
             }
@@ -217,7 +218,7 @@ export namespace TextAdventure {
             }
         }
         else if (_action == "up") {
-            if (coordinateY  > 0) {
+            if (coordinateY > 0) {
                 coordinateY = coordinateY - 1;
                 return (selectedAdventure.map[coordinateX][coordinateY]);
             }
@@ -225,7 +226,7 @@ export namespace TextAdventure {
                 return ("du bist am oberen Rand des Adventures angekommen und kannst deshalb nicht weiter hoch");
             }
         } else if (_action == "down") {
-            if (coordinateY + 1  < selectedAdventure.sizeY ) {
+            if (coordinateY + 1 < selectedAdventure.sizeY) {
                 coordinateY = coordinateY + 1;
                 return (selectedAdventure.map[coordinateX][coordinateY]);
             }

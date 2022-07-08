@@ -107,7 +107,8 @@ var TextAdventure;
                 stringCounter = stringCounter + 1;
             }
         }
-        console.log(" map test links oben: " + selectedAdventure.map[0][0] + " rechts oben: " + selectedAdventure.map[1][0] + " links unten: " + selectedAdventure.map[0][1] + " recht unten: " + selectedAdventure.map[1][1]);
+        coordinateX = 0;
+        coordinateY = 0;
     }
     async function selectAdventure(_filterName) {
         console.log(_filterName);
