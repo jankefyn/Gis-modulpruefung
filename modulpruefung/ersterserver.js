@@ -120,7 +120,6 @@ var TextAdventure;
             for (let counter = 0; counter < data.length - 1; counter++) {
                 if (data[counter].name != undefined) {
                     if (data[counter].name == adventureName) {
-                        console.log(data[counter].places);
                         selectedAdventure.name = data[counter].name;
                         selectedAdventure.places = data[counter].places;
                         selectedAdventure.sizeX = data[counter].sizeX;
@@ -131,6 +130,7 @@ var TextAdventure;
                 }
             }
             if (data[data.length - 1].name == adventureName) {
+                console.log(data[data.length - 1].places);
                 selectedAdventure.name = data[data.length - 1].name;
                 selectedAdventure.places = data[data.length - 1].places;
                 selectedAdventure.sizeX = data[data.length - 1].sizeX;
