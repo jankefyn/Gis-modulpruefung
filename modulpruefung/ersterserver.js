@@ -96,6 +96,7 @@ var TextAdventure;
     }
     async function selectAdventure(_filterName) {
         console.log(_filterName);
+        currentLocationNumber = 0;
         let adventureName = _filterName.toString();
         let data = await textAdventureCollection.find().toArray();
         if (data.length > 0) {

@@ -23,7 +23,7 @@ export namespace TextAdventure {
     class SelectabelAdventure {
         name: string;
         places: string;
-        
+
         sizeX: number;
         sizeY: number;
 
@@ -39,7 +39,7 @@ export namespace TextAdventure {
     let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     let selectedAdventure: SelectabelAdventure = new SelectabelAdventure("name", "place", 30, 30);
     let currentLocationNumber: number = 0;
-    
+
 
     console.log("Starting server");
     let port: number = Number(process.env.PORT);
@@ -130,7 +130,7 @@ export namespace TextAdventure {
     }
     async function selectAdventure(_filterName: string | string[]): Promise<string> {
         console.log(_filterName);
-
+        currentLocationNumber = 0;
         let adventureName: string = _filterName.toString();
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
         if (data.length > 0) {
@@ -143,7 +143,7 @@ export namespace TextAdventure {
                         selectedAdventure.sizeX = data[counter].sizeX;
                         selectedAdventure.sizeY = data[counter].sizeY;
                         dataString = "Durch drücken einer Pfeiltaste starten sie das Text Adventure" + selectedAdventure.name + " an der Stelle links oben.";
-                        
+
                     }
                 }
             }
@@ -196,7 +196,7 @@ export namespace TextAdventure {
                 }
                 startOfRowNumber = startOfRowNumber + selectedAdventure.sizeX;
             }
-            currentLocationNumber = currentLocationNumber + -1 ;
+            currentLocationNumber = currentLocationNumber + -1;
             return (adventureMap[currentLocationNumber]);
         } else if (_action == "right") {
             for (let counter: number = 0; counter < selectedAdventure.sizeY; counter++) {
@@ -222,7 +222,7 @@ export namespace TextAdventure {
             if (currentLocationNumber < startOfLastRow) {
                 currentLocationNumber = currentLocationNumber * 1 + selectedAdventure.sizeX * 1;
                 console.log("currentLocationNumber" + currentLocationNumber);
-                return(adventureMap[currentLocationNumber]);
+                return (adventureMap[currentLocationNumber]);
             }
             else {
                 return ("du bist am unteren Rand des Adventures angekommen und kannst deshalb nicht weiter runter. Du bleibst deshalb hier: " + adventureMap[currentLocationNumber]);
