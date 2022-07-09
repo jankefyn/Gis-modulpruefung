@@ -211,7 +211,8 @@ export namespace TextAdventure {
         }
         else if (_action == "up") {
             if (currentLocationNumber > endOfRowNumber) {
-                currentLocationNumber = currentLocationNumber - selectedAdventure.sizeY;
+                currentLocationNumber = currentLocationNumber - selectedAdventure.sizeX;
+                console.log("currentLocationNumber" + currentLocationNumber);
                 return (adventureMap[currentLocationNumber]);
             }
             else {
@@ -220,6 +221,7 @@ export namespace TextAdventure {
         } else if (_action == "down") {
             if (currentLocationNumber < startOfLastRow) {
                 currentLocationNumber = currentLocationNumber + selectedAdventure.sizeX;
+                console.log("currentLocationNumber" + currentLocationNumber);
                 return(adventureMap[currentLocationNumber]);
             }
             else {
