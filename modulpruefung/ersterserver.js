@@ -103,7 +103,12 @@ var TextAdventure;
         console.log("stringsplitlimiter: " + stringSplitLimiter + "gesplitteter string array" + tempMap[2]);
         let stringCounter = 0;
         for (let counterY = 0; counterY < selectedAdventure.sizeY; counterY++) {
+            console.log("counterY in for schleife: " + counterY);
             for (let counterX = 0; counterX < selectedAdventure.sizeX; counterX++) {
+                console.log("counterY in for schleife 2 : " + counterY);
+                console.log("counterX in for schleife 2 : " + counterX);
+                console.log("stringCounter in for schleife 2: " + stringCounter);
+                console.log("tempmap bei string counter in schleife 2 : " + tempMap[stringCounter]);
                 console.log("selectedadventure map" + selectedAdventure.map);
                 selectedAdventure.map[counterX][counterY] = tempMap[stringCounter];
                 stringCounter = stringCounter + 1;
