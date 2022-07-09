@@ -9,22 +9,19 @@ var TextAdventure;
     class SelectabelAdventure {
         name;
         places;
-        map;
         sizeX;
         sizeY;
-        constructor(_name, _places, _map, _sizeX, _sizeY) {
+        constructor(_name, _places, _sizeX, _sizeY) {
             this.name = _name;
             this.places = _places;
-            this.map = _map;
             this.sizeX = _sizeX;
             this.sizeY = _sizeY;
         }
     }
     let textAdventureCollection;
     let databaseUrl = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
-    let selectedAdventure = new SelectabelAdventure("name", "place", [["emptymapX1"], ["emptymapY1"]], 30, 30);
-    let coordinateX = 0;
-    let coordinateY = 0;
+    let selectedAdventure = new SelectabelAdventure("name", "place", 30, 30);
+    let currentLocationNumber = 0;
     console.log("Starting server");
     let port = Number(process.env.PORT);
     if (!port)
@@ -97,27 +94,6 @@ var TextAdventure;
         }
         return ("Es ist noch kein Adventure angelegt worden.");
     }
-    function loadadventure() {
-        let stringSplitLimiter = selectedAdventure.sizeX * selectedAdventure.sizeY;
-        let tempMap = selectedAdventure.places.toString().split(",", stringSplitLimiter);
-        console.log("stringsplitlimiter: " + stringSplitLimiter + "gesplitteter string array" + tempMap[2]);
-        let stringCounter = 0;
-        for (let counterY = 0; counterY < selectedAdventure.sizeY; counterY++) {
-            console.log("counterY in for schleife: " + counterY);
-            for (let counterX = 0; counterX < selectedAdventure.sizeX; counterX++) {
-                console.log("counterY in for schleife 2 : " + counterY);
-                console.log("counterX in for schleife 2 : " + counterX);
-                console.log("stringCounter in for schleife 2: " + stringCounter);
-                console.log("tempmap bei string counter in schleife 2 : " + tempMap[stringCounter]);
-                console.log("selectedadventure map" + selectedAdventure.map);
-                selectedAdventure.map[counterX][counterY] = tempMap[stringCounter];
-                stringCounter = stringCounter + 1;
-            }
-        }
-        console.log(selectedAdventure.map);
-        coordinateX = 0;
-        coordinateY = 0;
-    }
     async function selectAdventure(_filterName) {
         console.log(_filterName);
         let adventureName = _filterName.toString();
@@ -132,7 +108,6 @@ var TextAdventure;
                         selectedAdventure.sizeX = data[counter].sizeX;
                         selectedAdventure.sizeY = data[counter].sizeY;
                         dataString = "Durch drücken einer Pfeiltaste starten sie das Text Adventure" + selectedAdventure.name + " an der Stelle links oben.";
-                        loadadventure();
                     }
                 }
             }
@@ -143,7 +118,6 @@ var TextAdventure;
                 selectedAdventure.sizeX = data[data.length - 1].sizeX;
                 selectedAdventure.sizeY = data[data.length - 1].sizeY;
                 dataString = "Durch drücken einer Pfeiltaste starten sie das Text Adventure" + selectedAdventure.name + " an der Stelle links oben.";
-                loadadventure();
             }
             if (dataString == "") {
                 return ("Es gibt noch kein Text Adventure mit diesem Name, bitte Überprüfen sie die Schreibweise des Text Adventures");
@@ -167,44 +141,50 @@ var TextAdventure;
         return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
     async function onAction(_action) {
-        if (selectedAdventure.map == undefined) {
+        let stringSplitLimiter = selectedAdventure.sizeX * selectedAdventure.sizeY;
+        let adventureMap = selectedAdventure.places.toString().split(",", stringSplitLimiter);
+        let endOfRowNumber = selectedAdventure.sizeX - 1;
+        let startOfRowNumber = 0;
+        let startOfLastRow = selectedAdventure.sizeX * (selectedAdventure.sizeY - 1);
+        if (selectedAdventure.places == undefined) {
             return ("es wurde noch kein Adventure ausgewählt");
         }
         if (_action == "left") {
-            if (coordinateX > 0) {
-                coordinateX = coordinateX - 1;
-                return (selectedAdventure.map[coordinateX][coordinateY]);
+            for (let counter = 0; counter < selectedAdventure.sizeY; counter++) {
+                if (currentLocationNumber == startOfRowNumber) {
+                    return ("du bist am rechten Linken Rand des Adventures angekommen und kannst deshalb nicht weiter nach Links. Du bleibst deshalb hier: " + adventureMap[currentLocationNumber]);
+                }
+                startOfRowNumber = startOfRowNumber + selectedAdventure.sizeX;
             }
-            else {
-                return ("du bist am linken rand des Adventures angekommen und kannst deshalb nicht weiter nach Links");
-            }
+            currentLocationNumber = currentLocationNumber + -1;
+            return (adventureMap[currentLocationNumber]);
         }
         else if (_action == "right") {
-            if (coordinateX + 1 < selectedAdventure.sizeX) {
-                coordinateX = coordinateX + 1;
-                console.log("coordinate X nach swipe nach rechts" + coordinateX);
-                return (selectedAdventure.map[coordinateX][coordinateY]);
+            for (let counter = 0; counter < selectedAdventure.sizeY; counter++) {
+                if (currentLocationNumber == endOfRowNumber) {
+                    return ("du bist am rechten Rand des Adventures angekommen und kannst deshalb nicht weiter nach Rechts. Du bleibst deshalb hier: " + adventureMap[currentLocationNumber]);
+                }
+                endOfRowNumber = endOfRowNumber + selectedAdventure.sizeX;
             }
-            else {
-                return ("du bist am rechten Rand des Adventures angekommen und kannst deshalb nicht weiter nach Rechts");
-            }
+            currentLocationNumber = currentLocationNumber + 1;
+            return (adventureMap[currentLocationNumber]);
         }
         else if (_action == "up") {
-            if (coordinateY > 0) {
-                coordinateY = coordinateY - 1;
-                return (selectedAdventure.map[coordinateX][coordinateY]);
+            if (currentLocationNumber > endOfRowNumber) {
+                currentLocationNumber = currentLocationNumber - selectedAdventure.sizeY;
+                return (adventureMap[currentLocationNumber]);
             }
             else {
-                return ("du bist am oberen Rand des Adventures angekommen und kannst deshalb nicht weiter hoch");
+                return ("du bist am oberen Rand des Adventures angekommen und kannst deshalb nicht weiter hoch. Du bleibst deshalb hier: " + adventureMap[currentLocationNumber]);
             }
         }
         else if (_action == "down") {
-            if (coordinateY + 1 < selectedAdventure.sizeY) {
-                coordinateY = coordinateY + 1;
-                return (selectedAdventure.map[coordinateX][coordinateY]);
+            if (currentLocationNumber < startOfLastRow) {
+                currentLocationNumber = currentLocationNumber + selectedAdventure.sizeX;
+                return (adventureMap[currentLocationNumber]);
             }
             else {
-                return ("du bist am unteren Rand des Adventures angekommen und kannst deshalb nicht weiter runter");
+                return ("du bist am unteren Rand des Adventures angekommen und kannst deshalb nicht weiter runter. Du bleibst deshalb hier: " + adventureMap[currentLocationNumber]);
             }
         }
         else {
