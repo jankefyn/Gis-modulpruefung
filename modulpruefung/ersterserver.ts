@@ -132,7 +132,7 @@ export namespace TextAdventure {
     function loadadventure(): void {
         let stringSplitLimiter: number = selectedAdventure.sizeX * selectedAdventure.sizeY;
         let tempMap: string[] = selectedAdventure.places.toString().split(",", stringSplitLimiter);
-        console.log("stringsplitlimiter: "+ stringSplitLimiter + "gesplitteter string array" + tempMap);
+        console.log("stringsplitlimiter: " + stringSplitLimiter + "gesplitteter string array" + tempMap[2]);
         let stringCounter: number = 0;
         for (let counterY: number = 0; counterY < selectedAdventure.sizeY; counterY++) {
             for (let counterX: number = 0; counterX < selectedAdventure.sizeX; counterX++) {

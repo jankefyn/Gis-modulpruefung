@@ -100,7 +100,7 @@ var TextAdventure;
     function loadadventure() {
         let stringSplitLimiter = selectedAdventure.sizeX * selectedAdventure.sizeY;
         let tempMap = selectedAdventure.places.toString().split(",", stringSplitLimiter);
-        console.log("stringsplitlimiter: " + stringSplitLimiter + "gesplitteter string array" + tempMap);
+        console.log("stringsplitlimiter: " + stringSplitLimiter + "gesplitteter string array" + tempMap[2]);
         let stringCounter = 0;
         for (let counterY = 0; counterY < selectedAdventure.sizeY; counterY++) {
             for (let counterX = 0; counterX < selectedAdventure.sizeX; counterX++) {
