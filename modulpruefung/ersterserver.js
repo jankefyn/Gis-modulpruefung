@@ -181,7 +181,7 @@ var TextAdventure;
         }
         else if (_action == "down") {
             if (currentLocationNumber < startOfLastRow) {
-                currentLocationNumber = currentLocationNumber + selectedAdventure.sizeX;
+                currentLocationNumber = currentLocationNumber * 1 + selectedAdventure.sizeX * 1;
                 console.log("currentLocationNumber" + currentLocationNumber);
                 return (adventureMap[currentLocationNumber]);
             }
