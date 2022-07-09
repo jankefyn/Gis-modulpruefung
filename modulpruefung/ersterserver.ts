@@ -116,10 +116,10 @@ export namespace TextAdventure {
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
         if (data.length > 0) {
             let dataString: string = "";
-            for (let counter: number = 0; counter < 4; counter++) {
+            for (let counter: number = 0; counter < 5; counter++) {
                 if (counter < data.length) {
                     let adventureNumber: number = counter + 1;
-                    dataString = dataString + "Adventure " + adventureNumber + " " + data[counter].name;
+                    dataString = dataString + "Adventure " + adventureNumber + " " + data[counter].name + " ";
                 }
                 else {
                     return (dataString);

@@ -84,10 +84,10 @@ var TextAdventure;
         let data = await textAdventureCollection.find().toArray();
         if (data.length > 0) {
             let dataString = "";
-            for (let counter = 0; counter < 4; counter++) {
+            for (let counter = 0; counter < 5; counter++) {
                 if (counter < data.length) {
                     let adventureNumber = counter + 1;
-                    dataString = dataString + "Adventure " + adventureNumber + " " + data[counter].name;
+                    dataString = dataString + "Adventure " + adventureNumber + " " + data[counter].name + " ";
                 }
                 else {
                     return (dataString);
