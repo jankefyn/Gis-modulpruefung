@@ -38,7 +38,7 @@ var TextAdventure;
         let options = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        textAdventureCollection = mongoClient.db("Test").collection("Products");
+        textAdventureCollection = mongoClient.db("Test").collection("Adventures");
         console.log("Database connection", textAdventureCollection != undefined);
     }
     function handleListen() {

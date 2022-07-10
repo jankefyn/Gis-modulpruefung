@@ -61,7 +61,7 @@ export namespace TextAdventure {
         let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
-        textAdventureCollection = mongoClient.db("Test").collection("Products");
+        textAdventureCollection = mongoClient.db("Test").collection("Adventures");
         console.log("Database connection", textAdventureCollection != undefined);
     }
 
