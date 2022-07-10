@@ -175,7 +175,7 @@ export namespace TextAdventure {
                 if (currentLocationNumber == startOfRowNumber) {
                     return ("du bist am rechten Linken Rand des Adventures angekommen und kannst deshalb nicht weiter nach Links. Du bleibst deshalb hier: " + adventureMap[currentLocationNumber]);
                 }
-                startOfRowNumber = startOfRowNumber + selectedAdventure.sizeX;
+                startOfRowNumber = 1 * startOfRowNumber + 1 * selectedAdventure.sizeX;
             }
             currentLocationNumber = currentLocationNumber + -1;
             return (adventureMap[currentLocationNumber]);
@@ -184,7 +184,7 @@ export namespace TextAdventure {
                 if (currentLocationNumber == endOfRowNumber) {
                     return ("du bist am rechten Rand des Adventures angekommen und kannst deshalb nicht weiter nach Rechts. Du bleibst deshalb hier: " + adventureMap[currentLocationNumber]);
                 }
-                endOfRowNumber = endOfRowNumber + selectedAdventure.sizeX;
+                endOfRowNumber = 1 * endOfRowNumber + 1 * selectedAdventure.sizeX;
             }
             currentLocationNumber = currentLocationNumber + 1;
             return (adventureMap[currentLocationNumber]);
