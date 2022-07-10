@@ -9,7 +9,7 @@
   "description": "neuer server",
   "main": "index.js",
   "scripts": {
-    "start": "node modulpruefung/main.js"
+    "start": "node modulpruefung/mainScript.js"
   },
   "repository": {
     "type": "git",
