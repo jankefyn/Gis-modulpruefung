@@ -20,7 +20,7 @@ var TextAdventure;
     }
     let textAdventureCollection;
     let databaseUrl = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
-    let selectedAdventure = new SelectabelAdventure("name", "place", 30, 30);
+    let selectedAdventure = new SelectabelAdventure("empty", "empty", 0, 0);
     let currentLocationNumber = 0;
     console.log("Starting server");
     let port = Number(process.env.PORT);
@@ -52,16 +52,10 @@ var TextAdventure;
             _response.write(await saveAdventure(q.query));
         }
         if (q.pathname == "//showAdventures") {
-            _response.write(await retrieveAdventure());
+            _response.write(await showAdventures());
         }
         if (q.pathname == "//selectAdventure") {
             _response.write(await selectAdventure(daten.adventureName));
-        }
-        if (q.pathname == "//showDetail") {
-            _response.write(await retrieveDetails(daten.number));
-        }
-        if (q.pathname == "//deleteProduct") {
-            _response.write(await deleteAdventure(daten.number));
         }
         if (q.pathname == "//left") {
             _response.write(await onAction("left"));
@@ -77,14 +71,14 @@ var TextAdventure;
         }
         _response.end();
     }
-    async function retrieveAdventure() {
+    async function showAdventures() {
         let data = await textAdventureCollection.find().toArray();
         if (data.length > 0) {
             let dataString = "";
             for (let counter = 0; counter < 5; counter++) {
                 if (counter < data.length) {
                     let adventureNumber = counter + 1;
-                    dataString = dataString + "Adventure " + adventureNumber + " " + data[counter].name + " ";
+                    dataString = dataString + " Adventure " + adventureNumber + ": " + data[counter].name + "(" + data[counter].sizeX + "X" + data[counter].sizeY + " Felder) ";
                 }
                 else {
                     return (dataString);
@@ -130,16 +124,6 @@ var TextAdventure;
     async function saveAdventure(_rückgabe) {
         textAdventureCollection.insertOne(_rückgabe);
         return ("Text Adventure erfolgreich gespeichert!");
-    }
-    async function retrieveDetails(_auswahlNummer) {
-        console.log(saveAdventure);
-        return ("Es liegt kein Produkt mit der angegebenen Nummer vor");
-    }
-    async function deleteAdventure(_auswahlNummer) {
-        let counter = +_auswahlNummer - 1;
-        let data = await textAdventureCollection.find().toArray();
-        textAdventureCollection.deleteOne(data[counter]);
-        return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
     async function onAction(_action) {
         let stringSplitLimiter = selectedAdventure.sizeX * selectedAdventure.sizeY;
@@ -196,4 +180,4 @@ var TextAdventure;
     }
     TextAdventure.onAction = onAction;
 })(TextAdventure = exports.TextAdventure || (exports.TextAdventure = {}));
-//# sourceMappingURL=ersterserver.js.map
+//# sourceMappingURL=mainScript.js.map

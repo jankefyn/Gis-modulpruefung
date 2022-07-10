@@ -1,21 +1,16 @@
 "use strict";
 var TextAdventure;
 (function (TextAdventure) {
-    let allesAnzeigeButton = document.getElementById("showAdventures");
-    allesAnzeigeButton.addEventListener("click", function () { submit("showAdventures"); });
-    let filternNachNameButton = document.getElementById("filternNachName");
-    filternNachNameButton.addEventListener("click", function () { submit("filternNachName"); });
+    let submitbuttonHTML = document.getElementById("saveAdventure");
+    submitbuttonHTML.addEventListener("click", function () { submit("saveAdventure"); });
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {
         let formData = new FormData(document.forms[0]);
         let url = "https://gis-modulpruefung.herokuapp.com/";
         //let url: string = "http://localhost:8100/";
         let query = new URLSearchParams(formData);
-        if (_parameter == "showAdventures") {
-            url = url + "/showAdventures";
-        }
-        if (_parameter == "filternNachName") {
-            url = url + "/filternNachName";
+        if (_parameter == "saveAdventure") {
+            url = url + "/saveAdventure";
         }
         url = url + "?" + query.toString();
         let response = await fetch(url);
@@ -23,4 +18,4 @@ var TextAdventure;
         serverantwort.innerHTML = text;
     }
 })(TextAdventure || (TextAdventure = {}));
-//# sourceMappingURL=alleProdukteSkript.js.map
+//# sourceMappingURL=createAdventure.js.map

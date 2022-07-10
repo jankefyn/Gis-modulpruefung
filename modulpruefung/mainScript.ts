@@ -23,7 +23,6 @@ export namespace TextAdventure {
     class SelectabelAdventure {
         name: string;
         places: string;
-
         sizeX: number;
         sizeY: number;
 
@@ -37,7 +36,7 @@ export namespace TextAdventure {
     }
     let textAdventureCollection: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
-    let selectedAdventure: SelectabelAdventure = new SelectabelAdventure("name", "place", 30, 30);
+    let selectedAdventure: SelectabelAdventure = new SelectabelAdventure("empty", "empty", 0, 0);
     let currentLocationNumber: number = 0;
 
 
@@ -84,16 +83,10 @@ export namespace TextAdventure {
             _response.write(await saveAdventure(q.query));
         }
         if (q.pathname == "//showAdventures") {
-            _response.write(await retrieveAdventure());
+            _response.write(await showAdventures());
         }
         if (q.pathname == "//selectAdventure") {
             _response.write(await selectAdventure(daten.adventureName));
-        }
-        if (q.pathname == "//showDetail") {
-            _response.write(await retrieveDetails(daten.number));
-        }
-        if (q.pathname == "//deleteProduct") {
-            _response.write(await deleteAdventure(daten.number));
         }
         if (q.pathname == "//left") {
             _response.write(await onAction("left"));
@@ -109,8 +102,7 @@ export namespace TextAdventure {
         }
         _response.end();
     }
-
-    async function retrieveAdventure(): Promise<String> {
+    async function showAdventures(): Promise<String> {
 
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
         if (data.length > 0) {
@@ -118,7 +110,7 @@ export namespace TextAdventure {
             for (let counter: number = 0; counter < 5; counter++) {
                 if (counter < data.length) {
                     let adventureNumber: number = counter + 1;
-                    dataString = dataString + "Adventure " + adventureNumber + " " + data[counter].name + " ";
+                    dataString = dataString + " Adventure " + adventureNumber + ": " + data[counter].name + "(" + data[counter].sizeX + "X" + data[counter].sizeY + " Felder) ";
                 }
                 else {
                     return (dataString);
@@ -168,17 +160,6 @@ export namespace TextAdventure {
     async function saveAdventure(_rückgabe: Input): Promise<string> {
         textAdventureCollection.insertOne(_rückgabe);
         return ("Text Adventure erfolgreich gespeichert!");
-    }
-    async function retrieveDetails(_auswahlNummer: string | string[]): Promise<String> {
-
-        console.log(saveAdventure);
-        return ("Es liegt kein Produkt mit der angegebenen Nummer vor");
-    }
-    async function deleteAdventure(_auswahlNummer: string | string[]): Promise<string> {
-        let counter: number = +_auswahlNummer - 1;
-        let data: TextAdventure[] = await textAdventureCollection.find().toArray();
-        textAdventureCollection.deleteOne(data[counter]);
-        return ("Das ausgewählte Produkt wurde erfolgreich gelöscht");
     }
     export async function onAction(_action: string): Promise<string> {
         let stringSplitLimiter: number = selectedAdventure.sizeX * selectedAdventure.sizeY;

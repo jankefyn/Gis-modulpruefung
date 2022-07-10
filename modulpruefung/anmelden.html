@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <title>Adventures anzeigen lassen</title>
+        <script src="showAdventures.js" defer></script>
+        <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+        <nav>
+            <a href="adventuresAnzeigen.html" >Adventures anzeigen </a>
+            <a href="anlegen.html" >neue Adventures anlegen </a>
+            <a href="index.html" >Ein Adventure spielen </a>
+            <a href="anmelden.html" id=hervorheben >Registrieren oder Anmelden</a>
+        </nav>
+        <form>
+
+                <button type="button" id="showAdventures">Welche Adventures gibt es ? </button>
+
+                
+                <label for="notiz"> Geben sie einen Namen ein nach dem sie suchen möchten </label>
+                <input type="text" id="nachNameFiltern" name="produktname">
+                
+                <button type="button" id="filternNachName"> Nach diesem Name suchen</button>
+
+                <div class= "antwortKasten">
+                        <p id=serverantwort> </p>
+                </div>               
+        </form>
+</body>
+
+</html>
