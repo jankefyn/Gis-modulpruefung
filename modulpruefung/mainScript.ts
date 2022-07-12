@@ -86,10 +86,10 @@ export namespace TextAdventure {
         let q: url.UrlWithParsedQuery = url.parse(_request.url, true);
         let daten: ParsedUrlQuery = q.query;
 
-        if (q.pathname == "UserData") {
+        if (q.pathname == "//UserData") {
             _response.write(await saveUser(q.query, daten.username));
         }
-        if (q.pathname == "login") {
+        if (q.pathname == "//login") {
             _response.write(await login(daten.username, daten.password));
         }
         if (q.pathname == "//saveAdventure") {
