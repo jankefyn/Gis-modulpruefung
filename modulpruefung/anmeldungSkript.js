@@ -1,6 +1,6 @@
 "use strict";
-var P3_1;
-(function (P3_1) {
+var TextAdventure;
+(function (TextAdventure) {
     let loginButton = document.getElementById("login");
     loginButton.addEventListener("click", function () { submit("login"); });
     let submitbuttonHTML = document.getElementById("submitUserData");
@@ -21,5 +21,5 @@ var P3_1;
         let text = await response.text();
         serverantwort.innerHTML = text;
     }
-})(P3_1 || (P3_1 = {}));
+})(TextAdventure || (TextAdventure = {}));
 //# sourceMappingURL=anmeldungSkript.js.map
