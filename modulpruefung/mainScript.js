@@ -19,6 +19,7 @@ var TextAdventure;
         }
     }
     let textAdventureCollection;
+    let userCollection;
     let databaseUrl = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     let selectedAdventure = new SelectabelAdventure("empty", "empty", 0, 0);
     let currentLocationNumber = 0;
@@ -39,7 +40,9 @@ var TextAdventure;
         let mongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
         textAdventureCollection = mongoClient.db("Test").collection("Adventures");
-        console.log("Database connection", textAdventureCollection != undefined);
+        userCollection = mongoClient.db("Test").collection("Users");
+        console.log("Database connection from adventures: ", textAdventureCollection != undefined);
+        console.log("Database connectionfrom Users: ", userCollection != undefined);
     }
     function handleListen() {
         console.log("Listening");
@@ -48,6 +51,12 @@ var TextAdventure;
         _response.setHeader("Access-Control-Allow-Origin", "*");
         let q = url.parse(_request.url, true);
         let daten = q.query;
+        if (q.pathname == "UserData") {
+            _response.write(await saveUser(q.query, daten.username));
+        }
+        if (q.pathname == "login") {
+            _response.write(await login(daten.username, daten.password));
+        }
         if (q.pathname == "//saveAdventure") {
             _response.write(await saveAdventure(q.query));
         }
@@ -70,6 +79,44 @@ var TextAdventure;
             _response.write(await onAction("down"));
         }
         _response.end();
+    }
+    async function saveUser(_rückgabe, _username) {
+        let data = await userCollection.find().toArray();
+        if (data.length > 0) {
+            for (let counter = 0; counter < data.length; counter++) {
+                if (data[counter].username == _username) {
+                    return "Ein Konto mit dieser email adresse besteht bereits";
+                }
+                else {
+                    userCollection.insertOne(_rückgabe);
+                    return ("Nutzer erfolgreich registriert");
+                }
+            }
+        }
+        userCollection.insertOne(_rückgabe);
+        return "Nutzer erfolgreich registriert";
+    }
+    async function login(_username, password) {
+        let data = await userCollection.find().toArray();
+        if (data.length > 0) {
+            let dataString;
+            for (let counter = 0; counter < data.length; counter++) {
+                if (data[counter].username == _username) {
+                    if (data[counter].password == password) {
+                        dataString = "angemeldet";
+                    }
+                    else {
+                        dataString = " falsches Passwort";
+                    }
+                }
+                else {
+                    dataString = "falscher username";
+                }
+            }
+            return (dataString);
+        }
+        else
+            return "Anmeldedaten nicht gefunden";
     }
     async function showAdventures() {
         let data = await textAdventureCollection.find().toArray();

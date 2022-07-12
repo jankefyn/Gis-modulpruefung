@@ -14,6 +14,10 @@ export namespace TextAdventure {
     interface Input {
         [type: string]: string | string[];
     }
+    interface User {
+        username: string; 
+        password: string;
+    }
     interface TextAdventure {
         name: string;
         places: string;
@@ -35,6 +39,7 @@ export namespace TextAdventure {
 
     }
     let textAdventureCollection: Mongo.Collection;
+    let userCollection: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     let selectedAdventure: SelectabelAdventure = new SelectabelAdventure("empty", "empty", 0, 0);
     let currentLocationNumber: number = 0;
@@ -62,7 +67,9 @@ export namespace TextAdventure {
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect();
         textAdventureCollection = mongoClient.db("Test").collection("Adventures");
-        console.log("Database connection", textAdventureCollection != undefined);
+        userCollection = mongoClient.db("Test").collection("Users");
+        console.log("Database connection from adventures: ", textAdventureCollection != undefined);
+        console.log("Database connectionfrom Users: ", userCollection != undefined);
     }
 
 
@@ -79,6 +86,12 @@ export namespace TextAdventure {
         let q: url.UrlWithParsedQuery = url.parse(_request.url, true);
         let daten: ParsedUrlQuery = q.query;
 
+        if (q.pathname == "UserData") {
+            _response.write(await saveUser(q.query, daten.username));
+        }
+        if (q.pathname == "login") {
+            _response.write(await login(daten.username, daten.password));
+        }
         if (q.pathname == "//saveAdventure") {
             _response.write(await saveAdventure(q.query));
         }
@@ -101,6 +114,53 @@ export namespace TextAdventure {
             _response.write(await onAction("down"));
         }
         _response.end();
+    }
+
+
+    async function saveUser(_rückgabe: Input, _username: string | string[]): Promise<string> {
+        let data: User[] = await userCollection.find().toArray();
+
+        if (data.length > 0) {
+            for (let counter: number = 0; counter < data.length; counter++) {
+                if (data[counter].username == _username) {
+
+                    return "Ein Konto mit dieser email adresse besteht bereits";
+
+                }
+                else {
+                    userCollection.insertOne(_rückgabe);
+                    return ("Nutzer erfolgreich registriert");
+                }
+            }
+        }
+
+        userCollection.insertOne(_rückgabe);
+        return "Nutzer erfolgreich registriert";
+    }
+    async function login(_username: string | string[], password: string | string[]): Promise<String> {
+
+        let data: User[] = await userCollection.find().toArray();
+        if (data.length > 0) {
+
+            let dataString: string;
+            for (let counter: number = 0; counter < data.length; counter++) {
+                if (data[counter].username == _username) {
+                    if (data[counter].password == password) {
+                        dataString = "angemeldet";
+                    }
+                    else {
+                        dataString = " falsches Passwort";
+                    }
+                }
+                else {
+                    dataString = "falscher username";
+                }
+            }
+
+            return (dataString);
+        }
+        else return "Anmeldedaten nicht gefunden";
+
     }
     async function showAdventures(): Promise<String> {
 

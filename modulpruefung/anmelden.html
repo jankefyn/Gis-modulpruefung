@@ -2,32 +2,44 @@
 <html>
 
 <head>
-        <title>Adventures anzeigen lassen</title>
-        <script src="showAdventures.js" defer></script>
+        <title>Anmelden</title>
+        <script src="anmeldungSkript.js" defer></script>
         <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
         <nav>
-            <a href="adventuresAnzeigen.html" >Adventures anzeigen </a>
-            <a href="anlegen.html" >neue Adventures anlegen </a>
-            <a href="index.html" >Ein Adventure spielen </a>
-            <a href="anmelden.html" id=hervorheben >Registrieren oder Anmelden</a>
+                <a href="alleNutzer.html">Alle Nutzer sehen </a>
+                <a href="registrieren.html">registrieren </a>
+                <a href="anmeldung.html" id=hervorheben>Anmelden </a>
+
         </nav>
         <form>
+                <h1>Anmelden</h1>
 
-                <button type="button" id="showAdventures">Welche Adventures gibt es ? </button>
+                <label for="username">Username</label><br>
+                <input type="text" id="username" name="username"><br>
+                <label for=passord> password:</label><br>
+                <input type=password id="password" name="password"><br>
 
-                
-                <label for="notiz"> Geben sie einen Namen ein nach dem sie suchen möchten </label>
-                <input type="text" id="nachNameFiltern" name="produktname">
-                
-                <button type="button" id="filternNachName"> Nach diesem Name suchen</button>
-
-                <div class= "antwortKasten">
-                        <p id=serverantwort> </p>
-                </div>               
+                <button type="button" id="login">Anmelden</button>
         </form>
+
+        <form>
+                <h1>Registrieren</h1>
+                <label for="username">Username</label><br>
+                <input type="text" id="username" name="username"><br>
+                <label for=passord> password:</label><br>
+                <input type=password id="password" name="password"><br>
+
+                <button type="button" id="submitUserData"> regiestrierungs Anfrage senden</button>
+        </form>
+
+        <div>
+                <p id=serverantwort> </p>
+        </div>
+
+
 </body>
 
 </html>
