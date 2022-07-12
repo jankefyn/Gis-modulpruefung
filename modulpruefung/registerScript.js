@@ -17,4 +17,4 @@ var TextAdventure;
         serverantwort.innerHTML = text;
     }
 })(TextAdventure || (TextAdventure = {}));
-//# sourceMappingURL=registerskript.js.map
+//# sourceMappingURL=registerScript.js.map
