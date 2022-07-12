@@ -14,7 +14,7 @@ var TextAdventure;
             url = url + "/login";
         }
         if (_parameter == "UserData") {
-            url = url + "UserData";
+            url = url + "/UserData";
         }
         url = url + "?" + query.toString();
         let response = await fetch(url);
