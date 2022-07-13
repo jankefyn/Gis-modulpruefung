@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <title>Anmelden</title>
+        <script src="loginScript.js" defer></script>
+        <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+        <nav>
+                <div class="container">
+                    <input id="responsive-menu" type="checkbox">
+                    <label for="responsive-menu">Menu <span id="menu-icon"></span></label>
+                    <div id="overlay"></div>
+                    <ul>
+                        <li> <a href="showAdventures.html" >Adventures anzeigen </a></li>
+                        <li> <a href="createAdventures.html" >neue Adventures anlegen </a></li>
+                        <li> <a href="index.html" >Ein Adventure spielen </a></li>
+                        <li> <a href="login.html" id=hervorheben > Anmelden</a></li>
+                        <li> <a href="register.html"> Registrieren</a></li>
+                    </ul>
+                    </div>
+                </div>
+         </nav>
+        <form>
+                <h1>Anmelden</h1>
+
+                <label for="username">Username</label><br>
+                <input type="text" id="loginUserName" name="username"><br>
+                <label for=passord> password:</label><br>
+                <input type=password id="loginPassword" name="password"><br>
+
+                <button type="button" id="login">Anmelden</button>
+        </form>
+        <div>
+                <p id=serverantwort> </p>
+        </div>
+
+
+</body>
+
+</html>

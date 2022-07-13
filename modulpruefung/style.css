@@ -1,23 +1,6 @@
 body{
     display:block;
-    
-    margin: 5px;;
-}
-nav {
-    position:fixed;
-    top:0px;
-    box-shadow: 3px 0px 10px 0px rgb(0 0 0 / 30%);
-    width:100%;
-    padding: 20px;
-    z-index: 100;
-}
-nav a{ 
-    text-decoration: none;
-    padding-left: 50px;
-    margin-right:20px;
-    font-size:20px;
-    font-weight:bold;
-    color:black;
+    margin: 0px;;
 }
 input{
     margin-top:7px;
@@ -41,18 +24,9 @@ form select option:hover{
 form select option:checked{
     background-color:#b7d5df;
 }
-a:hover{
-    color:black;
-}
 html{
     text-align: center;
     font-family: sans-serif;
-}
-a:visited { 
-    color:black 
-}
-#hervorheben{
-    color: #b7d5df;
 }
 button {
     margin-bottom:20px;
@@ -111,6 +85,132 @@ button::before {
 .description{
     margin-top: 70px;
 }
+/************************************************/
+/****************** NAVIGATION ******************/
+/************************************************/
+nav {
+    background: #b7d5df;
+    color: #1d1f20;
+    left: 0;
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+#hervorheben{
+    color:white !important;
+}
+/*** INPUT ***/
+nav input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
 
+/*** LABEL ***/
+nav label {
+    cursor: pointer;
+    display: block;
+    font-size:x-large;
+    padding: 0.5em;
+}
+
+/* Hamburger Icon */
+#menu-icon,
+#menu-icon:before,
+#menu-icon:after {
+    background: #1d1f20;
+    border-radius: 0.05em;
+    height: 0.2em;
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+}
+
+#menu-icon {
+    display: inline-block;
+    margin: 0.4em 0;
+    max-width: 1em;
+    position: relative;
+}
+
+nav label #menu-icon {
+    float: right;
+}
+
+#menu-icon:before,
+#menu-icon:after {
+    content: '';
+    left: 0;
+    position: absolute;
+}
+
+#menu-icon:before {
+    top: -0.4em;
+}
+
+#menu-icon:after {
+    bottom: -0.4em;
+}
+
+/* Close Icon */
+nav input[type=checkbox]:checked + label #menu-icon {
+    background: transparent;
+}
+
+nav input[type=checkbox]:checked + label #menu-icon:before {
+    top: 0;
+    transform: rotate(-45deg);
+}
+
+nav input[type=checkbox]:checked + label #menu-icon:after {
+    bottom: 0;
+    transform: rotate(45deg);
+}
+
+
+/*** MENU ***/
+/* Overlay */
+nav input:checked ~ #overlay {
+    background: #b7d5df;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100vw;
+    z-index: -1;
+}
+
+/* List */
+nav ul {
+    font-size: 1.5em;
+    list-style: none;
+    margin: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+}
+
+nav input:checked ~ ul {
+    margin: 1em;
+    max-height: inherit;
+    opacity: 1;
+}
+
+nav ul > li {
+    margin: 0.5em 0;
+}
+
+nav ul a {
+    color: #1d1f20;
+    text-decoration: none;
+}
+
+nav ul a:hover {
+    text-decoration: underline;
+}
 
 

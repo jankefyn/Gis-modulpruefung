@@ -1,40 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <title>Adventure aussuchen und Spielen</title>
-        <script src="controllsScript.js" defer></script>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<head>
+    <title>Adventure aussuchen und Spielen</title>
+    <script src="controllsScript.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
 
 <body>
-        <nav>
-            <a href="adventuresAnzeigen.html" >Adventures anzeigen </a>
-            <a href="anlegen.html" >neue Adventures anlegen </a>
-            <a href="index.html" id=hervorheben >Ein Adventure spielen </a>
-            <a href="anmelden.html">Registrieren oder Anmelden</a>
-        </nav>
-
-<body>
-    <form >
-        <div class="description">
-        <label for="notiz" > Geben sie hier den Name des Adventures ein welches sie spielen wollen</label>
-        <input type="text" id="nameEingeben" name="adventureName">
-        <button type="button" id="adventureAussuchen"> Dieses Adventure spielen</button>
+    <nav>
+        <div class="container">
+            <input id="responsive-menu" type="checkbox">
+            <label for="responsive-menu">Menu <span id="menu-icon"></span></label>
+            <div id="overlay"></div>
+            <ul>
+                <li> <a href="showAdventures.html">Adventures anzeigen </a></li>
+                <li> <a href="createAdventures.html" >neue Adventures anlegen </a></li>
+                <li> <a href="index.html" id=hervorheben >Ein Adventure spielen </a></li>
+                <li> <a href="login.html"> Anmelden</a></li>
+                <li> <a href="register.html"> Registrieren</a></li>
+            </ul>
         </div>
-    </form>
-    <div class="steuerung" id="ste">
-        <button id="buttonUp">↑</button>
-    </div>
-    <div >
-        <button id="buttonLeft">←</button>
-        
-        <button id="buttonRight">→</button>             
-    </div>
-    <button id="buttonDown">↓</button> 
-    <div class= "antwortKasten">
-        <p id=serverantwort> </p>
-</div>
-</body>
+        </div>
+    </nav>
+
+    <body>
+        <form>
+            <div class="description">
+                <label for="notiz"> Geben sie hier den Name des Adventures ein welches sie spielen wollen</label>
+                <input type="text" id="nameEingeben" name="adventureName">
+                <button type="button" id="adventureAussuchen"> Dieses Adventure spielen</button>
+            </div>
+        </form>
+        <div class="steuerung" id="ste">
+            <button id="buttonUp">↑</button>
+        </div>
+        <div>
+            <button id="buttonLeft">←</button>
+
+            <button id="buttonRight">→</button>
+        </div>
+        <button id="buttonDown">↓</button>
+        <div class="antwortKasten">
+            <p id=serverantwort> </p>
+        </div>
+    </body>
 
 </html>
