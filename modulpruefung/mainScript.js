@@ -88,10 +88,6 @@ var TextAdventure;
                 if (data[counter].username == _username) {
                     return "Ein Konto mit diesem username besteht bereits";
                 }
-                else {
-                    userCollection.insertOne(_rückgabe);
-                    return ("Nutzer erfolgreich registriert");
-                }
             }
         }
         userCollection.insertOne(_rückgabe);
