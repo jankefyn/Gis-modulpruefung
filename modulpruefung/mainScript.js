@@ -84,6 +84,7 @@ var TextAdventure;
         let data = await userCollection.find().toArray();
         if (data.length > 0) {
             for (let counter = 0; counter < data.length; counter++) {
+                console.log("der data counter ist bei: " + data[counter] + " der username an der stelle ist: " + data[counter].username);
                 if (data[counter].username == _username) {
                     return "Ein Konto mit diesem username besteht bereits";
                 }

@@ -118,6 +118,7 @@ export namespace TextAdventure {
 
         if (data.length > 0) {
             for (let counter: number = 0; counter < data.length; counter++) {
+                console.log("der data counter ist bei: " + data[counter] + " der username an der stelle ist: " + data[counter].username);
                 if (data[counter].username == _username) {
 
                     return "Ein Konto mit diesem username besteht bereits";
@@ -129,7 +130,6 @@ export namespace TextAdventure {
                 }
             }
         }
-
         userCollection.insertOne(_rückgabe);
         return "Nutzer erfolgreich registriert";
     }
