@@ -101,6 +101,7 @@ var TextAdventure;
                 if (data[counter].username == _username) {
                     if (data[counter].password == _password) {
                         dataString = "angemeldet";
+                        return (dataString);
                     }
                     else {
                         dataString = " falsches Passwort";
@@ -109,6 +110,7 @@ var TextAdventure;
                 }
                 else {
                     dataString = "falscher username";
+                    return (dataString);
                 }
             }
             return (dataString);
