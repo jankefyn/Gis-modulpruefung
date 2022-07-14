@@ -104,6 +104,7 @@ var TextAdventure;
                     }
                     else {
                         dataString = " falsches Passwort";
+                        return (dataString);
                     }
                 }
                 else {
