@@ -6,15 +6,11 @@ import * as Mongo from "mongodb";
 
 
 export namespace TextAdventure {
-    /* enum PlayerState {
-         USER,
-         PLAYER,
-         REGISTERT_USER
-     }*/
+
     interface Input {
         [type: string]: string | string[];
     }
-    interface User {
+    class User {
         username: string; 
         password: string;
     }
@@ -24,7 +20,7 @@ export namespace TextAdventure {
         sizeX: number;
         sizeY: number;
     }
-    class SelectabelAdventure {
+    class SelectableAdventure {
         name: string;
         places: string;
         sizeX: number;
@@ -41,7 +37,7 @@ export namespace TextAdventure {
     let textAdventureCollection: Mongo.Collection;
     let userCollection: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
-    let selectedAdventure: SelectabelAdventure = new SelectabelAdventure("empty", "empty", 0, 0);
+    let selectedAdventure: SelectableAdventure = new SelectableAdventure("empty", "empty", 0, 0);
     let currentLocationNumber: number = 0;
 
 

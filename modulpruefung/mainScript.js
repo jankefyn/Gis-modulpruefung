@@ -6,7 +6,11 @@ const url = require("url");
 const Mongo = require("mongodb");
 var TextAdventure;
 (function (TextAdventure) {
-    class SelectabelAdventure {
+    class User {
+        username;
+        password;
+    }
+    class SelectableAdventure {
         name;
         places;
         sizeX;
@@ -21,7 +25,7 @@ var TextAdventure;
     let textAdventureCollection;
     let userCollection;
     let databaseUrl = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
-    let selectedAdventure = new SelectabelAdventure("empty", "empty", 0, 0);
+    let selectedAdventure = new SelectableAdventure("empty", "empty", 0, 0);
     let currentLocationNumber = 0;
     console.log("Starting server");
     let port = Number(process.env.PORT);
