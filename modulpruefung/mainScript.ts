@@ -134,6 +134,7 @@ export namespace TextAdventure {
             console.log(data);
             let dataString: string;
             for (let counter: number = 0; counter < data.length; counter++) {
+                console.log(data[counter].username);
                 if (data[counter].username == _username) {
                     if (data[counter].password == password) {
                         dataString = "angemeldet";
