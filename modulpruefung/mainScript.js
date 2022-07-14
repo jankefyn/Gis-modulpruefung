@@ -96,6 +96,7 @@ var TextAdventure;
     async function login(_username, password) {
         let data = await userCollection.find().toArray();
         if (data.length > 0) {
+            console.log(data);
             let dataString;
             for (let counter = 0; counter < data.length; counter++) {
                 if (data[counter].username == _username) {

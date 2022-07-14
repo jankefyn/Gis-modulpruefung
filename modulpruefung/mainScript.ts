@@ -11,7 +11,7 @@ export namespace TextAdventure {
         [type: string]: string | string[];
     }
     interface User {
-        username: string; 
+        username: string;
         password: string;
     }
     interface TextAdventure {
@@ -131,7 +131,7 @@ export namespace TextAdventure {
 
         let data: User[] = await userCollection.find().toArray();
         if (data.length > 0) {
-
+            console.log(data);
             let dataString: string;
             for (let counter: number = 0; counter < data.length; counter++) {
                 if (data[counter].username == _username) {
