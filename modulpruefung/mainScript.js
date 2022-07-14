@@ -99,6 +99,7 @@ var TextAdventure;
             let dataString;
             for (let counter = 0; counter < data.length; counter++) {
                 console.log(data[counter].username);
+                console.log("username: " + _username);
                 if (data[counter].username == _username) {
                     if (data[counter].password == password) {
                         dataString = "angemeldet";
