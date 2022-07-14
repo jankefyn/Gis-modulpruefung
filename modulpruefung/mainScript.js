@@ -96,27 +96,25 @@ var TextAdventure;
     async function login(_username, password) {
         let data = await userCollection.find().toArray();
         if (data.length > 0) {
-            let dataString;
             for (let counter = 0; counter < data.length; counter++) {
                 console.log(data[counter].username);
                 console.log("username: " + _username);
                 if (data[counter].username == _username) {
                     if (data[counter].password == password) {
-                        dataString = "angemeldet";
+                        return ("angemeldet");
                     }
                     else {
-                        dataString = " falsches Passwort";
-                        return (dataString);
+                        return (" falsches Passwort");
                     }
                 }
                 else {
-                    dataString = "falscher username";
+                    return ("falscher username");
                 }
             }
-            return (dataString);
         }
-        else
+        else {
             return "Anmeldedaten nicht gefunden";
+        }
     }
     async function showAdventures() {
         let data = await textAdventureCollection.find().toArray();

@@ -131,26 +131,25 @@ export namespace TextAdventure {
 
         let data: User[] = await userCollection.find().toArray();
         if (data.length > 0) {
-            let dataString: string;
             for (let counter: number = 0; counter < data.length; counter++) {
                 console.log(data[counter].username);
                 console.log("username: " + _username);
                 if (data[counter].username == _username) {
                     if (data[counter].password == password) {
-                        dataString = "angemeldet";
+                        return( "angemeldet" );
                     }
-                    else {
-                        dataString = " falsches Passwort";
-                        return(dataString);
+                    else {      
+                        return (" falsches Passwort");
                     }
                 }
                 else {
-                    dataString = "falscher username";
+                    return ("falscher username");
                 }
             }
-            return (dataString);
         }
-        else return "Anmeldedaten nicht gefunden";
+        else {
+            return "Anmeldedaten nicht gefunden";
+        }
 
     }
     async function showAdventures(): Promise<String> {
