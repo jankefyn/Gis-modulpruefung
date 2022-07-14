@@ -120,7 +120,7 @@ export namespace TextAdventure {
             for (let counter: number = 0; counter < data.length; counter++) {
                 if (data[counter].username == _username) {
 
-                    return "Ein Konto mit dieser email adresse besteht bereits";
+                    return "Ein Konto mit diesem username besteht bereits";
 
                 }
                 else {
