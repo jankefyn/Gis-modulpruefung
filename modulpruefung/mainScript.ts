@@ -133,6 +133,7 @@ export namespace TextAdventure {
         if (data.length > 0) {
             for (let counter: number = 0; counter < data.length; counter++) {
                 if (data[counter].username == _username) {
+                    console.log("hallo ich bin hier im code");
                     if (data[counter].password == password) {
                         return( "angemeldet" );
                     }
