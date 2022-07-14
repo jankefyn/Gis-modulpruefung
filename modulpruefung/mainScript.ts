@@ -131,7 +131,6 @@ export namespace TextAdventure {
 
         let data: User[] = await userCollection.find().toArray();
         if (data.length > 0) {
-            console.log(data);
             let dataString: string;
             for (let counter: number = 0; counter < data.length; counter++) {
                 console.log(data[counter].username);
