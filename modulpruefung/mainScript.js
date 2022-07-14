@@ -6,10 +6,6 @@ const url = require("url");
 const Mongo = require("mongodb");
 var TextAdventure;
 (function (TextAdventure) {
-    class User {
-        username;
-        password;
-    }
     class SelectableAdventure {
         name;
         places;

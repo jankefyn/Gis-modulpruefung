@@ -10,7 +10,7 @@ export namespace TextAdventure {
     interface Input {
         [type: string]: string | string[];
     }
-    class User {
+    interface User {
         username: string; 
         password: string;
     }
