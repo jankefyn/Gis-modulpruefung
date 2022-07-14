@@ -142,14 +142,9 @@ export namespace TextAdventure {
                         dataString = " falsches Passwort";
                         return(dataString);
                     }
-                }
-                else {
-                    dataString = "falscher username";
-                    return(dataString);
-                }
+                }    
             }
-
-            return (dataString);
+            return ("falscher username");
         }
         else return "Anmeldedaten nicht gefunden";
 

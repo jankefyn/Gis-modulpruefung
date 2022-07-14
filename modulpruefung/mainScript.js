@@ -108,12 +108,8 @@ var TextAdventure;
                         return (dataString);
                     }
                 }
-                else {
-                    dataString = "falscher username";
-                    return (dataString);
-                }
             }
-            return (dataString);
+            return ("falscher username");
         }
         else
             return "Anmeldedaten nicht gefunden";
