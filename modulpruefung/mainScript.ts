@@ -115,7 +115,9 @@ export namespace TextAdventure {
 
     async function saveUser(_rückgabe: Input, _username: string | string[]): Promise<string> {
         let data: User[] = await userCollection.find().toArray();
-
+        if (_username.toString().match(/[\W_]+/g)) {
+            return ("im username sind nicht alphanumerische zeichen.");
+        }
         if (data.length > 0) {
             for (let counter: number = 0; counter < data.length; counter++) {
                 console.log("der data counter ist bei: " + data[counter] + " der username an der stelle ist: " + data[counter].username);
@@ -211,8 +213,8 @@ export namespace TextAdventure {
             textAdventureCollection.insertOne(_rückgabe);
             return ("Text Adventure erfolgreich gespeichert!");
         }
-        else return("Bei der eingabe der Felder ist etwas schiefgelaufen. Bitte überprüfe ob die Eingabe wie im Beispiel formatiert wurde.")
-        
+        else return ("Bei der eingabe der Felder ist etwas schiefgelaufen. Bitte überprüfe ob die Eingabe wie im Beispiel formatiert wurde.")
+
     }
     export async function onAction(_action: string): Promise<string> {
         let stringSplitLimiter: number = selectedAdventure.sizeX * selectedAdventure.sizeY;

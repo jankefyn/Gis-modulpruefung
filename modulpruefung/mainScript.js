@@ -82,6 +82,9 @@ var TextAdventure;
     }
     async function saveUser(_rückgabe, _username) {
         let data = await userCollection.find().toArray();
+        if (_username.toString().match(/[\W_]+/g)) {
+            return ("im username sind nicht alphanumerische zeichen.");
+        }
         if (data.length > 0) {
             for (let counter = 0; counter < data.length; counter++) {
                 console.log("der data counter ist bei: " + data[counter] + " der username an der stelle ist: " + data[counter].username);
