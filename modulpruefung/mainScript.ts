@@ -406,6 +406,7 @@ export namespace TextAdventure {
                     myStatistics[arraycounter].adventureName = generalStatistics[statisticsCounter].adventureName;
                     myStatistics[arraycounter].statisticsMap = generalStatistics[statisticsCounter].statisticsMap;
                     arraycounter = arraycounter + 1;
+                    console.log("my statistics: " + myStatistics);
                 }
             }
         }
