@@ -7,7 +7,9 @@ import * as Mongo from "mongodb";
 
 export namespace TextAdventure {
 
-
+    let textAdventureCollection: Mongo.Collection;
+    let userCollection: Mongo.Collection;
+    let statisticsCollection: Mongo.Collection;
 
 
     enum PlayingState {
@@ -67,7 +69,7 @@ export namespace TextAdventure {
             }
             else return false;
         }
-        /*async getMyAdventures(): Promise<string[]> {
+        async getMyAdventures(): Promise<string[]> {
             let data: TextAdventure[] = await textAdventureCollection.find().toArray();
             let dataString: string[];
             if (data.length > 0) {
@@ -78,14 +80,11 @@ export namespace TextAdventure {
                 }
             }
             return (dataString);
-        }*/
+        }
     }
     let selectedAdventure: SelectableAdventure = new SelectableAdventure("empty", "empty", 0, 0);
     let currentUser: User = new User("empty", ["empty1", "empty2"]);
     let currentLocationNumber: number = 0;
-    let textAdventureCollection: Mongo.Collection;
-    let userCollection: Mongo.Collection;
-    let statisticsCollection: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     console.log("Starting server");
     let port: number = Number(process.env.PORT);

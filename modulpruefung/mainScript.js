@@ -6,6 +6,9 @@ const url = require("url");
 const Mongo = require("mongodb");
 var TextAdventure;
 (function (TextAdventure) {
+    let textAdventureCollection;
+    let userCollection;
+    let statisticsCollection;
     let PlayingState;
     (function (PlayingState) {
         PlayingState[PlayingState["REGISTERED"] = 0] = "REGISTERED";
@@ -46,13 +49,22 @@ var TextAdventure;
             else
                 return false;
         }
+        async getMyAdventures() {
+            let data = await textAdventureCollection.find().toArray();
+            let dataString;
+            if (data.length > 0) {
+                for (let counter = 0; counter - 1 < data.length; counter++) {
+                    if (data[counter].username == this.username) {
+                        dataString.push(data[counter].name);
+                    }
+                }
+            }
+            return (dataString);
+        }
     }
     let selectedAdventure = new SelectableAdventure("empty", "empty", 0, 0);
     let currentUser = new User("empty", ["empty1", "empty2"]);
     let currentLocationNumber = 0;
-    let textAdventureCollection;
-    let userCollection;
-    let statisticsCollection;
     let databaseUrl = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     console.log("Starting server");
     let port = Number(process.env.PORT);
