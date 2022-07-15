@@ -393,7 +393,9 @@ export namespace TextAdventure {
         let generalStatistics: Statistics[] = await statisticsCollection.find().toArray();
         let dataString: string;
         let rückgabe: string = "";
-        let myStatistics: Statistics[];
+        let emptyStatistics: Statistics = new Statistics ("");
+        let emptyStatistics2: Statistics = new Statistics("");
+        let myStatistics: Statistics[] = [ emptyStatistics, emptyStatistics2];
         let saveMatchingcounterMap: Map<string, number> = new Map<string, number>();
 
         for (let myAdventuresCounter: number = 0; myAdventuresCounter < myAdventuresArray.length; myAdventuresCounter++) {
