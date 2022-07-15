@@ -219,7 +219,7 @@ export namespace TextAdventure {
                 numberForCounter = numberForCounter - 5;
             }
             else {
-                return(" Sie sehen bereits die ersten 5 sie können nicht niedriger anzeigen lassen.");
+                return(" Sie sahen bereits die ersten 5 sie können nicht niedriger anzeigen lassen.");
             }
         }
         let limiterForfor: number = numberForCounter + 5;
