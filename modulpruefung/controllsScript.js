@@ -11,6 +11,8 @@ var TextAdventure;
     buttonDown.addEventListener("click", function () { submit("down"); });
     let adventureAussuchen = document.getElementById("adventureAussuchen");
     adventureAussuchen.addEventListener("click", function () { submit("selectAdventure"); });
+    let saveSwipes = document.getElementById("saveSwipes");
+    saveSwipes.addEventListener("click", function () { submit("saveSwipes"); });
     let serverantwort = document.getElementById("serverantwort");
     async function submit(_parameter) {
         let formData = new FormData(document.forms[0]);
@@ -31,6 +33,9 @@ var TextAdventure;
         }
         if (_parameter == "selectAdventure") {
             url = url + "/selectAdventure";
+        }
+        if (_parameter == "saveSwipes") {
+            url = url + "/saveSwipes";
         }
         url = url + "?" + query.toString();
         let response = await fetch(url);

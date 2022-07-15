@@ -6,45 +6,10 @@ const url = require("url");
 const Mongo = require("mongodb");
 var TextAdventure;
 (function (TextAdventure) {
-    let PlayingState;
-    (function (PlayingState) {
-        PlayingState[PlayingState["REGISTERED"] = 0] = "REGISTERED";
-        PlayingState[PlayingState["UNREGISTERED"] = 1] = "UNREGISTERED";
-    })(PlayingState || (PlayingState = {}));
-    class SelectableAdventure {
-        name;
-        places;
-        sizeX;
-        sizeY;
-        constructor(_name, _places, _sizeX, _sizeY) {
-            this.name = _name;
-            this.places = _places;
-            this.sizeX = _sizeX;
-            this.sizeY = _sizeY;
-        }
-    }
-    class User {
-        username;
-        createdAdventures;
-        playingState = PlayingState.UNREGISTERED;
-        constructor(_username, _createdAdventures) {
-            this.username = _username;
-            this.createdAdventures = _createdAdventures;
-        }
-        isRegistered() {
-            if (this.playingState == PlayingState.REGISTERED) {
-                return true;
-            }
-            else
-                return false;
-        }
-    }
     let textAdventureCollection;
     let userCollection;
+    let statisticsCollection;
     let databaseUrl = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
-    let selectedAdventure = new SelectableAdventure("empty", "empty", 0, 0);
-    let currentUser = new User("empty", ["empty1", "empty2"]);
-    let currentLocationNumber = 0;
     console.log("Starting server");
     let port = Number(process.env.PORT);
     if (!port)
@@ -63,6 +28,7 @@ var TextAdventure;
         await mongoClient.connect();
         textAdventureCollection = mongoClient.db("Test").collection("Adventures");
         userCollection = mongoClient.db("Test").collection("Users");
+        statisticsCollection = mongoClient.db("Test").collection("Statistics");
         console.log("Database connection from adventures: ", textAdventureCollection != undefined);
         console.log("Database connectionfrom Users: ", userCollection != undefined);
     }
@@ -100,8 +66,70 @@ var TextAdventure;
         if (q.pathname == "//down") {
             _response.write(await onAction("down"));
         }
+        if (q.pathname == "//showStatistics") {
+            _response.write(await showStatistics());
+        }
+        if (q.pathname == "//saveSwipes") {
+            _response.write(await saveSwipes());
+        }
         _response.end();
     }
+    let PlayingState;
+    (function (PlayingState) {
+        PlayingState[PlayingState["REGISTERED"] = 0] = "REGISTERED";
+        PlayingState[PlayingState["UNREGISTERED"] = 1] = "UNREGISTERED";
+    })(PlayingState || (PlayingState = {}));
+    class SelectableAdventure {
+        name;
+        places;
+        sizeX;
+        sizeY;
+        statistics = new Map();
+        constructor(_name, _places, _sizeX, _sizeY) {
+            this.name = _name;
+            this.places = _places;
+            this.sizeX = _sizeX;
+            this.sizeY = _sizeY;
+        }
+    }
+    class Statistics {
+        adventureName;
+        statisticsMap = new Map();
+        constructor(_adventureName) {
+            this.adventureName = _adventureName;
+        }
+    }
+    class User {
+        username;
+        createdAdventures;
+        playingState = PlayingState.UNREGISTERED;
+        constructor(_username, _createdAdventures) {
+            this.username = _username;
+            this.createdAdventures = _createdAdventures;
+        }
+        isRegistered() {
+            if (this.playingState == PlayingState.REGISTERED) {
+                return true;
+            }
+            else
+                return false;
+        }
+        async getMyAdventures() {
+            let data = await textAdventureCollection.find().toArray();
+            let dataString;
+            if (data.length > 0) {
+                for (let counter = 0; counter - 1 < data.length; counter++) {
+                    if (data[counter].username == this.username) {
+                        dataString.push(data[counter].name);
+                    }
+                }
+            }
+            return (dataString);
+        }
+    }
+    let selectedAdventure = new SelectableAdventure("empty", "empty", 0, 0);
+    let currentUser = new User("empty", ["empty1", "empty2"]);
+    let currentLocationNumber = 0;
     async function saveUser(_rückgabe, _username) {
         let data = await userCollection.find().toArray();
         if (_username.toString().match(/[\W_]+/g)) {
@@ -222,46 +250,83 @@ var TextAdventure;
         let endOfRowNumber = selectedAdventure.sizeX - 1;
         let startOfRowNumber = 0;
         let startOfLastRow = selectedAdventure.sizeX * (selectedAdventure.sizeY - 1);
+        let swipecounter = 0;
         if (selectedAdventure.places == undefined) {
             return ("es wurde noch kein Adventure ausgewählt");
         }
         if (_action == "left") {
+            swipecounter = swipecounter + 1;
             for (let counter = 0; counter < selectedAdventure.sizeY; counter++) {
                 if (currentLocationNumber == startOfRowNumber) {
+                    if (selectedAdventure.statistics.has(currentUser.username)) {
+                        selectedAdventure.statistics.delete(currentUser.username);
+                    }
+                    selectedAdventure.statistics.set(currentUser.username, swipecounter);
                     return ("du bist am rechten Linken Rand des Adventures angekommen und kannst deshalb nicht weiter nach Links. Du bleibst deshalb hier: " + adventureMap[currentLocationNumber]);
                 }
                 startOfRowNumber = 1 * startOfRowNumber + 1 * selectedAdventure.sizeX;
             }
+            if (selectedAdventure.statistics.has(currentUser.username)) {
+                selectedAdventure.statistics.delete(currentUser.username);
+            }
+            selectedAdventure.statistics.set(currentUser.username, swipecounter);
             currentLocationNumber = currentLocationNumber + -1;
             return (adventureMap[currentLocationNumber]);
         }
         else if (_action == "right") {
+            swipecounter = swipecounter + 1;
             for (let counter = 0; counter < selectedAdventure.sizeY; counter++) {
                 if (currentLocationNumber == endOfRowNumber) {
+                    if (selectedAdventure.statistics.has(currentUser.username)) {
+                        selectedAdventure.statistics.delete(currentUser.username);
+                    }
+                    selectedAdventure.statistics.set(currentUser.username, swipecounter);
                     return ("du bist am rechten Rand des Adventures angekommen und kannst deshalb nicht weiter nach Rechts. Du bleibst deshalb hier: " + adventureMap[currentLocationNumber]);
                 }
                 endOfRowNumber = 1 * endOfRowNumber + 1 * selectedAdventure.sizeX;
             }
+            if (selectedAdventure.statistics.has(currentUser.username)) {
+                selectedAdventure.statistics.delete(currentUser.username);
+            }
+            selectedAdventure.statistics.set(currentUser.username, swipecounter);
             currentLocationNumber = currentLocationNumber + 1;
             return (adventureMap[currentLocationNumber]);
         }
         else if (_action == "up") {
+            swipecounter = swipecounter + 1;
             if (currentLocationNumber > endOfRowNumber) {
                 currentLocationNumber = currentLocationNumber * 1 - selectedAdventure.sizeX * 1;
                 console.log("currentLocationNumber" + currentLocationNumber);
+                if (selectedAdventure.statistics.has(currentUser.username)) {
+                    selectedAdventure.statistics.delete(currentUser.username);
+                }
+                selectedAdventure.statistics.set(currentUser.username, swipecounter);
                 return (adventureMap[currentLocationNumber]);
             }
             else {
+                if (selectedAdventure.statistics.has(currentUser.username)) {
+                    selectedAdventure.statistics.delete(currentUser.username);
+                }
+                selectedAdventure.statistics.set(currentUser.username, swipecounter);
                 return ("du bist am oberen Rand des Adventures angekommen und kannst deshalb nicht weiter hoch. Du bleibst deshalb hier: " + adventureMap[currentLocationNumber]);
             }
         }
         else if (_action == "down") {
+            swipecounter = swipecounter + 1;
             if (currentLocationNumber < startOfLastRow) {
                 currentLocationNumber = currentLocationNumber * 1 + selectedAdventure.sizeX * 1;
                 console.log("currentLocationNumber" + currentLocationNumber);
+                if (selectedAdventure.statistics.has(currentUser.username)) {
+                    selectedAdventure.statistics.delete(currentUser.username);
+                }
+                selectedAdventure.statistics.set(currentUser.username, swipecounter);
                 return (adventureMap[currentLocationNumber]);
             }
             else {
+                if (selectedAdventure.statistics.has(currentUser.username)) {
+                    selectedAdventure.statistics.delete(currentUser.username);
+                }
+                selectedAdventure.statistics.set(currentUser.username, swipecounter);
                 return ("du bist am unteren Rand des Adventures angekommen und kannst deshalb nicht weiter runter. Du bleibst deshalb hier: " + adventureMap[currentLocationNumber]);
             }
         }
@@ -269,6 +334,28 @@ var TextAdventure;
             return ("ein fehler ist aufgetreten");
         }
     }
-    TextAdventure.onAction = onAction;
+    async function saveSwipes() {
+        let saveStatistics = new Statistics(selectedAdventure.name);
+        saveStatistics.statisticsMap = selectedAdventure.statistics;
+        statisticsCollection.insertOne(saveStatistics);
+        return ("deine bis jetzt gemachten swipes wurden gespeichert");
+    }
+    async function showStatistics() {
+        /*  let myAdventures: string[] = (await currentUser.getMyAdventures());
+          let data: TextAdventure[] = await textAdventureCollection.find().toArray();
+          let dataString: string;
+          for (let myCounter: number = 0; myCounter < myAdventures.length; myCounter++) {
+              for (let allCounter: number = 0; allCounter < data.length; allCounter++) {
+                  if (myAdventures[myCounter] == data[allCounter].name) {
+                      dataString = dataString + "Dein Adventure: " + myAdventures[myCounter] + "wurde " + 0 + " mal gespielt";
+                      if (selectedAdventure.statistics.keys.length > 0) {
+  
+                      }
+                  }
+              }
+  
+          }*/
+        return ("blabla");
+    }
 })(TextAdventure = exports.TextAdventure || (exports.TextAdventure = {}));
 //# sourceMappingURL=mainScript.js.map

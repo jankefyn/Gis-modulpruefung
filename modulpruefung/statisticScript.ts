@@ -1,9 +1,9 @@
-namespace TextAdventure {
+namespace TextAdventure{
 
 
 
-    let loginButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("login");
-    loginButton.addEventListener("click", function (): void { submit("login"); });
+    let loginButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showStatistics");
+    loginButton.addEventListener("click", function (): void { submit("showStatistics"); });
     let serverantwort: HTMLElement = document.getElementById("serverantwort");
 
     async function submit(_parameter: string): Promise<void> {
@@ -12,8 +12,8 @@ namespace TextAdventure {
         //let url: string = "http://localhost:8100/";
         let query: URLSearchParams = new URLSearchParams(<any>formData);
 
-        if (_parameter == "login") {
-            url = url + "/login";
+        if (_parameter == "showStatistics") {
+            url = url + "/showStatistics";
         }
 
         url = url + "?" + query.toString();

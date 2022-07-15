@@ -13,6 +13,8 @@ let buttonDown: HTMLButtonElement = <HTMLButtonElement>document.getElementById("
 buttonDown.addEventListener("click", function (): void { submit("down"); });
 let adventureAussuchen: HTMLButtonElement = <HTMLButtonElement>document.getElementById("adventureAussuchen");
 adventureAussuchen.addEventListener("click", function (): void { submit("selectAdventure"); });
+let saveSwipes: HTMLButtonElement = <HTMLButtonElement>document.getElementById("saveSwipes");
+saveSwipes.addEventListener("click", function (): void { submit("saveSwipes"); });
 
 let serverantwort: HTMLElement = document.getElementById("serverantwort");
 
@@ -37,6 +39,9 @@ async function submit(_parameter: string): Promise<void> {
     }
     if (_parameter == "selectAdventure") {
         url = url + "/selectAdventure";
+    }
+    if (_parameter == "saveSwipes") {
+        url = url + "/saveSwipes";
     }
 
     url = url + "?" + query.toString();

@@ -2,8 +2,8 @@
 <html>
 
 <head>
-        <title>Adventures anzeigen lassen</title>
-        <script src="showAdventures.js" defer></script>
+        <title>Statistiken</title>
+        <script src="statisticScript.js" defer></script>
         <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,24 +14,24 @@
                     <label for="responsive-menu">Menu <span id="menu-icon"></span></label>
                     <div id="overlay"></div>
                     <ul>
-                        <li> <a href="showAdventures.html" id=hervorheben >Adventures anzeigen </a></li>
+                        <li> <a href="showAdventures.html" >Adventures anzeigen </a></li>
                         <li> <a href="createAdventures.html" >Neue Adventures anlegen </a></li>
                         <li> <a href="index.html" >Ein Adventure spielen </a></li>
                         <li> <a href="login.html"> Anmelden</a></li>
                         <li> <a href="register.html"> Registrieren</a></li>
-                        <li> <a href="statistics.html" > Statistiken anzeigen lassen</a></li>
+                        <li> <a href="statistics.html" id=hervorheben > Statistiken anzeigen lassen</a></li>
                     </ul>
-                    </div>
+                    </div> 
                 </div>
          </nav>
         <form>
-
-                <button type="button" id="showAdventures">Welche Adventures gibt es ? </button>
-
-                <div class= "antwortKasten">
-                        <p id=serverantwort> </p>
-                </div>               
+                <button type="button" id="showStatistics">Statisiken anzeigen lassen</button>
         </form>
+        <div>
+                <p id=serverantwort> </p>
+        </div>
+
+
 </body>
 
 </html>
