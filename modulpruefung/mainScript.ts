@@ -50,7 +50,7 @@ export namespace TextAdventure {
         adventureName: string;
         statisticsMap: Map<string, number> = new Map<string, number>();
         constructor(_adventureName: string) {
-            this.adventureName = _adventureName;  
+            this.adventureName = _adventureName;
         }
 
     }
@@ -122,7 +122,7 @@ export namespace TextAdventure {
     let currentLocationNumber: number = 0;
     let swipecounter: number = 0;
 
-    
+
     async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
 
 
@@ -167,7 +167,7 @@ export namespace TextAdventure {
         _response.end();
     }
 
-   
+
 
     async function saveUser(_rückgabe: Input, _username: string | string[]): Promise<string> {
         let data: Users[] = await userCollection.find().toArray();
@@ -384,21 +384,33 @@ export namespace TextAdventure {
         return ("deine bis jetzt gemachten swipes wurden gespeichert");
     }
     async function showStatistics(): Promise<string> {
-      /*  let myAdventures: string[] = (await currentUser.getMyAdventures());
+        let myAdventures: string[] = (await currentUser.getMyAdventures());
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
+        let generalStatistics: Statistics[] = await statisticsCollection.find().toArray();
         let dataString: string;
-        for (let myCounter: number = 0; myCounter < myAdventures.length; myCounter++) {
+        let myStatistics: Statistics[];
+
+
+        for (let myAdventuresCounter: number = 0; myAdventuresCounter < myAdventures.length; myAdventuresCounter++) {
+            dataString = dataString + "Dein Adventure: " + myAdventures[myAdventuresCounter] + " wurde " + generalStatistics.length + " mal gespielt. Hierbei handelt es sich nur um Spiele bei denen nach dem spielen auf den button swipes speichern geklickt wurde";
+
+            for (let statisticsCounter: number = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
+                if (generalStatistics[statisticsCounter].adventureName == myAdventures[myAdventuresCounter]) {
+                    myStatistics[myAdventuresCounter].adventureName = generalStatistics[statisticsCounter].adventureName;
+                    myStatistics[myAdventuresCounter].statisticsMap = generalStatistics[statisticsCounter].statisticsMap;
+                }
+            }
+        }
+        for (let myStatisticsCounter: number = 0; myStatisticsCounter < myAdventures.length; myStatisticsCounter++) {
             for (let allCounter: number = 0; allCounter < data.length; allCounter++) {
-                if (myAdventures[myCounter] == data[allCounter].name) {
-                    dataString = dataString + "Dein Adventure: " + myAdventures[myCounter] + "wurde " + 0 + " mal gespielt";
-                    if (selectedAdventure.statistics.keys.length > 0) {
+                if (myAdventures[myStatisticsCounter] == data[allCounter].name) {
+
+                    {
 
                     }
                 }
             }
-
-        }*/
-        return ("blabla");
+        }
+        return ("Zu keinem deiner Adventures wurden bisher statistiken angelegt.");
     }
 }
-
