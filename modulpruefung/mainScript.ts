@@ -387,14 +387,12 @@ export namespace TextAdventure {
     }
     async function showStatistics(): Promise<string> {
         let myAdventuresString: string[] = (await getMyAdventures());
-        let data: TextAdventure[] = await textAdventureCollection.find().toArray();
         let generalStatistics: Statistics[] = await statisticsCollection.find().toArray();
         let rückgabe: string = "";
         let arraycounter: number = 0;
         let emptyStatistics: Statistics = new Statistics("");
         let emptyStatistics2: Statistics = new Statistics("");
         let myStatistics: Statistics[] = [emptyStatistics, emptyStatistics2];
-        let saveMatchingcounterMap: Map<string, number> = new Map<string, number>();
 
         if (currentUser.isRegistered()) {
             for (let myAdventuresCounter: number = 0; myAdventuresCounter < myAdventuresString.length; myAdventuresCounter++) {

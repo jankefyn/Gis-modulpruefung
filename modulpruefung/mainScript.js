@@ -339,14 +339,12 @@ var TextAdventure;
     }
     async function showStatistics() {
         let myAdventuresString = (await getMyAdventures());
-        let data = await textAdventureCollection.find().toArray();
         let generalStatistics = await statisticsCollection.find().toArray();
         let rückgabe = "";
         let arraycounter = 0;
         let emptyStatistics = new Statistics("");
         let emptyStatistics2 = new Statistics("");
         let myStatistics = [emptyStatistics, emptyStatistics2];
-        let saveMatchingcounterMap = new Map();
         if (currentUser.isRegistered()) {
             for (let myAdventuresCounter = 0; myAdventuresCounter < myAdventuresString.length; myAdventuresCounter++) {
                 for (let statisticsCounter = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
