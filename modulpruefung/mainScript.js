@@ -327,7 +327,7 @@ var TextAdventure;
     }
     async function getMyAdventures() {
         let data = await textAdventureCollection.find().toArray();
-        let dataString = ["", ""];
+        let dataString;
         if (data.length > 0) {
             for (let counter = 0; counter < data.length; counter++) {
                 if (data[counter].username == currentUser.username) {

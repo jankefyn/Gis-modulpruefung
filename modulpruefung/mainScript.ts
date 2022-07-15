@@ -375,7 +375,7 @@ export namespace TextAdventure {
 
     async function getMyAdventures(): Promise<string[]> {
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
-        let dataString: string[] = ["", ""];
+        let dataString: string[];
         if (data.length > 0) {
             for (let counter: number = 0; counter < data.length; counter++) {
                 if (data[counter].username == currentUser.username) {
