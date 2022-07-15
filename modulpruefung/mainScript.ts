@@ -82,9 +82,7 @@ export namespace TextAdventure {
             return (dataString);
         }
     }
-    let selectedAdventure: SelectableAdventure = new SelectableAdventure("empty", "empty", 0, 0);
-    let currentUser: User = new User("empty", ["empty1", "empty2"]);
-    let currentLocationNumber: number = 0;
+
     let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     console.log("Starting server");
     let port: number = Number(process.env.PORT);
@@ -119,7 +117,12 @@ export namespace TextAdventure {
         console.log("Listening");
     }
 
+    let selectedAdventure: SelectableAdventure = new SelectableAdventure("empty", "empty", 0, 0);
+    let currentUser: User = new User("empty", ["empty1", "empty2"]);
+    let currentLocationNumber: number = 0;
+    let swipecounter: number = 0;
 
+    
     async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
 
 
@@ -290,7 +293,6 @@ export namespace TextAdventure {
         let endOfRowNumber: number = selectedAdventure.sizeX - 1;
         let startOfRowNumber: number = 0;
         let startOfLastRow: number = selectedAdventure.sizeX * (selectedAdventure.sizeY - 1);
-        let swipecounter: number = 0;
         if (selectedAdventure.places == undefined) {
             return ("es wurde noch kein Adventure ausgewählt");
         }

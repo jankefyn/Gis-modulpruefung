@@ -62,9 +62,6 @@ var TextAdventure;
             return (dataString);
         }
     }
-    let selectedAdventure = new SelectableAdventure("empty", "empty", 0, 0);
-    let currentUser = new User("empty", ["empty1", "empty2"]);
-    let currentLocationNumber = 0;
     let databaseUrl = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     console.log("Starting server");
     let port = Number(process.env.PORT);
@@ -91,6 +88,10 @@ var TextAdventure;
     function handleListen() {
         console.log("Listening");
     }
+    let selectedAdventure = new SelectableAdventure("empty", "empty", 0, 0);
+    let currentUser = new User("empty", ["empty1", "empty2"]);
+    let currentLocationNumber = 0;
+    let swipecounter = 0;
     async function handleRequest(_request, _response) {
         _response.setHeader("Access-Control-Allow-Origin", "*");
         let q = url.parse(_request.url, true);
@@ -250,7 +251,6 @@ var TextAdventure;
         let endOfRowNumber = selectedAdventure.sizeX - 1;
         let startOfRowNumber = 0;
         let startOfLastRow = selectedAdventure.sizeX * (selectedAdventure.sizeY - 1);
-        let swipecounter = 0;
         if (selectedAdventure.places == undefined) {
             return ("es wurde noch kein Adventure ausgewählt");
         }
