@@ -81,6 +81,7 @@ var TextAdventure;
     let currentUser = new User("empty", ["empty1", "empty2"]);
     let currentLocationNumber = 0;
     let swipecounter = 0;
+    let numberForCounter = 0;
     async function handleRequest(_request, _response) {
         _response.setHeader("Access-Control-Allow-Origin", "*");
         let q = url.parse(_request.url, true);
@@ -165,7 +166,6 @@ var TextAdventure;
             return "Anmeldedaten nicht gefunden";
     }
     async function showAdventures(_param) {
-        let numberForCounter = 0;
         if (_param == "normal") {
             numberForCounter = 0;
         }

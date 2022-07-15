@@ -111,6 +111,7 @@ export namespace TextAdventure {
     let currentUser: User = new User("empty", ["empty1", "empty2"]);
     let currentLocationNumber: number = 0;
     let swipecounter: number = 0;
+    let numberForCounter: number = 0;
 
 
     async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): Promise<void> {
@@ -206,7 +207,7 @@ export namespace TextAdventure {
     }
     async function showAdventures(_param: string): Promise<String> {
 
-        let numberForCounter: number = 0;
+        
         if (_param == "normal") {
             numberForCounter = 0;
         }
