@@ -341,40 +341,44 @@ var TextAdventure;
         let myAdventuresString = (await getMyAdventures());
         let data = await textAdventureCollection.find().toArray();
         let generalStatistics = await statisticsCollection.find().toArray();
-        let dataString;
         let rückgabe = "";
         let arraycounter = 0;
         let emptyStatistics = new Statistics("");
         let emptyStatistics2 = new Statistics("");
         let myStatistics = [emptyStatistics, emptyStatistics2];
         let saveMatchingcounterMap = new Map();
-        for (let myAdventuresCounter = 0; myAdventuresCounter < myAdventuresString.length; myAdventuresCounter++) {
-            for (let statisticsCounter = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
-                if (generalStatistics[statisticsCounter].adventureName == myAdventuresString[myAdventuresCounter]) {
-                    myStatistics[arraycounter].adventureName = generalStatistics[statisticsCounter].adventureName;
-                    myStatistics[arraycounter].statisticsMap = generalStatistics[statisticsCounter].statisticsMap;
-                    arraycounter = arraycounter + 1;
-                }
-            }
-        }
-        for (let myStatisticsCounter = 0; myStatisticsCounter < myStatistics.length; myStatisticsCounter++) {
-            for (let allCounter = 0; allCounter < data.length; allCounter++) {
-                if (myStatistics[myStatisticsCounter].adventureName == data[allCounter].name) {
-                    dataString = dataString + "Das Adventure " + myStatistics[myStatisticsCounter].adventureName;
-                    if (saveMatchingcounterMap.has(myStatistics[myStatisticsCounter].adventureName)) {
-                        let currentscore = saveMatchingcounterMap.get(myStatistics[myStatisticsCounter].adventureName) + 1;
-                        saveMatchingcounterMap.delete(myStatistics[myStatisticsCounter].adventureName);
-                        saveMatchingcounterMap.set(myStatistics[myStatisticsCounter].adventureName, currentscore);
+        if (currentUser.isRegistered()) {
+            for (let myAdventuresCounter = 0; myAdventuresCounter < myAdventuresString.length; myAdventuresCounter++) {
+                for (let statisticsCounter = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
+                    if (generalStatistics[statisticsCounter].adventureName == myAdventuresString[myAdventuresCounter]) {
+                        myStatistics[arraycounter].adventureName = generalStatistics[statisticsCounter].adventureName;
+                        myStatistics[arraycounter].statisticsMap = generalStatistics[statisticsCounter].statisticsMap;
+                        arraycounter = arraycounter + 1;
                     }
                 }
             }
+            for (let myStatisticsCounter = 0; myStatisticsCounter < myStatistics.length; myStatisticsCounter++) {
+                for (let allCounter = 0; allCounter < data.length; allCounter++) {
+                    if (myStatistics[myStatisticsCounter].adventureName == data[allCounter].name) {
+                        if (saveMatchingcounterMap.has(myStatistics[myStatisticsCounter].adventureName)) {
+                            let currentscore = saveMatchingcounterMap.get(myStatistics[myStatisticsCounter].adventureName) + 1;
+                            saveMatchingcounterMap.delete(myStatistics[myStatisticsCounter].adventureName);
+                            saveMatchingcounterMap.set(myStatistics[myStatisticsCounter].adventureName, currentscore);
+                        }
+                    }
+                }
+            }
+            if (myStatistics == [emptyStatistics, emptyStatistics2]) {
+                return ("Zu keinem deiner Adventures wurden bisher statistiken angelegt.");
+            }
+            else {
+                rückgabe = " Hier können sie sehen wie oft ihr Spiel gespielt wurde und der Nutzer sich entschieden hat zu teilen das er ihr Adventure gespielt hat." + JSON.stringify(saveMatchingcounterMap, null, 4) + "." + "             Hier sehen sie wie oft der nutzer pro spiel geswiped hat: " + JSON.stringify(myStatistics, null, 4);
+                return (rückgabe);
+            }
         }
-        rückgabe = " Hier können sie sehen wie oft ihr Spiel gespielt wurde und der Nutzer sich entschieden hat zu teilen das er ihr Adventure gespielt hat." + JSON.stringify(saveMatchingcounterMap) + "." + "             Hier sehen sie wie oft der nutzer pro spiel geswiped hat: " + JSON.stringify(myStatistics);
-        if (rückgabe == "") {
-            return ("Zu keinem deiner Adventures wurden bisher statistiken angelegt.");
+        else {
+            return ("Sie müssen sich erst anmelden bzw registrieren um ihre Statistiken einzusehen");
         }
-        else
-            return (rückgabe);
     }
 })(TextAdventure = exports.TextAdventure || (exports.TextAdventure = {}));
 //# sourceMappingURL=mainScript.js.map
