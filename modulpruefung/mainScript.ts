@@ -230,9 +230,18 @@ export namespace TextAdventure {
     async function saveAdventure(_rückgabe: Input): Promise<string> {
         let adventursize: number = +_rückgabe.sizeX * +_rückgabe.sizeY;
         let adventureMap: string[] = _rückgabe.places.toString().split(",", adventursize + 1);
-
+        let data: TextAdventure[] = await textAdventureCollection.find().toArray();
         if (currentUser.isRegistered()) {
             if (adventureMap.length == adventursize) {
+                if (data.length > 0) {
+                    for (let counter: number = 0; counter < data.length - 1; counter++) {
+                    if (data[counter].name != undefined) {
+                        if (data[counter].name == _rückgabe.name) {
+                            return("ein Adventure mit diesem name besteht bereits");
+                        }
+                    }
+                }
+                }
                 _rückgabe.username = currentUser.username;
                 textAdventureCollection.insertOne(_rückgabe);
                 return ("Text Adventure erfolgreich gespeichert!");
