@@ -73,7 +73,7 @@ export namespace TextAdventure {
             let data: TextAdventure[] = await textAdventureCollection.find().toArray();
             let dataString: string[];
             if (data.length > 0) {
-                for (let counter: number = 0; counter - 1 < data.length; counter++) {
+                for (let counter: number = 0; counter < data.length; counter++) {
                     if (data[counter].username == this.username) {
                         dataString.push(data[counter].name);
                     }

@@ -53,7 +53,7 @@ var TextAdventure;
             let data = await textAdventureCollection.find().toArray();
             let dataString;
             if (data.length > 0) {
-                for (let counter = 0; counter - 1 < data.length; counter++) {
+                for (let counter = 0; counter < data.length; counter++) {
                     if (data[counter].username == this.username) {
                         dataString.push(data[counter].name);
                     }
