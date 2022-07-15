@@ -331,7 +331,7 @@ var TextAdventure;
         if (data.length > 0) {
             for (let counter = 0; counter < data.length; counter++) {
                 if (data[counter].username == currentUser.username) {
-                    dataString.push(data[counter].username);
+                    dataString.push(data[counter].name);
                 }
             }
         }
@@ -351,6 +351,7 @@ var TextAdventure;
         let saveMatchingcounterMap = new Map();
         for (let myAdventuresCounter = 0; myAdventuresCounter < myAdventuresString.length; myAdventuresCounter++) {
             for (let statisticsCounter = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
+                console.log("statistics. length" + generalStatistics.length);
                 console.log("general  " + generalStatistics[statisticsCounter].adventureName);
                 console.log("my" + myAdventuresString[myAdventuresCounter]);
                 if (generalStatistics[statisticsCounter].adventureName == myAdventuresString[myAdventuresCounter]) {

@@ -379,7 +379,7 @@ export namespace TextAdventure {
         if (data.length > 0) {
             for (let counter: number = 0; counter < data.length; counter++) {
                 if (data[counter].username == currentUser.username) {
-                    dataString.push(data[counter].username);
+                    dataString.push(data[counter].name);
                 }
             }
         }
@@ -401,6 +401,7 @@ export namespace TextAdventure {
         for (let myAdventuresCounter: number = 0; myAdventuresCounter < myAdventuresString.length; myAdventuresCounter++) {
 
             for (let statisticsCounter: number = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
+                console.log("statistics. length" + generalStatistics.length);
                 console.log("general  " + generalStatistics[statisticsCounter].adventureName);
                 console.log("my" + myAdventuresString[myAdventuresCounter]);
                 if (generalStatistics[statisticsCounter].adventureName == myAdventuresString[myAdventuresCounter]) {
