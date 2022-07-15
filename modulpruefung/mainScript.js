@@ -344,10 +344,9 @@ var TextAdventure;
         let dataString;
         let rückgabe = "";
         let arraycounter = 0;
-        /*let emptyStatistics: Statistics = new Statistics ("");
-        let emptyStatistics2: Statistics = new Statistics("");
-        [ emptyStatistics, emptyStatistics2];*/
-        let myStatistics = [];
+        let emptyStatistics = new Statistics("");
+        let emptyStatistics2 = new Statistics("");
+        let myStatistics = [emptyStatistics, emptyStatistics2];
         let saveMatchingcounterMap = new Map();
         for (let myAdventuresCounter = 0; myAdventuresCounter < myAdventuresString.length; myAdventuresCounter++) {
             for (let statisticsCounter = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
