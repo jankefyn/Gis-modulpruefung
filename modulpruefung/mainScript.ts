@@ -375,7 +375,7 @@ export namespace TextAdventure {
 
     async function getMyAdventures(): Promise<string[]> {
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
-        let dataString: string[];
+        let dataString: string[] = [];
         if (data.length > 0) {
             for (let counter: number = 0; counter < data.length; counter++) {
                 if (data[counter].username == currentUser.username) {
@@ -395,7 +395,7 @@ export namespace TextAdventure {
         /*let emptyStatistics: Statistics = new Statistics ("");
         let emptyStatistics2: Statistics = new Statistics("");
         [ emptyStatistics, emptyStatistics2];*/
-        let myStatistics: Statistics[];
+        let myStatistics: Statistics[] = [];
         let saveMatchingcounterMap: Map<string, number> = new Map<string, number>();
 
         for (let myAdventuresCounter: number = 0; myAdventuresCounter < myAdventuresString.length; myAdventuresCounter++) {

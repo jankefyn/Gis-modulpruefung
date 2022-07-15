@@ -327,7 +327,7 @@ var TextAdventure;
     }
     async function getMyAdventures() {
         let data = await textAdventureCollection.find().toArray();
-        let dataString;
+        let dataString = [];
         if (data.length > 0) {
             for (let counter = 0; counter < data.length; counter++) {
                 if (data[counter].username == currentUser.username) {
@@ -347,7 +347,7 @@ var TextAdventure;
         /*let emptyStatistics: Statistics = new Statistics ("");
         let emptyStatistics2: Statistics = new Statistics("");
         [ emptyStatistics, emptyStatistics2];*/
-        let myStatistics;
+        let myStatistics = [];
         let saveMatchingcounterMap = new Map();
         for (let myAdventuresCounter = 0; myAdventuresCounter < myAdventuresString.length; myAdventuresCounter++) {
             for (let statisticsCounter = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
