@@ -116,7 +116,7 @@ export namespace TextAdventure {
     async function saveUser(_rückgabe: Input, _username: string | string[]): Promise<string> {
         let data: User[] = await userCollection.find().toArray();
         if (_username.toString().match(/[\W_]+/g)) {
-            return ("im username sind nicht alphanumerische zeichen.");
+            return ("im username sind nicht alphanumerische zeichen. Versuche einen ohne alphanumerische Zeichen.");
         }
         if (data.length > 0) {
             for (let counter: number = 0; counter < data.length; counter++) {
