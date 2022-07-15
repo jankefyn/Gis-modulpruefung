@@ -357,22 +357,11 @@ var TextAdventure;
                     }
                 }
             }
-            for (let myStatisticsCounter = 0; myStatisticsCounter < myStatistics.length; myStatisticsCounter++) {
-                for (let allCounter = 0; allCounter < data.length; allCounter++) {
-                    if (myStatistics[myStatisticsCounter].adventureName == data[allCounter].name) {
-                        if (saveMatchingcounterMap.has(myStatistics[myStatisticsCounter].adventureName)) {
-                            let currentscore = saveMatchingcounterMap.get(myStatistics[myStatisticsCounter].adventureName) + 1;
-                            saveMatchingcounterMap.delete(myStatistics[myStatisticsCounter].adventureName);
-                            saveMatchingcounterMap.set(myStatistics[myStatisticsCounter].adventureName, currentscore);
-                        }
-                    }
-                }
-            }
             if (myStatistics == [emptyStatistics, emptyStatistics2]) {
                 return ("Zu keinem deiner Adventures wurden bisher statistiken angelegt.");
             }
             else {
-                rückgabe = " Hier können sie sehen wie oft ihr Spiel gespielt wurde und der Nutzer sich entschieden hat zu teilen das er ihr Adventure gespielt hat." + JSON.stringify(saveMatchingcounterMap, null, 4) + "." + "             Hier sehen sie wie oft der nutzer pro spiel geswiped hat: " + JSON.stringify(myStatistics, null, 4);
+                rückgabe = " Hier können sie sehen wie oft ihre Adventures gespielt wurden und der Nutzer sich entschieden hat zu teilen das er ihr Adventure gespielt hat." + myStatistics.length + "." + "             Hier sehen sie wie oft der nutzer pro spiel geswiped hat: " + JSON.stringify(myStatistics);
                 return (rückgabe);
             }
         }
