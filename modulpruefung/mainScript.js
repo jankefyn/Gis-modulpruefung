@@ -150,7 +150,7 @@ var TextAdventure;
         let data = await userCollection.find().toArray();
         if (data.length > 0) {
             let dataString;
-            for (let counter = 0; counter - 1 < data.length; counter++) {
+            for (let counter = 0; counter < data.length; counter++) {
                 if (data[counter].username == _username) {
                     if (data[counter].password == _password) {
                         currentUser.username = _username;
