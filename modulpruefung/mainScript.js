@@ -347,6 +347,7 @@ var TextAdventure;
         let generalStatistics = await statisticsCollection.find().toArray();
         let dataString;
         let rückgabe = "";
+        let arraycounter = 0;
         /*let emptyStatistics: Statistics = new Statistics ("");
         let emptyStatistics2: Statistics = new Statistics("");
         [ emptyStatistics, emptyStatistics2];*/
@@ -355,8 +356,9 @@ var TextAdventure;
         for (let myAdventuresCounter = 0; myAdventuresCounter < myAdventuresString.length; myAdventuresCounter++) {
             for (let statisticsCounter = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
                 if (generalStatistics[statisticsCounter].adventureName == myAdventuresString[myAdventuresCounter]) {
-                    myStatistics[myAdventuresCounter].adventureName = generalStatistics[statisticsCounter].adventureName;
-                    myStatistics[myAdventuresCounter].statisticsMap = generalStatistics[statisticsCounter].statisticsMap;
+                    myStatistics[arraycounter].adventureName = generalStatistics[statisticsCounter].adventureName;
+                    myStatistics[arraycounter].statisticsMap = generalStatistics[statisticsCounter].statisticsMap;
+                    arraycounter = arraycounter + 1;
                 }
             }
         }
