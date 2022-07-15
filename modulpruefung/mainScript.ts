@@ -373,23 +373,22 @@ export namespace TextAdventure {
         return ("deine bis jetzt gemachten swipes wurden gespeichert");
     }
 
-    async function getMyAdventures(): Promise<string> {
+    async function getMyAdventures(): Promise<string[]> {
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
-        let dataString: string;
+        let dataString: string[] = ["", ""];
         if (data.length > 0) {
             for (let counter: number = 0; counter < data.length; counter++) {
                 if (data[counter].username == currentUser.username) {
                     console.log(data[counter].username);
-                    dataString = dataString + "@" + (data[counter].name);
+                    dataString.push(data[counter].username);
                 }
             }
         }
         return (dataString);
     }
     async function showStatistics(): Promise<string> {
-        let myAdventuresString: string = (await getMyAdventures());
+        let myAdventuresString: string[] = (await getMyAdventures());
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
-        let myAdventuresArray: string[] = myAdventuresString.split("@", data.length );
         let generalStatistics: Statistics[] = await statisticsCollection.find().toArray();
         let dataString: string;
         let rückgabe: string = "";
@@ -399,16 +398,16 @@ export namespace TextAdventure {
         let myStatistics: Statistics[];
         let saveMatchingcounterMap: Map<string, number> = new Map<string, number>();
 
-        for (let myAdventuresCounter: number = 0; myAdventuresCounter < myAdventuresArray.length; myAdventuresCounter++) {
+        for (let myAdventuresCounter: number = 0; myAdventuresCounter < myAdventuresString.length; myAdventuresCounter++) {
 
             for (let statisticsCounter: number = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
-                if (generalStatistics[statisticsCounter].adventureName == myAdventuresArray[myAdventuresCounter]) {
+                if (generalStatistics[statisticsCounter].adventureName == myAdventuresString[myAdventuresCounter]) {
                     myStatistics[myAdventuresCounter].adventureName = generalStatistics[statisticsCounter].adventureName;
                     myStatistics[myAdventuresCounter].statisticsMap = generalStatistics[statisticsCounter].statisticsMap;
                 }
             }
         }
-        for (let myStatisticsCounter: number = 0; myStatisticsCounter < myAdventuresArray.length; myStatisticsCounter++) {
+        for (let myStatisticsCounter: number = 0; myStatisticsCounter < myAdventuresString.length; myStatisticsCounter++) {
             for (let allCounter: number = 0; allCounter < data.length; allCounter++) {
                 if (myStatistics[myStatisticsCounter].adventureName == data[allCounter].name) {
                     dataString = dataString + "Das Adventure " + myStatistics[myStatisticsCounter].adventureName;
