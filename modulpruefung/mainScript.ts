@@ -408,7 +408,7 @@ export namespace TextAdventure {
                 }
             }
         }
-        for (let myStatisticsCounter: number = 0; myStatisticsCounter < myAdventuresString.length; myStatisticsCounter++) {
+        for (let myStatisticsCounter: number = 0; myStatisticsCounter < myStatistics.length; myStatisticsCounter++) {
             for (let allCounter: number = 0; allCounter < data.length; allCounter++) {
                 console.log("myStatistics" + myStatistics[arraycounter].adventureName);
                 if (myStatistics[myStatisticsCounter].adventureName == data[allCounter].name) {
