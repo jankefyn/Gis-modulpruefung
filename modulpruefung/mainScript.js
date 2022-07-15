@@ -370,7 +370,7 @@ var TextAdventure;
                 }
             }
         }
-        rückgabe = " Hier können sie sehen wie oft ihr Spiel gespielt wurde und der Nutzer sich entschieden hat zu teilen das er ihr Adventure gespielt hat." + saveMatchingcounterMap.toString() + "." + "             Hier sehen sie wie oft der nutzer pro spiel geswiped hat: " + myStatistics.toString();
+        rückgabe = " Hier können sie sehen wie oft ihr Spiel gespielt wurde und der Nutzer sich entschieden hat zu teilen das er ihr Adventure gespielt hat." + JSON.stringify(saveMatchingcounterMap) + "." + "             Hier sehen sie wie oft der nutzer pro spiel geswiped hat: " + JSON.stringify(myStatistics);
         if (rückgabe == "") {
             return ("Zu keinem deiner Adventures wurden bisher statistiken angelegt.");
         }
