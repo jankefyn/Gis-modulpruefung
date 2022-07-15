@@ -56,8 +56,9 @@ export namespace TextAdventure {
     let userCollection: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     let selectedAdventure: SelectableAdventure = new SelectableAdventure("empty", "empty", 0, 0);
+    let currentUser: User = new User("empty", ["empty1", "empty2"]);
     let currentLocationNumber: number = 0;
-    let currentUser: User;   
+
 
     console.log("Starting server");
     let port: number = Number(process.env.PORT);

@@ -43,8 +43,8 @@ var TextAdventure;
     let userCollection;
     let databaseUrl = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     let selectedAdventure = new SelectableAdventure("empty", "empty", 0, 0);
+    let currentUser = new User("empty", ["empty1", "empty2"]);
     let currentLocationNumber = 0;
-    let currentUser;
     console.log("Starting server");
     let port = Number(process.env.PORT);
     if (!port)
