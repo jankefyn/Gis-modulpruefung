@@ -359,7 +359,6 @@ var TextAdventure;
         }
         for (let myStatisticsCounter = 0; myStatisticsCounter < myStatistics.length; myStatisticsCounter++) {
             for (let allCounter = 0; allCounter < data.length; allCounter++) {
-                console.log("myStatistics" + myStatistics[arraycounter].adventureName);
                 if (myStatistics[myStatisticsCounter].adventureName == data[allCounter].name) {
                     dataString = dataString + "Das Adventure " + myStatistics[myStatisticsCounter].adventureName;
                     if (saveMatchingcounterMap.has(myStatistics[myStatisticsCounter].adventureName)) {
