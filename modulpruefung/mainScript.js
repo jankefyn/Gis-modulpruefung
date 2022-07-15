@@ -165,8 +165,14 @@ var TextAdventure;
         return ("Es ist Aktuell noch kein Text Adventure gespeichert.");
     }
     async function saveAdventure(_rückgabe) {
-        textAdventureCollection.insertOne(_rückgabe);
-        return ("Text Adventure erfolgreich gespeichert!");
+        let adventursize = +_rückgabe.sizeX * +_rückgabe.sizeY;
+        let adventureMap = _rückgabe.places.toString().split(",", adventursize + 1);
+        if (adventureMap.length == adventursize) {
+            textAdventureCollection.insertOne(_rückgabe);
+            return ("Text Adventure erfolgreich gespeichert!");
+        }
+        else
+            return ("Bei der eingabe der Felder ist etwas schiefgelaufen. Bitte überprüfe ob die Eingabe wie im Beispiel formatiert wurde.");
     }
     async function onAction(_action) {
         let stringSplitLimiter = selectedAdventure.sizeX * selectedAdventure.sizeY;

@@ -132,17 +132,17 @@ export namespace TextAdventure {
         let data: User[] = await userCollection.find().toArray();
         if (data.length > 0) {
             let dataString: string;
-            for (let counter: number = 0; counter - 1  < data.length; counter++) {
+            for (let counter: number = 0; counter - 1 < data.length; counter++) {
                 if (data[counter].username == _username) {
                     if (data[counter].password == _password) {
                         dataString = "angemeldet";
-                        return(dataString);
+                        return (dataString);
                     }
                     else {
                         dataString = " falsches Passwort";
-                        return(dataString);
+                        return (dataString);
                     }
-                }    
+                }
             }
             return ("falscher username");
         }
@@ -205,8 +205,14 @@ export namespace TextAdventure {
     }
 
     async function saveAdventure(_rückgabe: Input): Promise<string> {
-        textAdventureCollection.insertOne(_rückgabe);
-        return ("Text Adventure erfolgreich gespeichert!");
+        let adventursize: number = +_rückgabe.sizeX * +_rückgabe.sizeY;
+        let adventureMap: string[] = _rückgabe.places.toString().split(",", adventursize + 1);
+        if (adventureMap.length == adventursize) {
+            textAdventureCollection.insertOne(_rückgabe);
+            return ("Text Adventure erfolgreich gespeichert!");
+        }
+        else return("Bei der eingabe der Felder ist etwas schiefgelaufen. Bitte überprüfe ob die Eingabe wie im Beispiel formatiert wurde.")
+        
     }
     export async function onAction(_action: string): Promise<string> {
         let stringSplitLimiter: number = selectedAdventure.sizeX * selectedAdventure.sizeY;
