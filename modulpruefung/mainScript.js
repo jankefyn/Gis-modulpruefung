@@ -94,8 +94,14 @@ var TextAdventure;
         if (q.pathname == "//saveAdventure") {
             _response.write(await saveAdventure(q.query));
         }
-        if (q.pathname == "//showAdventures") {
-            _response.write(await showAdventures());
+        if (q.pathname == "//more") {
+            _response.write(await showAdventures("more"));
+        }
+        if (q.pathname == "//normal") {
+            _response.write(await showAdventures("normal"));
+        }
+        if (q.pathname == "//less") {
+            _response.write(await showAdventures("less"));
         }
         if (q.pathname == "//selectAdventure") {
             _response.write(await selectAdventure(daten.adventureName));
@@ -158,11 +164,27 @@ var TextAdventure;
         else
             return "Anmeldedaten nicht gefunden";
     }
-    async function showAdventures() {
+    async function showAdventures(_param) {
+        let numberForCounter = 0;
+        if (_param == "normal") {
+            numberForCounter = 0;
+        }
+        if (_param == "more") {
+            numberForCounter = numberForCounter + 5;
+        }
+        if (_param == "less") {
+            if (numberForCounter > 0) {
+                numberForCounter = numberForCounter - 5;
+            }
+            else {
+                return (" Sie sehen bereits die ersten 5 sie können nicht niedriger anzeigen lassen.");
+            }
+        }
+        let limiterForfor = numberForCounter + 5;
         let data = await textAdventureCollection.find().toArray();
         if (data.length > 0) {
             let dataString = "";
-            for (let counter = 0; counter < 5; counter++) {
+            for (let counter = numberForCounter; counter < limiterForfor; counter++) {
                 if (counter < data.length) {
                     let adventureNumber = counter + 1;
                     dataString = dataString + " Adventure " + adventureNumber + ": " + data[counter].name + "(" + data[counter].sizeX + "X" + data[counter].sizeY + " Felder) ";

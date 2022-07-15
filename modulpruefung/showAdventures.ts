@@ -1,8 +1,12 @@
 namespace TextAdventure {
 
 
-    let allesAnzeigeButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showAdventures");
-    allesAnzeigeButton.addEventListener("click", function (): void { submit("showAdventures"); });
+    let showAdventures: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showAdventures");
+    showAdventures.addEventListener("click", function (): void { submit("showAdventures"); });
+    let showMoreAdventures: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showMoreAdventures");
+    showMoreAdventures.addEventListener("click", function (): void { submit("more"); });
+    let showLessAdventures: HTMLButtonElement = <HTMLButtonElement>document.getElementById("showLessAdventures");
+    showLessAdventures.addEventListener("click", function (): void { submit("less"); });
 
     let serverantwort: HTMLElement = document.getElementById("serverantwort");
 
@@ -13,7 +17,13 @@ namespace TextAdventure {
         let query: URLSearchParams = new URLSearchParams(<any>formData);
 
         if (_parameter == "showAdventures") {
-            url = url + "/showAdventures";
+            url = url + "/normal";
+        }
+        if (_parameter == "more") {
+            url = url + "/more";
+        }
+        if (_parameter == "less") {
+            url = url + "/less";
         }
 
         url = url + "?" + query.toString();

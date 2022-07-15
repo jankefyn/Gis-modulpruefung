@@ -130,8 +130,14 @@ export namespace TextAdventure {
         if (q.pathname == "//saveAdventure") {
             _response.write(await saveAdventure(q.query));
         }
-        if (q.pathname == "//showAdventures") {
-            _response.write(await showAdventures());
+        if (q.pathname == "//more") {
+            _response.write(await showAdventures("more"));
+        }
+        if (q.pathname == "//normal") {
+            _response.write(await showAdventures("normal"));
+        }
+        if (q.pathname == "//less") {
+            _response.write(await showAdventures("less"));
         }
         if (q.pathname == "//selectAdventure") {
             _response.write(await selectAdventure(daten.adventureName));
@@ -198,12 +204,28 @@ export namespace TextAdventure {
         else return "Anmeldedaten nicht gefunden";
 
     }
-    async function showAdventures(): Promise<String> {
+    async function showAdventures(_param: string): Promise<String> {
 
+        let numberForCounter: number = 0;
+        if (_param == "normal") {
+            numberForCounter = 0;
+        }
+        if (_param == "more") {
+            numberForCounter = numberForCounter + 5;
+        }
+        if (_param == "less") {
+            if (numberForCounter > 0) {
+                numberForCounter = numberForCounter - 5;
+            }
+            else {
+                return(" Sie sehen bereits die ersten 5 sie können nicht niedriger anzeigen lassen.");
+            }
+        }
+        let limiterForfor: number = numberForCounter + 5;
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
         if (data.length > 0) {
             let dataString: string = "";
-            for (let counter: number = 0; counter < 5; counter++) {
+            for (let counter: number = numberForCounter; counter < limiterForfor; counter++) {
                 if (counter < data.length) {
                     let adventureNumber: number = counter + 1;
                     dataString = dataString + " Adventure " + adventureNumber + ": " + data[counter].name + "(" + data[counter].sizeX + "X" + data[counter].sizeY + " Felder) ";
