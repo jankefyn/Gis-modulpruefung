@@ -126,6 +126,7 @@ var TextAdventure;
                 if (data[counter].username == _username) {
                     if (data[counter].password == _password) {
                         currentUser.username = _username;
+                        currentUser.playingState = PlayingState.REGISTERED;
                         dataString = "angemeldet";
                         return (dataString);
                     }
