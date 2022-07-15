@@ -99,6 +99,7 @@ export namespace TextAdventure {
         statisticsCollection = mongoClient.db("Test").collection("Statistics");
         console.log("Database connection from adventures: ", textAdventureCollection != undefined);
         console.log("Database connectionfrom Users: ", userCollection != undefined);
+        console.log("Database connectionfrom Statistics: ", userCollection != undefined);
     }
 
 
@@ -165,7 +166,6 @@ export namespace TextAdventure {
         }
         if (data.length > 0) {
             for (let counter: number = 0; counter < data.length; counter++) {
-                console.log("der data counter ist bei: " + data[counter] + " der username an der stelle ist: " + data[counter].username);
                 if (data[counter].username == _username) {
                     return "Ein Konto mit diesem username besteht bereits";
                 }
@@ -217,7 +217,7 @@ export namespace TextAdventure {
         return ("Es ist noch kein Adventure angelegt worden.");
     }
     async function selectAdventure(_filterName: string | string[]): Promise<string> {
-        console.log(_filterName);
+    
         currentLocationNumber = 0;
         let adventureName: string = _filterName.toString();
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
@@ -328,7 +328,7 @@ export namespace TextAdventure {
             swipecounter = swipecounter + 1;
             if (currentLocationNumber > endOfRowNumber) {
                 currentLocationNumber = currentLocationNumber * 1 - selectedAdventure.sizeX * 1;
-                console.log("currentLocationNumber" + currentLocationNumber);
+                
                 if (selectedAdventure.statistics.has(currentUser.username)) {
                     selectedAdventure.statistics.delete(currentUser.username);
                 }
@@ -346,7 +346,7 @@ export namespace TextAdventure {
             swipecounter = swipecounter + 1;
             if (currentLocationNumber < startOfLastRow) {
                 currentLocationNumber = currentLocationNumber * 1 + selectedAdventure.sizeX * 1;
-                console.log("currentLocationNumber" + currentLocationNumber);
+            
                 if (selectedAdventure.statistics.has(currentUser.username)) {
                     selectedAdventure.statistics.delete(currentUser.username);
                 }
@@ -379,7 +379,6 @@ export namespace TextAdventure {
         if (data.length > 0) {
             for (let counter: number = 0; counter < data.length; counter++) {
                 if (data[counter].username == currentUser.username) {
-                    console.log(data[counter].username);
                     dataString.push(data[counter].username);
                 }
             }
@@ -402,7 +401,10 @@ export namespace TextAdventure {
         for (let myAdventuresCounter: number = 0; myAdventuresCounter < myAdventuresString.length; myAdventuresCounter++) {
 
             for (let statisticsCounter: number = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
+                console.log("general  " + generalStatistics[statisticsCounter].adventureName);
+                console.log("my" + myAdventuresString[myAdventuresCounter]);
                 if (generalStatistics[statisticsCounter].adventureName == myAdventuresString[myAdventuresCounter]) {
+                    console.log("hallo ich bin hier");
                     myStatistics[arraycounter].adventureName = generalStatistics[statisticsCounter].adventureName;
                     myStatistics[arraycounter].statisticsMap = generalStatistics[statisticsCounter].statisticsMap;
                     arraycounter = arraycounter + 1;
