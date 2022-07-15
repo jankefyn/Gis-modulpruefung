@@ -401,12 +401,10 @@ export namespace TextAdventure {
         for (let myAdventuresCounter: number = 0; myAdventuresCounter < myAdventuresString.length; myAdventuresCounter++) {
 
             for (let statisticsCounter: number = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
-                console.log("statistics. length" + generalStatistics.length);
-                console.log("general  " + generalStatistics[statisticsCounter].adventureName);
-                console.log("my" + myAdventuresString[myAdventuresCounter]);
                 if (generalStatistics[statisticsCounter].adventureName == myAdventuresString[myAdventuresCounter]) {
                     console.log("hallo ich bin hier");
-                    console.log("my statistics" + myStatistics);
+                    console.log ("general" + generalStatistics[statisticsCounter].adventureName);
+                    console.log("myStatistics" + myStatistics[arraycounter].adventureName);
                     myStatistics[arraycounter].adventureName = generalStatistics[statisticsCounter].adventureName;
                     myStatistics[arraycounter].statisticsMap = generalStatistics[statisticsCounter].statisticsMap;
                     arraycounter = arraycounter + 1;
