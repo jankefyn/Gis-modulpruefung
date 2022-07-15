@@ -6,6 +6,50 @@ const url = require("url");
 const Mongo = require("mongodb");
 var TextAdventure;
 (function (TextAdventure) {
+    let PlayingState;
+    (function (PlayingState) {
+        PlayingState[PlayingState["REGISTERED"] = 0] = "REGISTERED";
+        PlayingState[PlayingState["UNREGISTERED"] = 1] = "UNREGISTERED";
+    })(PlayingState || (PlayingState = {}));
+    class SelectableAdventure {
+        name;
+        places;
+        sizeX;
+        sizeY;
+        statistics = new Map();
+        constructor(_name, _places, _sizeX, _sizeY) {
+            this.name = _name;
+            this.places = _places;
+            this.sizeX = _sizeX;
+            this.sizeY = _sizeY;
+        }
+    }
+    class Statistics {
+        adventureName;
+        statisticsMap = new Map();
+        constructor(_adventureName) {
+            this.adventureName = _adventureName;
+        }
+    }
+    class User {
+        username;
+        createdAdventures;
+        playingState = PlayingState.UNREGISTERED;
+        constructor(_username, _createdAdventures) {
+            this.username = _username;
+            this.createdAdventures = _createdAdventures;
+        }
+        isRegistered() {
+            if (this.playingState == PlayingState.REGISTERED) {
+                return true;
+            }
+            else
+                return false;
+        }
+    }
+    let selectedAdventure = new SelectableAdventure("empty", "empty", 0, 0);
+    let currentUser = new User("empty", ["empty1", "empty2"]);
+    let currentLocationNumber = 0;
     let textAdventureCollection;
     let userCollection;
     let statisticsCollection;
@@ -74,62 +118,6 @@ var TextAdventure;
         }
         _response.end();
     }
-    let PlayingState;
-    (function (PlayingState) {
-        PlayingState[PlayingState["REGISTERED"] = 0] = "REGISTERED";
-        PlayingState[PlayingState["UNREGISTERED"] = 1] = "UNREGISTERED";
-    })(PlayingState || (PlayingState = {}));
-    class SelectableAdventure {
-        name;
-        places;
-        sizeX;
-        sizeY;
-        statistics = new Map();
-        constructor(_name, _places, _sizeX, _sizeY) {
-            this.name = _name;
-            this.places = _places;
-            this.sizeX = _sizeX;
-            this.sizeY = _sizeY;
-        }
-    }
-    class Statistics {
-        adventureName;
-        statisticsMap = new Map();
-        constructor(_adventureName) {
-            this.adventureName = _adventureName;
-        }
-    }
-    class User {
-        username;
-        createdAdventures;
-        playingState = PlayingState.UNREGISTERED;
-        constructor(_username, _createdAdventures) {
-            this.username = _username;
-            this.createdAdventures = _createdAdventures;
-        }
-        isRegistered() {
-            if (this.playingState == PlayingState.REGISTERED) {
-                return true;
-            }
-            else
-                return false;
-        }
-        async getMyAdventures() {
-            let data = await textAdventureCollection.find().toArray();
-            let dataString;
-            if (data.length > 0) {
-                for (let counter = 0; counter - 1 < data.length; counter++) {
-                    if (data[counter].username == this.username) {
-                        dataString.push(data[counter].name);
-                    }
-                }
-            }
-            return (dataString);
-        }
-    }
-    let selectedAdventure = new SelectableAdventure("empty", "empty", 0, 0);
-    let currentUser = new User("empty", ["empty1", "empty2"]);
-    let currentLocationNumber = 0;
     async function saveUser(_rückgabe, _username) {
         let data = await userCollection.find().toArray();
         if (_username.toString().match(/[\W_]+/g)) {

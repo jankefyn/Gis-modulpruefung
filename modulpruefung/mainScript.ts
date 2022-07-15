@@ -7,6 +7,82 @@ import * as Mongo from "mongodb";
 
 export namespace TextAdventure {
 
+
+
+
+    enum PlayingState {
+        REGISTERED,
+        UNREGISTERED
+    }
+    interface Input {
+        [type: string]: string | string[];
+    }
+    interface Users {
+        username: string;
+        password: string;
+    }
+    interface TextAdventure {
+        name: string;
+        places: string;
+        sizeX: number;
+        sizeY: number;
+        username: string;
+        statistics: Map<string, number>;
+    }
+    class SelectableAdventure {
+        name: string;
+        places: string;
+        sizeX: number;
+        sizeY: number;
+        statistics: Map<string, number> = new Map<string, number>();
+
+        constructor(_name: string, _places: string, _sizeX: number, _sizeY: number) {
+            this.name = _name;
+            this.places = _places;
+            this.sizeX = _sizeX;
+            this.sizeY = _sizeY;
+
+        }
+    }
+    class Statistics {
+        adventureName: string;
+        statisticsMap: Map<string, number> = new Map<string, number>();
+        constructor(_adventureName: string) {
+            this.adventureName = _adventureName;  
+        }
+
+    }
+    class User {
+        username: string;
+        createdAdventures: string[];
+        playingState: PlayingState = PlayingState.UNREGISTERED;
+
+        constructor(_username: string, _createdAdventures: string[]) {
+            this.username = _username;
+            this.createdAdventures = _createdAdventures;
+        }
+        isRegistered(): boolean {
+            if (this.playingState == PlayingState.REGISTERED) {
+                return true;
+            }
+            else return false;
+        }
+        /*async getMyAdventures(): Promise<string[]> {
+            let data: TextAdventure[] = await textAdventureCollection.find().toArray();
+            let dataString: string[];
+            if (data.length > 0) {
+                for (let counter: number = 0; counter - 1 < data.length; counter++) {
+                    if (data[counter].username == this.username) {
+                        dataString.push(data[counter].name);
+                    }
+                }
+            }
+            return (dataString);
+        }*/
+    }
+    let selectedAdventure: SelectableAdventure = new SelectableAdventure("empty", "empty", 0, 0);
+    let currentUser: User = new User("empty", ["empty1", "empty2"]);
+    let currentLocationNumber: number = 0;
     let textAdventureCollection: Mongo.Collection;
     let userCollection: Mongo.Collection;
     let statisticsCollection: Mongo.Collection;
@@ -89,79 +165,7 @@ export namespace TextAdventure {
         _response.end();
     }
 
-    enum PlayingState {
-        REGISTERED,
-        UNREGISTERED
-    }
-    interface Input {
-        [type: string]: string | string[];
-    }
-    interface Users {
-        username: string;
-        password: string;
-    }
-    interface TextAdventure {
-        name: string;
-        places: string;
-        sizeX: number;
-        sizeY: number;
-        username: string;
-        statistics: Map<string, number>;
-    }
-    class SelectableAdventure {
-        name: string;
-        places: string;
-        sizeX: number;
-        sizeY: number;
-        statistics: Map<string, number> = new Map<string, number>();
-
-        constructor(_name: string, _places: string, _sizeX: number, _sizeY: number) {
-            this.name = _name;
-            this.places = _places;
-            this.sizeX = _sizeX;
-            this.sizeY = _sizeY;
-
-        }
-    }
-    class Statistics {
-        adventureName: string;
-        statisticsMap: Map<string, number> = new Map<string, number>();
-        constructor(_adventureName: string) {
-            this.adventureName = _adventureName;  
-        }
-
-    }
-    class User {
-        username: string;
-        createdAdventures: string[];
-        playingState: PlayingState = PlayingState.UNREGISTERED;
-
-        constructor(_username: string, _createdAdventures: string[]) {
-            this.username = _username;
-            this.createdAdventures = _createdAdventures;
-        }
-        isRegistered(): boolean {
-            if (this.playingState == PlayingState.REGISTERED) {
-                return true;
-            }
-            else return false;
-        }
-        async getMyAdventures(): Promise<string[]> {
-            let data: TextAdventure[] = await textAdventureCollection.find().toArray();
-            let dataString: string[];
-            if (data.length > 0) {
-                for (let counter: number = 0; counter - 1 < data.length; counter++) {
-                    if (data[counter].username == this.username) {
-                        dataString.push(data[counter].name);
-                    }
-                }
-            }
-            return (dataString);
-        }
-    }
-    let selectedAdventure: SelectableAdventure = new SelectableAdventure("empty", "empty", 0, 0);
-    let currentUser: User = new User("empty", ["empty1", "empty2"]);
-    let currentLocationNumber: number = 0;
+   
 
     async function saveUser(_rückgabe: Input, _username: string | string[]): Promise<string> {
         let data: Users[] = await userCollection.find().toArray();
