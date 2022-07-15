@@ -6,6 +6,11 @@ const url = require("url");
 const Mongo = require("mongodb");
 var TextAdventure;
 (function (TextAdventure) {
+    let PlayingState;
+    (function (PlayingState) {
+        PlayingState[PlayingState["REGISTERED"] = 0] = "REGISTERED";
+        PlayingState[PlayingState["UNREGISTERED"] = 1] = "UNREGISTERED";
+    })(PlayingState || (PlayingState = {}));
     class SelectableAdventure {
         name;
         places;
@@ -18,11 +23,28 @@ var TextAdventure;
             this.sizeY = _sizeY;
         }
     }
+    class User {
+        username;
+        createdAdventures;
+        playingState = PlayingState.UNREGISTERED;
+        constructor(_username, _createdAdventures) {
+            this.username = _username;
+            this.createdAdventures = _createdAdventures;
+        }
+        isRegistered() {
+            if (this.playingState == PlayingState.REGISTERED) {
+                return true;
+            }
+            else
+                return false;
+        }
+    }
     let textAdventureCollection;
     let userCollection;
     let databaseUrl = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     let selectedAdventure = new SelectableAdventure("empty", "empty", 0, 0);
     let currentLocationNumber = 0;
+    let currentUser;
     console.log("Starting server");
     let port = Number(process.env.PORT);
     if (!port)
@@ -103,6 +125,7 @@ var TextAdventure;
             for (let counter = 0; counter - 1 < data.length; counter++) {
                 if (data[counter].username == _username) {
                     if (data[counter].password == _password) {
+                        currentUser.username = _username;
                         dataString = "angemeldet";
                         return (dataString);
                     }
@@ -170,12 +193,17 @@ var TextAdventure;
     async function saveAdventure(_rückgabe) {
         let adventursize = +_rückgabe.sizeX * +_rückgabe.sizeY;
         let adventureMap = _rückgabe.places.toString().split(",", adventursize + 1);
-        if (adventureMap.length == adventursize) {
-            textAdventureCollection.insertOne(_rückgabe);
-            return ("Text Adventure erfolgreich gespeichert!");
+        if (currentUser.isRegistered()) {
+            if (adventureMap.length == adventursize) {
+                _rückgabe.username = currentUser.username;
+                textAdventureCollection.insertOne(_rückgabe);
+                return ("Text Adventure erfolgreich gespeichert!");
+            }
+            else
+                return ("Bei der eingabe der Felder ist etwas schiefgelaufen. Bitte überprüfe ob die Eingabe wie im Beispiel formatiert wurde.");
         }
         else
-            return ("Bei der eingabe der Felder ist etwas schiefgelaufen. Bitte überprüfe ob die Eingabe wie im Beispiel formatiert wurde.");
+            return ("Um ein Text Adventure anlegen zu können musst du dich zuerst Registrieren.");
     }
     async function onAction(_action) {
         let stringSplitLimiter = selectedAdventure.sizeX * selectedAdventure.sizeY;

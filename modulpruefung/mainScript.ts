@@ -6,11 +6,14 @@ import * as Mongo from "mongodb";
 
 
 export namespace TextAdventure {
-
+    enum PlayingState {
+        REGISTERED,
+        UNREGISTERED
+    }
     interface Input {
         [type: string]: string | string[];
     }
-    interface User {
+    interface Users {
         username: string;
         password: string;
     }
@@ -32,14 +35,29 @@ export namespace TextAdventure {
             this.sizeX = _sizeX;
             this.sizeY = _sizeY;
         }
+    }
+    class User {
+        username: string;
+        createdAdventures: string[];
+        playingState: PlayingState = PlayingState.UNREGISTERED;
 
+        constructor(_username: string, _createdAdventures: string[]) {
+            this.username = _username;
+            this.createdAdventures = _createdAdventures;
+        }
+        isRegistered(): boolean {
+            if (this.playingState == PlayingState.REGISTERED) {
+                return true;
+            }
+            else return false;
+        }
     }
     let textAdventureCollection: Mongo.Collection;
     let userCollection: Mongo.Collection;
     let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     let selectedAdventure: SelectableAdventure = new SelectableAdventure("empty", "empty", 0, 0);
     let currentLocationNumber: number = 0;
-
+    let currentUser: User;   
 
     console.log("Starting server");
     let port: number = Number(process.env.PORT);
@@ -114,7 +132,7 @@ export namespace TextAdventure {
 
 
     async function saveUser(_rückgabe: Input, _username: string | string[]): Promise<string> {
-        let data: User[] = await userCollection.find().toArray();
+        let data: Users[] = await userCollection.find().toArray();
         if (_username.toString().match(/[\W_]+/g)) {
             return ("im username sind nicht alphanumerische zeichen. Versuche einen ohne alphanumerische Zeichen.");
         }
@@ -131,12 +149,13 @@ export namespace TextAdventure {
     }
     async function login(_username: string | string[], _password: string | string[]): Promise<String> {
 
-        let data: User[] = await userCollection.find().toArray();
+        let data: Users[] = await userCollection.find().toArray();
         if (data.length > 0) {
             let dataString: string;
             for (let counter: number = 0; counter - 1 < data.length; counter++) {
                 if (data[counter].username == _username) {
                     if (data[counter].password == _password) {
+                        currentUser.username = _username;
                         dataString = "angemeldet";
                         return (dataString);
                     }
@@ -209,12 +228,16 @@ export namespace TextAdventure {
     async function saveAdventure(_rückgabe: Input): Promise<string> {
         let adventursize: number = +_rückgabe.sizeX * +_rückgabe.sizeY;
         let adventureMap: string[] = _rückgabe.places.toString().split(",", adventursize + 1);
-        if (adventureMap.length == adventursize) {
-            textAdventureCollection.insertOne(_rückgabe);
-            return ("Text Adventure erfolgreich gespeichert!");
-        }
-        else return ("Bei der eingabe der Felder ist etwas schiefgelaufen. Bitte überprüfe ob die Eingabe wie im Beispiel formatiert wurde.")
 
+        if (currentUser.isRegistered()) {
+            if (adventureMap.length == adventursize) {
+                _rückgabe.username = currentUser.username;
+                textAdventureCollection.insertOne(_rückgabe);
+                return ("Text Adventure erfolgreich gespeichert!");
+            }
+            else return ("Bei der eingabe der Felder ist etwas schiefgelaufen. Bitte überprüfe ob die Eingabe wie im Beispiel formatiert wurde.")
+        }
+        else return ("Um ein Text Adventure anlegen zu können musst du dich zuerst Registrieren.");
     }
     export async function onAction(_action: string): Promise<string> {
         let stringSplitLimiter: number = selectedAdventure.sizeX * selectedAdventure.sizeY;
