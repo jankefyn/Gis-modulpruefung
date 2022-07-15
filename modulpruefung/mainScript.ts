@@ -217,7 +217,7 @@ export namespace TextAdventure {
         return ("Es ist noch kein Adventure angelegt worden.");
     }
     async function selectAdventure(_filterName: string | string[]): Promise<string> {
-    
+
         currentLocationNumber = 0;
         let adventureName: string = _filterName.toString();
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
@@ -328,7 +328,7 @@ export namespace TextAdventure {
             swipecounter = swipecounter + 1;
             if (currentLocationNumber > endOfRowNumber) {
                 currentLocationNumber = currentLocationNumber * 1 - selectedAdventure.sizeX * 1;
-                
+
                 if (selectedAdventure.statistics.has(currentUser.username)) {
                     selectedAdventure.statistics.delete(currentUser.username);
                 }
@@ -346,7 +346,7 @@ export namespace TextAdventure {
             swipecounter = swipecounter + 1;
             if (currentLocationNumber < startOfLastRow) {
                 currentLocationNumber = currentLocationNumber * 1 + selectedAdventure.sizeX * 1;
-            
+
                 if (selectedAdventure.statistics.has(currentUser.username)) {
                     selectedAdventure.statistics.delete(currentUser.username);
                 }
@@ -406,10 +406,11 @@ export namespace TextAdventure {
                 console.log("my" + myAdventuresString[myAdventuresCounter]);
                 if (generalStatistics[statisticsCounter].adventureName == myAdventuresString[myAdventuresCounter]) {
                     console.log("hallo ich bin hier");
+                    console.log("my statistics" + myStatistics);
                     myStatistics[arraycounter].adventureName = generalStatistics[statisticsCounter].adventureName;
                     myStatistics[arraycounter].statisticsMap = generalStatistics[statisticsCounter].statisticsMap;
                     arraycounter = arraycounter + 1;
-                    console.log("my statistics: " + myStatistics);
+
                 }
             }
         }

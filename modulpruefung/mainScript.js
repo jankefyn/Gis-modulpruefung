@@ -356,10 +356,10 @@ var TextAdventure;
                 console.log("my" + myAdventuresString[myAdventuresCounter]);
                 if (generalStatistics[statisticsCounter].adventureName == myAdventuresString[myAdventuresCounter]) {
                     console.log("hallo ich bin hier");
+                    console.log("my statistics" + myStatistics);
                     myStatistics[arraycounter].adventureName = generalStatistics[statisticsCounter].adventureName;
                     myStatistics[arraycounter].statisticsMap = generalStatistics[statisticsCounter].statisticsMap;
                     arraycounter = arraycounter + 1;
-                    console.log("my statistics: " + myStatistics);
                 }
             }
         }
