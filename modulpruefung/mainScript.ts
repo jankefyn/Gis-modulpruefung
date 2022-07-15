@@ -234,7 +234,7 @@ export namespace TextAdventure {
         if (currentUser.isRegistered()) {
             if (adventureMap.length == adventursize) {
                 if (data.length > 0) {
-                    for (let counter: number = 0; counter < data.length - 1; counter++) {
+                    for (let counter: number = 0; counter < data.length ; counter++) {
                     if (data[counter].name != undefined) {
                         if (data[counter].name == _rückgabe.name) {
                             return("ein Adventure mit diesem name besteht bereits");
