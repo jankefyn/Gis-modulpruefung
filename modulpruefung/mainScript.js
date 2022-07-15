@@ -359,7 +359,7 @@ var TextAdventure;
                 return ("Zu keinem deiner Adventures wurden bisher statistiken angelegt.");
             }
             else {
-                rückgabe = " Hier können sie sehen wie oft ihre Adventures gespielt wurden und der Nutzer sich entschieden hat zu teilen das er ihr Adventure gespielt hat." + myStatistics.length + "." + "             Hier sehen sie wie oft der nutzer pro spiel geswiped hat: " + JSON.stringify(myStatistics);
+                rückgabe = " Es haben sich " + myStatistics.length + " Nutzer entschieden eines ihrer adventures zu spielen und ihre swipes als auswertung für ihre Statistiken auswerten zu lassen." + "             Hier sehen sie welches Adventure welcher Nutzer gespielt hat und wie oft dieser geswiped hat: " + JSON.stringify(myStatistics);
                 return (rückgabe);
             }
         }
