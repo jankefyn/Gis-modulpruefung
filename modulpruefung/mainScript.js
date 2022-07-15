@@ -351,9 +351,6 @@ var TextAdventure;
         for (let myAdventuresCounter = 0; myAdventuresCounter < myAdventuresString.length; myAdventuresCounter++) {
             for (let statisticsCounter = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
                 if (generalStatistics[statisticsCounter].adventureName == myAdventuresString[myAdventuresCounter]) {
-                    console.log("hallo ich bin hier");
-                    console.log("general" + generalStatistics[statisticsCounter].adventureName);
-                    console.log("myStatistics" + myStatistics[arraycounter].adventureName);
                     myStatistics[arraycounter].adventureName = generalStatistics[statisticsCounter].adventureName;
                     myStatistics[arraycounter].statisticsMap = generalStatistics[statisticsCounter].statisticsMap;
                     arraycounter = arraycounter + 1;
@@ -362,6 +359,7 @@ var TextAdventure;
         }
         for (let myStatisticsCounter = 0; myStatisticsCounter < myAdventuresString.length; myStatisticsCounter++) {
             for (let allCounter = 0; allCounter < data.length; allCounter++) {
+                console.log("myStatistics" + myStatistics[arraycounter].adventureName);
                 if (myStatistics[myStatisticsCounter].adventureName == data[allCounter].name) {
                     dataString = dataString + "Das Adventure " + myStatistics[myStatisticsCounter].adventureName;
                     if (saveMatchingcounterMap.has(myStatistics[myStatisticsCounter].adventureName)) {

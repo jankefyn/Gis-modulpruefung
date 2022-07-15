@@ -401,9 +401,6 @@ export namespace TextAdventure {
 
             for (let statisticsCounter: number = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
                 if (generalStatistics[statisticsCounter].adventureName == myAdventuresString[myAdventuresCounter]) {
-                    console.log("hallo ich bin hier");
-                    console.log("general" + generalStatistics[statisticsCounter].adventureName);
-                    console.log("myStatistics" + myStatistics[arraycounter].adventureName);
                     myStatistics[arraycounter].adventureName = generalStatistics[statisticsCounter].adventureName;
                     myStatistics[arraycounter].statisticsMap = generalStatistics[statisticsCounter].statisticsMap;
                     arraycounter = arraycounter + 1;
@@ -413,6 +410,7 @@ export namespace TextAdventure {
         }
         for (let myStatisticsCounter: number = 0; myStatisticsCounter < myAdventuresString.length; myStatisticsCounter++) {
             for (let allCounter: number = 0; allCounter < data.length; allCounter++) {
+                console.log("myStatistics" + myStatistics[arraycounter].adventureName);
                 if (myStatistics[myStatisticsCounter].adventureName == data[allCounter].name) {
                     dataString = dataString + "Das Adventure " + myStatistics[myStatisticsCounter].adventureName;
                     if (saveMatchingcounterMap.has(myStatistics[myStatisticsCounter].adventureName)) {
