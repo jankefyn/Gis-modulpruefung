@@ -49,18 +49,6 @@ var TextAdventure;
             else
                 return false;
         }
-        async getMyAdventures() {
-            let data = await textAdventureCollection.find().toArray();
-            let dataString;
-            if (data.length > 0) {
-                for (let counter = 0; counter < data.length; counter++) {
-                    if (data[counter].username == this.username) {
-                        dataString.push(data[counter].name);
-                    }
-                }
-            }
-            return (dataString);
-        }
     }
     let databaseUrl = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
     console.log("Starting server");
@@ -340,8 +328,20 @@ var TextAdventure;
         statisticsCollection.insertOne(saveStatistics);
         return ("deine bis jetzt gemachten swipes wurden gespeichert");
     }
+    async function getMyAdventures() {
+        let data = await textAdventureCollection.find().toArray();
+        let dataString;
+        if (data.length > 0) {
+            for (let counter = 0; counter < data.length; counter++) {
+                if (data[counter].username == currentUser.username) {
+                    dataString.push(data[counter].name);
+                }
+            }
+        }
+        return (dataString);
+    }
     async function showStatistics() {
-        let myAdventures = (await currentUser.getMyAdventures());
+        let myAdventures = (await getMyAdventures());
         let data = await textAdventureCollection.find().toArray();
         let generalStatistics = await statisticsCollection.find().toArray();
         let dataString;

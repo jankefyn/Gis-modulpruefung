@@ -69,18 +69,7 @@ export namespace TextAdventure {
             }
             else return false;
         }
-        async getMyAdventures(): Promise<string[]> {
-            let data: TextAdventure[] = await textAdventureCollection.find().toArray();
-            let dataString: string[];
-            if (data.length > 0) {
-                for (let counter: number = 0; counter < data.length; counter++) {
-                    if (data[counter].username == this.username) {
-                        dataString.push(data[counter].name);
-                    }
-                }
-            }
-            return (dataString);
-        }
+
     }
 
     let databaseUrl: string = "mongodb+srv://FynnJ:nicnjX5MjRSm4wtu@gis-ist-geil.wb5k5.mongodb.net/?retryWrites=true&w=majority";
@@ -383,17 +372,30 @@ export namespace TextAdventure {
 
         return ("deine bis jetzt gemachten swipes wurden gespeichert");
     }
+
+    async function getMyAdventures(): Promise<string[]> {
+        let data: TextAdventure[] = await textAdventureCollection.find().toArray();
+        let dataString: string[];
+        if (data.length > 0) {
+            for (let counter: number = 0; counter < data.length; counter++) {
+                if (data[counter].username == currentUser.username) {
+                    dataString.push(data[counter].name);
+                }
+            }
+        }
+        return (dataString);
+    }
     async function showStatistics(): Promise<string> {
-        let myAdventures: string[] = (await currentUser.getMyAdventures());
+        let myAdventures: string[] = (await getMyAdventures());
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
         let generalStatistics: Statistics[] = await statisticsCollection.find().toArray();
         let dataString: string;
         let rückgabe: string = "";
         let myStatistics: Statistics[];
-        let saveMatchingcounterMap: Map <string, number> = new Map<string, number>();
+        let saveMatchingcounterMap: Map<string, number> = new Map<string, number>();
 
         for (let myAdventuresCounter: number = 0; myAdventuresCounter < myAdventures.length; myAdventuresCounter++) {
-            
+
             for (let statisticsCounter: number = 0; statisticsCounter < generalStatistics.length; statisticsCounter++) {
                 if (generalStatistics[statisticsCounter].adventureName == myAdventures[myAdventuresCounter]) {
                     myStatistics[myAdventuresCounter].adventureName = generalStatistics[statisticsCounter].adventureName;
@@ -413,11 +415,11 @@ export namespace TextAdventure {
                 }
             }
         }
-        rückgabe = " Hier können sie sehen wie oft ihr Spiel gespielt wurde und der Nutzer sich entschieden hat zu teilen das er ihr Adventure gespielt hat." + saveMatchingcounterMap + "." + "             Hier sehen sie wie oft der nutzer pro spiel geswiped hat: " + myStatistics ;
-        
+        rückgabe = " Hier können sie sehen wie oft ihr Spiel gespielt wurde und der Nutzer sich entschieden hat zu teilen das er ihr Adventure gespielt hat." + saveMatchingcounterMap + "." + "             Hier sehen sie wie oft der nutzer pro spiel geswiped hat: " + myStatistics;
+
         if (rückgabe == "") {
             return ("Zu keinem deiner Adventures wurden bisher statistiken angelegt.");
         }
-        else return(rückgabe);
+        else return (rückgabe);
     }
 }
