@@ -207,7 +207,7 @@ export namespace TextAdventure {
     }
     async function showAdventures(_param: string): Promise<String> {
 
-        
+
         if (_param == "normal") {
             numberForCounter = 0;
         }
@@ -219,9 +219,10 @@ export namespace TextAdventure {
                 numberForCounter = numberForCounter - 5;
             }
             else {
-                return(" Sie sahen bereits die ersten 5 sie können nicht niedriger anzeigen lassen.");
+                return (" Sie sahen bereits die ersten 5 sie können nicht niedriger anzeigen lassen.");
             }
         }
+
         let limiterForfor: number = numberForCounter + 5;
         let data: TextAdventure[] = await textAdventureCollection.find().toArray();
         if (data.length > 0) {
@@ -232,10 +233,16 @@ export namespace TextAdventure {
                     dataString = dataString + " Adventure " + adventureNumber + ": " + data[counter].name + "(" + data[counter].sizeX + "X" + data[counter].sizeY + " Felder) ";
                 }
                 else {
-                    return (dataString);
+                    if (dataString == "") {
+                        return ("so viele adventures wurden noch nicht angelegt. Um zum start zu gelangen wählen sie: Hier sehen sie die ersten 5 Adventures.");
+                    }
+                    else return (dataString);
                 }
             }
-            return (dataString);
+            if (dataString == "") {
+                return ("so viele adventures wurden noch nicht angelegt. Um zum start zu gelangen wählen sie: Hier sehen sie die ersten 5 Adventures.");
+            }
+            else return (dataString);
         }
         return ("Es ist noch kein Adventure angelegt worden.");
     }

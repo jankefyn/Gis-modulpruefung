@@ -190,10 +190,18 @@ var TextAdventure;
                     dataString = dataString + " Adventure " + adventureNumber + ": " + data[counter].name + "(" + data[counter].sizeX + "X" + data[counter].sizeY + " Felder) ";
                 }
                 else {
-                    return (dataString);
+                    if (dataString == "") {
+                        return ("so viele adventures wurden noch nicht angelegt. Um zum start zu gelangen wählen sie: Hier sehen sie die ersten 5 Adventures.");
+                    }
+                    else
+                        return (dataString);
                 }
             }
-            return (dataString);
+            if (dataString == "") {
+                return ("so viele adventures wurden noch nicht angelegt. Um zum start zu gelangen wählen sie: Hier sehen sie die ersten 5 Adventures.");
+            }
+            else
+                return (dataString);
         }
         return ("Es ist noch kein Adventure angelegt worden.");
     }
